@@ -8,6 +8,13 @@ import java.sql.ResultSet;
 import vo.MemberVO;
 
 public class MemberDAO {
+	
+	static MemberDAO dao = new MemberDAO();
+
+	public MemberDAO getInstance() {
+		return dao;
+	}
+	
 	public Connection getConnection() {
 		Connection conn = null;
 

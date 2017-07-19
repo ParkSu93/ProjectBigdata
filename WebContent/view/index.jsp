@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+pageEncoding="utf-8"%>
 <html lang="ko">
 <head>
 	<title>빅데이터</title>
@@ -114,21 +115,32 @@
 			background-color: #1CA347;
 			border-color: #1CA347;
 		}
+		.radioBtn .notActive{
+			float: left;
+			color: #3276b1;
+			background-color: #fff;
+		}
 
 	</style>
 	<script type="text/javascript">
 		$(document).ready(function(){
-			$("#teacher_flag").change(function(){
-				if($("#teacher_flag").is(":checked"))
-				{
+			$('#radioBtn a').click(function() {
+				console.log("hi");
+				var sel = $(this).data('title');
+				var tog = $(this).data('toggle');
+				$(this).parent().next('.' + tog).prop('value', sel);
+
+				if(sel == 'N'){
+					console.log("N");
+					$("#edu_background").hide(100);	
+					$("#career").hide(100);	
+				}else{
+					console.log("Y");
 					$("#edu_background").show(100);	
 					$("#career").show(100);	
 				}
-				else{
-					$("#edu_background").hide(100);	
-					$("#career").hide(100);	
-				}
-
+				$(this).parent().find('a[data-toggle="' + tog + '"]').not('[data-title="' + sel + '"]').removeClass('active').addClass('notActive');
+				$(this).parent().find('a[data-toggle="' + tog + '"][data-title="' + sel + '"]').removeClass('notActive').addClass('active');
 			});
 		});
 
@@ -223,7 +235,7 @@
 								<div class="col-lg-12">
 									<form id="login-form" action="login.do" method="post" role="form" style="display: block;">
 										<div class="form-group">
-											<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="id" value="">
+											<input type="text" name="id" id="username" tabindex="1" class="form-control" placeholder="id" value="">
 										</div>
 										<div class="form-group">
 											<input type="password" name="password" id="password" tabindex="1" class="form-control" placeholder="Password">
@@ -238,32 +250,31 @@
 									</form>
 									<form id="register-form" action="join.do" method="post" role="form" style="display: none;">
 										<div class="form-group">
-											<input type="text" name="id" id="id" tabindex="1" class="form-control" placeholder="Id" value="">
+											<input type="text" name="id" id="id" tabindex="1" class="form-control" placeholder="Id" value="${mem.id}">
 										</div>
 										<div class="form-group">
-											<input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="">
+											<input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="${mem.email}">
 										</div>
 										<div class="form-group">
-											<input type="text" name="name" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
+											<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="${mem.username}">
 										</div>
 										<div class="form-group">
-											<input type="password" name="password" id="password" tabindex="1" class="form-control" placeholder="Password" value="">
+											<input type="password" name="password" id="password" tabindex="1" class="form-control" placeholder="Password" value="${mem.password}">
 										</div>
 										<div class="form-group">
-											<input type="text" name="brithday" id="brithday" tabindex="1" class="form-control" placeholder="Brithday" value="">
+											<input type="text" name="birthday" id="brithday" tabindex="1" class="form-control" placeholder="Brithday" value="${mem.birthday}">
 										</div>
 										<div class="form-group">
-											<input type="text" name="phonenum" id="phonenum" tabindex="1" class="form-control" placeholder="Phonenum" value="">
+											<input type="text" name="phonenum" id="phonenum" tabindex="1" class="form-control" placeholder="Phonenum" value="${mem.phonenum}">
 										</div>
 										<div class="form-group">
-											<input type="text" name="addr" id="addr" tabindex="1" class="form-control" placeholder="Addr" value="">
+											<input type="text" name="addr" id="addr" tabindex="1" class="form-control" placeholder="Addr" value="${mem.addr}">
 										</div>
 										<div class="form-group">
-											<input type="text" name="introduce" id="introduce" tabindex="1" class="form-control" placeholder="Introduce Your Self" value="">
+											<input type="text" name="introduce" id="introduce" tabindex="1" class="form-control" placeholder="Introduce Your Self" value="${mem.introduce}">
 										</div>
 										<div class="form-group">
 											<input type="text" name="edu_background" id="edu_background" tabindex="1" class="form-control" placeholder="Edu_background" value="" style="display:none;">
-
 										</div>
 										<div class="form-group">
 											<input type="text" name="career" id="career" tabindex="1" class="form-control" placeholder="Career" value=""  style="display:none;">
@@ -271,8 +282,14 @@
 
 										<div class="form-group">
 											<div class="row">
-												<div class="col-md-4 text-center"><br>
-													강사 여부</span><input type="checkbox" name="teacher_flag" id="teacher_flag">
+												<div class="col-sm-4">
+													<div class="input-group">
+														<div id="radioBtn" class="btn-group">
+															<a class="btn btn-primary btn-sm active" data-toggle="happy" data-title="N" value="N">학생</a>
+															<a id= "teacher_flag" class="btn btn-primary btn-sm notActive" data-toggle="happy" data-title="Y" value="Y">강사</a>
+														</div>
+														<input type="hidden" name="happy" id="happy">
+													</div>
 												</div>
 												<div class="col-md-8" >
 													<input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Register Now">
