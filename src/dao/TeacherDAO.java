@@ -87,9 +87,9 @@ public class TeacherDAO extends MemberDAO {
 
 		return tInfo;
 	}
-	
-	public void updateTeacher(TeacherVO vo){
-		updateMember((MemberVO)vo);
+
+	public void updateTeacher(TeacherVO vo) {
+		updateMember((MemberVO) vo);
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
@@ -99,7 +99,7 @@ public class TeacherDAO extends MemberDAO {
 			pstmt.setString(2, vo.getCareer());
 			pstmt.setString(3, vo.getId());
 			pstmt.executeQuery();
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			try {
@@ -112,7 +112,5 @@ public class TeacherDAO extends MemberDAO {
 			}
 		}
 	}
-	
-	
-	
+
 }

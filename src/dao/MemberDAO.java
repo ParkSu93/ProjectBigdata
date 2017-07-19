@@ -147,7 +147,8 @@ public class MemberDAO {
 		PreparedStatement pstmt = null;
 		try {
 			conn = getConnection();
-			pstmt = conn.prepareStatement("update member set password=?,email=?,phonenum=?,addr=?,introduce=? where id = ?");
+			pstmt = conn.prepareStatement(
+					"update member set password=?,email=?,phonenum=?,addr=?,introduce=? where id = ?");
 			pstmt.setString(1, vo.getPassword());
 			pstmt.setString(2, vo.getEmail());
 			pstmt.setString(3, vo.getPhonenum());

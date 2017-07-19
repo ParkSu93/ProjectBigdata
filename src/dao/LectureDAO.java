@@ -20,29 +20,32 @@ public class LectureDAO {
 
 		return conn;
 	}
-	
+
 	public void insertLecture(LectureVO vo) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
 			conn = getConnection();
-			pstmt = conn.prepareStatement("insert into lecture(lec_no,teacher_id,lec_name,lec_password,lec_start_date) values(lec_no_seq.nextval,?,?,?,?)");
+			pstmt = conn.prepareStatement(
+					"insert into lecture(lec_no,teacher_id,lec_name,lec_password,lec_start_date) values(lec_no_seq.nextval,?,?,?,?)");
 			pstmt.setString(1, vo.getTeacher_id());
 			pstmt.setString(2, vo.getLec_name());
 			pstmt.setString(3, vo.getLec_password());
 			pstmt.setString(4, vo.getLec_start_date());
 			pstmt.executeUpdate();
-			
-			if(vo.getCompletion_rate()!=70){
+
+			if (vo.getCompletion_rate() != 70) {
 				PreparedStatement stmt = null;
-				stmt = conn.prepareStatement("update lecture set completion_rate = ? where lec_no = lec_no_seq.currval");
+				stmt = conn
+						.prepareStatement("update lecture set completion_rate = ? where lec_no = lec_no_seq.currval");
 				stmt.setByte(1, vo.getCompletion_rate());
 				stmt.executeUpdate();
 				stmt.close();
 			}
-			if(vo.getLec_closing_date()!=null){
+			if (vo.getLec_closing_date() != null) {
 				PreparedStatement stmt = null;
-				stmt = conn.prepareStatement("update lecture set lec_closing_date = ? where lec_no = lec_no_seq.currval");
+				stmt = conn
+						.prepareStatement("update lecture set lec_closing_date = ? where lec_no = lec_no_seq.currval");
 				stmt.setString(1, vo.getLec_closing_date());
 				stmt.executeUpdate();
 				stmt.close();
@@ -60,7 +63,7 @@ public class LectureDAO {
 			}
 		}
 	}
-	
+
 	public LectureVO searchLecture(int lec_no) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -96,7 +99,7 @@ public class LectureDAO {
 
 		return lInfo;
 	}
-	
+
 	public void deleteLecture(int lec_no) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -118,13 +121,14 @@ public class LectureDAO {
 			}
 		}
 	}
-	
+
 	public void updateLecture(LectureVO vo) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
 			conn = getConnection();
-			pstmt = conn.prepareStatement("update lecture set lec_name=?,lec_password=?,completion_rate=?,lec_start_date=?,lec_closing_date=? where lec_no = ?");
+			pstmt = conn.prepareStatement(
+					"update lecture set lec_name=?,lec_password=?,completion_rate=?,lec_start_date=?,lec_closing_date=? where lec_no = ?");
 			pstmt.setString(1, vo.getLec_name());
 			pstmt.setString(2, vo.getLec_password());
 			pstmt.setByte(3, vo.getCompletion_rate());
@@ -145,5 +149,5 @@ public class LectureDAO {
 			}
 		}
 	}
-	
+
 }
