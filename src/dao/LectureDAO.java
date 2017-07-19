@@ -123,6 +123,7 @@ public class LectureDAO {
 	}
 
 	public void updateLecture(LectureVO vo) {
+		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
