@@ -14,6 +14,7 @@ import service.MemberService;
 import sun.security.jca.GetInstance.Instance;
 import validate.MemberValidator;
 import vo.MemberVO;
+import vo.TeacherVO;
 
 @Controller
 public class MemberController {
@@ -70,14 +71,27 @@ public class MemberController {
 		return "index";
 	}
 
+	/**
+	 * 회원가입 수행
+	 * 
+	 * @param mem
+	 * @param valiResult
+	 * @return
+	 */
 	@RequestMapping(value = "view/join.do", method = RequestMethod.POST)
-	public String doJoin(@ModelAttribute("mem") MemberVO mem, BindingResult valiResult) {
+	public String doJoin(@ModelAttribute("mem") TeacherVO mem, BindingResult valiResult) {
 		// 유효성 체크
-		new MemberValidator().validate(mem, valiResult); // 유효성 체크할 객체, 오류발생시
-															// 등록할 Map객체
-		// ** result가 비어있으면 내용이 등록되지 않았으므로 오류가 없다!
-		if (valiResult.hasErrors())// 에러를 가지고 있는지 확인. = (isEmpty() 와 반대)
-			return "index";
+		/*
+		 * new MemberValidator().validate(mem, valiResult); // 유효성 체크할 객체, 오류발생시
+		 * // 등록할 Map객체 // ** result가 비어있으면 내용이 등록되지 않았으므로 오류가 없다! if
+		 * (valiResult.hasErrors())// 에러를 가지고 있는지 확인. = (isEmpty() 와 반대) return
+		 * "index";
+		 */
+
+		if (mem == null)
+			System.out.println("아무것도 없어염");
+
+		System.out.println("controller:  " + mem.getTeacher_flag());
 
 		String str = new MemberService().joinMember(mem);
 

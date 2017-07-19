@@ -31,6 +31,7 @@ public class MemberDAO {
 	public void insertMember(MemberVO vo) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
+		System.out.println("dao:  "+ vo.toString());
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(
