@@ -28,7 +28,9 @@ public class TeacherVO extends MemberVO {
 
 	@Override
 	public String toString() {
-		return "TeacherVO [edu_background=" + edu_background + ", career=" + career + "]";
+		return "TeacherVO [id=" + id + ", password=" + password + ", username=" + username + ", birthday=" + birthday
+				+ ", email=" + email + ", phonenum=" + phonenum + ", addr=" + addr + ", introduce=" + introduce
+				+ ", teacher_flag=" + teacher_flag + ", profile=" + profile +", edu_background=" + edu_background + ", career=" + career + "]";
 	}
 
 }

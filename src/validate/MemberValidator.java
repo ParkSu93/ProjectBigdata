@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
-import vo.MemberVO;
+import vo.TeacherVO;
 
 // 유효성 체크 관련
 public class MemberValidator implements Validator {
@@ -21,7 +21,7 @@ public class MemberValidator implements Validator {
 	@Override
 	public void validate(Object target, Errors error) {
 		// TODO Auto-generated method stub
-		MemberVO mem = (MemberVO) target;
+		TeacherVO mem = (TeacherVO) target;
 		// name이란 이름으로 두번쨰인자(properties 파일에 등록된 이름)프로퍼티 이름 집어넣기
 		// 이렇게 하면 다국어 지원 가능
 		// 직접 메세지를 넣고 싶다면 인자가 3개인 함수에서 3번째에 입력

@@ -3,12 +3,16 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-
 import vo.MemberVO;
 import vo.TeacherVO;
 
 public class TeacherDAO extends MemberDAO {
+	
+	static TeacherDAO dao = new TeacherDAO();
 
+	public TeacherDAO getInstance() {
+		return dao;
+	}
 	public void insertTeacher(TeacherVO vo) {
 		insertMember((MemberVO) vo);
 		Connection conn = null;

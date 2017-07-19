@@ -120,11 +120,15 @@ pageEncoding="utf-8"%>
 			color: #3276b1;
 			background-color: #fff;
 		}
+		.btn-sm {
+		width: 45px;
+		height: 30px;
+		}
 
 	</style>
 	<script type="text/javascript">
 		$(document).ready(function(){
-			$('#radioBtn a').click(function() {
+			$('#radioBtn input').click(function() {
 				console.log("hi");
 				var sel = $(this).data('title');
 				var tog = $(this).data('toggle');
@@ -139,8 +143,8 @@ pageEncoding="utf-8"%>
 					$("#edu_background").show(100);	
 					$("#career").show(100);	
 				}
-				$(this).parent().find('a[data-toggle="' + tog + '"]').not('[data-title="' + sel + '"]').removeClass('active').addClass('notActive');
-				$(this).parent().find('a[data-toggle="' + tog + '"][data-title="' + sel + '"]').removeClass('notActive').addClass('active');
+				$(this).parent().find('input[data-toggle="' + tog + '"]').not('[data-title="' + sel + '"]').removeClass('active').addClass('notActive');
+				$(this).parent().find('input[data-toggle="' + tog + '"][data-title="' + sel + '"]').removeClass('notActive').addClass('active');
 			});
 		});
 
@@ -285,8 +289,8 @@ pageEncoding="utf-8"%>
 												<div class="col-sm-4">
 													<div class="input-group">
 														<div id="radioBtn" class="btn-group">
-															<a class="btn btn-primary btn-sm active" data-toggle="happy" data-title="N" value="N">학생</a>
-															<a id= "teacher_flag" class="btn btn-primary btn-sm notActive" data-toggle="happy" data-title="Y" value="Y">강사</a>
+															<input  class="btn btn-primary btn-sm active" name="teacher_flag" data-toggle="happy" data-title="N" value="학생"></a>
+															<input  id= "teacher_flag" class="btn btn-primary btn-sm notActive" name="teacher_flag" data-toggle="happy" data-title="Y" value="강사"></a>
 														</div>
 														<input type="hidden" name="happy" id="happy">
 													</div>
