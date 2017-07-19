@@ -31,19 +31,32 @@ public class Attendance_bookDAO {
 			pstmt.setInt(1, vo.getLec_no());
 			pstmt.setString(2, vo.getStudent_id());
 			pstmt.executeUpdate();
-			if (vo.getStu_start_date() != null) {
+			if (vo.getStu_start_date() != 1) {
 				PreparedStatement stmt = null;
-				stmt = conn.prepareStatement("update attendance_book set stu_start_date = ? where lec_no = ?");
-				stmt.setString(1, vo.getStu_start_date());
+				stmt = conn.prepareStatement(
+						"update attendance_book set stu_start_date = ? where lec_no = ? and student_id = ?");
+				stmt.setShort(1, vo.getStu_start_date());
 				stmt.setInt(2, vo.getLec_no());
+				stmt.setString(3, vo.getStudent_id());
 				stmt.executeUpdate();
 				stmt.close();
-			}
-			if (vo.getStu_closing_date() != null) {
+			} 
+			if (vo.getStu_closing_date() != 0) {
 				PreparedStatement stmt = null;
-				stmt = conn.prepareStatement("update attendance_book set stu_closing_date = ? where lec_no = ?");
-				stmt.setString(1, vo.getStu_closing_date());
+				stmt = conn.prepareStatement(
+						"update attendance_book set stu_closing_date = ? where lec_no = ? and student_id = ?");
+				stmt.setShort(1, vo.getStu_closing_date());
 				stmt.setInt(2, vo.getLec_no());
+				stmt.setString(3, vo.getStudent_id());
+				stmt.executeUpdate();
+				stmt.close();
+			} else {
+				PreparedStatement stmt = null;
+				stmt = conn.prepareStatement(
+						"update attendance_book set stu_closing_date = (select lec_total_date from lecture where lec_no = ?) where lec_no = ? and student_id = ?");
+				stmt.setInt(1, vo.getLec_no());
+				stmt.setInt(2, vo.getLec_no());
+				stmt.setString(3, vo.getStudent_id());
 				stmt.executeUpdate();
 				stmt.close();
 			}
@@ -77,8 +90,8 @@ public class Attendance_bookDAO {
 				atdcInfo.setLec_no(rs.getInt(1));
 				atdcInfo.setLec_name(rs.getString(2));
 				atdcInfo.setAttendance_rate(rs.getByte(3));
-				atdcInfo.setStu_start_date(rs.getString(4));
-				atdcInfo.setStu_closing_date(rs.getString(5));
+				atdcInfo.setStu_start_date(rs.getShort(4));
+				atdcInfo.setStu_closing_date(rs.getShort(5));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -94,5 +107,29 @@ public class Attendance_bookDAO {
 		}
 
 		return atdcInfo;
+	}
+
+	public void updateAttBook(Attendance_bookVO vo) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(
+					"update attendance_book set stu_start_date = ?, stu_closing_date = ? where lec_no = ? and student_id = ?");
+			pstmt.setShort(1, vo.getStu_start_date());
+			pstmt.setShort(2, vo.getStu_closing_date());
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
 	}
 }

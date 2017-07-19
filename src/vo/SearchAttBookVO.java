@@ -4,8 +4,8 @@ public class SearchAttBookVO {
 	private int lec_no;
 	private String lec_name;
 	private byte attendance_rate;
-	private String stu_start_date;
-	private String stu_closing_date;
+	private short stu_start_date;
+	private short stu_closing_date;
 
 	public SearchAttBookVO() {
 		super();
@@ -35,19 +35,19 @@ public class SearchAttBookVO {
 		this.attendance_rate = attendance_rate;
 	}
 
-	public String getStu_start_date() {
+	public short getStu_start_date() {
 		return stu_start_date;
 	}
 
-	public void setStu_start_date(String stu_start_date) {
+	public void setStu_start_date(short stu_start_date) {
 		this.stu_start_date = stu_start_date;
 	}
 
-	public String getStu_closing_date() {
+	public short getStu_closing_date() {
 		return stu_closing_date;
 	}
 
-	public void setStu_closing_date(String stu_closing_date) {
+	public void setStu_closing_date(short stu_closing_date) {
 		this.stu_closing_date = stu_closing_date;
 	}
 
