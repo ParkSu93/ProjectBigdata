@@ -25,7 +25,7 @@
 	<!-- 세상 제일 중요한놈 -->
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/view/" />
+		<property name="prefix" value="/view/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
 
