@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import service.MemberService;
-import sun.security.jca.GetInstance.Instance;
-import validate.MemberValidator;
 import vo.MemberVO;
 import vo.TeacherVO;
 
