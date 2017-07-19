@@ -42,6 +42,7 @@ pageEncoding="utf-8"%>
 			line-height: 1.428571429;
 			border-radius: 15px;
 		}
+
 	</style>
 	<script type="text/javascript">
 	var lecture; //모달강의 저장용
@@ -55,9 +56,8 @@ pageEncoding="utf-8"%>
 
 		$(".tr_btn").on("click",".moveAttandence",function(){ //출석부 페이지로 고고싱
 			var index = $(this).parent().parent().index(); //index 안에 해당하는 listindex들어가있음
-			
+			console.log(index);
 		});
-
 		$(".btc").click(function() { //모달창 상에서 close
 			lecture = "hi";
 			console.log(lecture);
@@ -69,8 +69,7 @@ pageEncoding="utf-8"%>
 				lec_outline : $("#lec_outline").val(),
 				lec_goal : $("#lec_goal").val(),
 				lec_time : $("#lec_time").val(),
-				lec_start_date : $("#lec_start_date").val(),
-				lec_closing_date : $("#lec_closing_date").val(),
+				lec_totall_date : $("#lec_totall_date").val(),
 				enroll_num : $("#enroll_num").val()
 			};
 
@@ -91,8 +90,7 @@ pageEncoding="utf-8"%>
 <script id="contact_template" type="text/x-jsrender">
 	<tr>
 		<td>{{:lec_name}}</td>
-		<td>{{:lec_start_date}}</td>
-		<td>{{:lec_closing_date}}</td>
+		<td>{{:lec_totall_date}}</td>
 		<td>{{:enroll_num}}</td>
 		<td>{{:lec_time}}</td>
 		<td>{{:lec_check}}</td>
@@ -145,6 +143,7 @@ pageEncoding="utf-8"%>
 		</div>
 	</nav>
 
+
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12">
@@ -185,8 +184,7 @@ pageEncoding="utf-8"%>
 					<thead>
 						<tr>
 							<th>강의 이름</th>
-							<th>강의 시작 날짜</th>
-							<th>강의 종료 날짜</th>
+							<th>강의 총 일수</th>
 							<th>현재 듣는 학생 수</th>
 							<th>수업 시간</th>
 							<th>출석 체크</th>
@@ -195,8 +193,7 @@ pageEncoding="utf-8"%>
 					<tbody class="tr_btn" style="padding: 10px">
 						<tr id="tr_index">
 							<td id="r_lec_name" name="r_lec_name">박영수</td>
-							<td id="r_lec_start_date" name="r_lec_name">1</td>
-							<td id="r_lec_end_date" name="r_lec_name">c언어</td>
+							<td id="r_lec_totall_date" name="r_lec_totall_date">100</td>
 							<td id="r_enroll_num" name="r_lec_name">30명</td>
 							<td id="r_lec_time" name="r_lec_name">2017-3-30</td>
 							<td id="r_lec_check" name="r_lec_check">
@@ -215,7 +212,7 @@ pageEncoding="utf-8"%>
 
 <!-- line modal -->
 <div class="modal fade" id="squarespaceModal" tabindex="-1"
- role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
 <div class="modal-dialog">
 	<div class="modal-content">
 		<div class="modal-header">
@@ -238,14 +235,9 @@ pageEncoding="utf-8"%>
 						placeholder="강의용 비밀번호">
 					</div>
 					<div class="form-group">
-						<label>강의 시작 날짜</label> <input type="text"
-						class="form-control mdf" id="lec_start_date"
-						name="lec_start_date" placeholder="yyyy-mm-dd">
-					</div>
-					<div class="form-group">
-						<label>강의 종료 날짜</label> <input type="text"
-						class="form-control mdf" id="lec_closing_date"
-						name="lec_closing_date" placeholder="yyyy-mm-dd">
+						<label>강의 전체 일수</label> <input type="text"
+						class="form-control mdf" id="lec_totall_date"
+						name="lec_totall_date" placeholder="dd일">
 					</div>
 					<div class="form-group">
 						<label>학생 인원</label> <input type="text" class="form-control mdf"
