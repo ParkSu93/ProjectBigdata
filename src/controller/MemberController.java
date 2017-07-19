@@ -95,9 +95,9 @@ public class MemberController {
 
 		String str = new MemberService().joinMember(mem);
 
-		/*
-		 * if (str.equals("가입완료")) return "loin"; else return "index";
-		 */
+		
+		 // if (str.equals("가입완료")) return "loin"; else return "index";
+		 
 		return "index";
 	}
 }
