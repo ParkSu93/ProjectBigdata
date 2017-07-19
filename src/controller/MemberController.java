@@ -1,5 +1,8 @@
 package controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -25,15 +28,26 @@ public class MemberController {
 		return "index";
 	}
 
+	/**
+	 * 로그인 수행
+	 * 
+	 * @param mem
+	 *            회원 id, password
+	 * @return 회원 정보, 반환할 페이지를 담은 ModelAndView
+	 */
 	@RequestMapping(value = "view/login.do", method = RequestMethod.POST)
-	public ModelAndView doLogin(@ModelAttribute("mem") MemberVO mem) {
+	public ModelAndView doLogin(@ModelAttribute("mem") MemberVO mem, HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
 		Object obj = new MemberService().loginMember(mem.getId(), mem.getPassword());
 		if (obj instanceof MemberVO) {
 			MemberVO vo = (MemberVO) obj;
 			String flag = vo.getTeacher_flag();
-			System.out.println(vo.toString());
-			System.out.println(vo.toString());
+
+			// 세션 추가
+			HttpSession session = null;
+			session = req.getSession();
+			session.setAttribute("mem", vo);
+
 			if (flag.equals("Y"))
 				mav.setViewName("teacherMain");
 			else
@@ -67,10 +81,9 @@ public class MemberController {
 
 		String str = new MemberService().joinMember(mem);
 
-/*		if (str.equals("가입완료"))
-			return "loin";
-		else
-			return "index";*/
+		/*
+		 * if (str.equals("가입완료")) return "loin"; else return "index";
+		 */
 		return "index";
 	}
 }
