@@ -26,11 +26,10 @@ public class LectureDAO {
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(
-					"insert into lecture(lec_no,teacher_id,lec_name,lec_password,lec_start_date) values(lec_no_seq.nextval,?,?,?,?)");
+					"insert into lecture(lec_no,teacher_id,lec_name,lec_password) values(lec_no_seq.nextval,?,?,?)");
 			pstmt.setString(1, vo.getTeacher_id());
 			pstmt.setString(2, vo.getLec_name());
 			pstmt.setString(3, vo.getLec_password());
-			pstmt.setString(4, vo.getLec_start_date());
 			pstmt.executeUpdate();
 
 			if (vo.getCompletion_rate() != 70) {
@@ -41,11 +40,11 @@ public class LectureDAO {
 				stmt.executeUpdate();
 				stmt.close();
 			}
-			if (vo.getLec_closing_date() != null) {
+			if (vo.getLec_total_date() != 1) {
 				PreparedStatement stmt = null;
 				stmt = conn
-						.prepareStatement("update lecture set lec_closing_date = ? where lec_no = lec_no_seq.currval");
-				stmt.setString(1, vo.getLec_closing_date());
+						.prepareStatement("update lecture set lec_total_date = ? where lec_no = lec_no_seq.currval");
+				stmt.setShort(1, vo.getLec_total_date());
 				stmt.executeUpdate();
 				stmt.close();
 			}
@@ -80,8 +79,7 @@ public class LectureDAO {
 				lInfo.setLec_password(rs.getString("lec_password"));
 				lInfo.setEnroll_num(rs.getShort("enroll_num"));
 				lInfo.setCompletion_rate(rs.getByte("completion_rate"));
-				lInfo.setLec_start_date(rs.getString("lec_start_date"));
-				lInfo.setLec_closing_date(rs.getString("lec_closing_date"));
+				lInfo.setLec_total_date(rs.getShort("lec_total_date"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -128,13 +126,12 @@ public class LectureDAO {
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(
-					"update lecture set lec_name=?,lec_password=?,completion_rate=?,lec_start_date=?,lec_closing_date=? where lec_no = ?");
+					"update lecture set lec_name=?,lec_password=?,completion_rate=?,lec_total_date=? where lec_no = ?");
 			pstmt.setString(1, vo.getLec_name());
 			pstmt.setString(2, vo.getLec_password());
 			pstmt.setByte(3, vo.getCompletion_rate());
-			pstmt.setString(4, vo.getLec_start_date());
-			pstmt.setString(5, vo.getLec_closing_date());
-			pstmt.setInt(6, vo.getLec_no());
+			pstmt.setShort(4, vo.getLec_total_date());
+			pstmt.setInt(5, vo.getLec_no());
 			pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
