@@ -28,7 +28,6 @@ public class MemberController {
 	@RequestMapping(value = "view/login.do", method = RequestMethod.POST)
 	public ModelAndView doLogin(@ModelAttribute("mem") MemberVO mem) {
 		ModelAndView mav = new ModelAndView();
-		System.out.println(mem.toString());
 		Object obj = new MemberService().loginMember(mem.getId(), mem.getPassword());
 		if (obj instanceof MemberVO) {
 			MemberVO vo = (MemberVO) obj;
