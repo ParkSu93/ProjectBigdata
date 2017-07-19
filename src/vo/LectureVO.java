@@ -1,4 +1,4 @@
-package source;
+package vo;
 
 public class LectureVO {
 	private int lec_no;

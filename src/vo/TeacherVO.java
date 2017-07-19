@@ -1,4 +1,4 @@
-package source;
+package vo;
 
 public class TeacherVO extends MemberVO {
 	private String edu_background;
