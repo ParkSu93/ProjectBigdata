@@ -29,6 +29,7 @@ public class TeacherDAO extends MemberDAO {
 				stmt.setString(1, vo.getEdu_background());
 				stmt.setString(2, vo.getId());
 				stmt.executeUpdate();
+				stmt.close();
 			}
 			if (vo.getCareer() != null) {
 				PreparedStatement stmt = null;
@@ -36,6 +37,7 @@ public class TeacherDAO extends MemberDAO {
 				stmt.setString(1, vo.getCareer());
 				stmt.setString(2, vo.getId());
 				stmt.executeUpdate();
+				stmt.close();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -90,9 +92,9 @@ public class TeacherDAO extends MemberDAO {
 
 		return tInfo;
 	}
-	
-	public void updateTeacher(TeacherVO vo){
-		updateMember((MemberVO)vo);
+
+	public void updateTeacher(TeacherVO vo) {
+		updateMember((MemberVO) vo);
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
@@ -101,7 +103,8 @@ public class TeacherDAO extends MemberDAO {
 			pstmt.setString(1, vo.getEdu_background());
 			pstmt.setString(2, vo.getCareer());
 			pstmt.setString(3, vo.getId());
-		}catch (Exception e) {
+			pstmt.executeQuery();
+		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			try {
@@ -114,5 +117,5 @@ public class TeacherDAO extends MemberDAO {
 			}
 		}
 	}
-	
+
 }

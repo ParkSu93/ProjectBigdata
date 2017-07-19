@@ -50,6 +50,7 @@ public class MemberDAO {
 				stmt.setString(1, vo.getAddr());
 				stmt.setString(2, vo.getId());
 				stmt.executeUpdate();
+				stmt.close();
 			}
 			if (vo.getIntroduce() != null) {
 				PreparedStatement stmt = null;
@@ -57,6 +58,7 @@ public class MemberDAO {
 				stmt.setString(1, vo.getIntroduce());
 				stmt.setString(2, vo.getId());
 				stmt.executeUpdate();
+				stmt.close();
 			}
 			if (vo.getTeacher_flag() != null) {
 				PreparedStatement stmt = null;
@@ -64,6 +66,7 @@ public class MemberDAO {
 				stmt.setString(1, vo.getTeacher_flag());
 				stmt.setString(2, vo.getId());
 				stmt.executeUpdate();
+				stmt.close();
 			}
 			if (vo.getProfile() != null) {
 				PreparedStatement stmt = null;
@@ -71,6 +74,7 @@ public class MemberDAO {
 				stmt.setString(1, vo.getProfile().getOriginalFilename());
 				stmt.setString(2, vo.getId());
 				stmt.executeUpdate();
+				stmt.close();
 			}
 
 		} catch (Exception e) {
@@ -134,6 +138,15 @@ public class MemberDAO {
 			pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
 		}
 	}
 
@@ -142,13 +155,15 @@ public class MemberDAO {
 		PreparedStatement pstmt = null;
 		try {
 			conn = getConnection();
-			pstmt = conn.prepareStatement("update member set password=?,email=?,phonenum=?,addr=?,introduce=? where id = ?");
+			pstmt = conn.prepareStatement(
+					"update member set password=?,email=?,phonenum=?,addr=?,introduce=? where id = ?");
 			pstmt.setString(1, vo.getPassword());
 			pstmt.setString(2, vo.getEmail());
 			pstmt.setString(3, vo.getPhonenum());
 			pstmt.setString(4, vo.getAddr());
 			pstmt.setString(5, vo.getIntroduce());
 			pstmt.setString(6, vo.getId());
+			pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
