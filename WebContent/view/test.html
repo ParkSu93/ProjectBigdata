@@ -1,10 +1,88 @@
 <!DOCTYPE html>
 <html>
-<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-<script type="text/javascript">
-	
-</script>    
+<head>
+  <title></title>
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/index.css">
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="js/bootstrap.js"></script>
+  
+  <style type="text/css">
+    .radioBtn .notActive{
+      float: left;
+      color: #3276b1;
+      background-color: #fff;
+    }
+  </style>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.container').on('click', '.radioBtn a', function() {
+        var sel = $(this).data('title');
+        var tog = $(this).data('toggle');
+        $(this).parent().next('.' + tog).prop('value', sel);
+        $(this).parent().find('a[data-toggle="' + tog + '"]').not('[data-title="' + sel + '"]').removeClass('active').addClass('notActive');
+        $(this).parent().find('a[data-toggle="' + tog + '"][data-title="' + sel + '"]').removeClass('notActive').addClass('active');
+      });
+    });
+  </script>
+</head>
 <body>
-	<div id="header"></div>
-</body>
-</html> 
+
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">
+              <span class="glyphicon glyphicon-tags"></span>
+              <span class="panel-span panel-left">강의명단</span>
+            </h3>
+          </div>
+          <div class="panel-body">
+            <div class="media">
+              <div class="media-left">
+                <a href="#">
+                  <img class="media-object" src="images/temp1.jpg">
+                </a>
+              </div>
+              <div class="media-body">
+                <h4 class="media-heading" id="attendance_lec_name">강의 이름</h4><br>
+                <h5 class="media-heading" id="attendance_introduce">간단한 자기소개</h4><br>
+                </div>
+              </div>
+            </div>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>학생 이름</th>
+                  <th>학생 이메일</th>
+                  <th>학생 전화번호</th>
+                  <th>출석 확인</th>
+                </tr>
+              </thead>
+              <tbody  class="tr_btn">
+                <tr>
+                  <td id="student_username" name="student_username">박영수</td>
+                  <td id="student_email" name="student_email">1</td>
+                  <td id="student_phonenum" name="student_phonenum">c언어</td>
+                  <td id="attendance_status" name="attendance_status">
+                    <div class="col-sm-7 col-md-7">
+                      <div class="input-group">
+                        <div  class="radioBtn btn-group">
+                          <a class="btn btn-primary  active" data-toggle="fun" data-title="Y">출</a>
+                          <a class="btn btn-primary  notActive" data-toggle="fun" data-title="N">지</a>
+                          <a class="btn btn-primary  notActive" data-toggle="fun" data-title="S">결</a>
+                        </div>
+                        <input type="hidden" name="fun" class="fun">
+                      </div>
+                    </div>
+                  </td>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </body>
+    </html>
+
