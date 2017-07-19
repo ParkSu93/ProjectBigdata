@@ -1,5 +1,8 @@
 package controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -8,9 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import service.MemberService;
-import sun.security.jca.GetInstance.Instance;
-import validate.MemberValidator;
 import vo.MemberVO;
+import vo.TeacherVO;
 
 @Controller
 public class MemberController {
@@ -25,15 +27,26 @@ public class MemberController {
 		return "index";
 	}
 
+	/**
+	 * 로그인 수행
+	 * 
+	 * @param mem
+	 *            회원 id, password
+	 * @return 회원 정보, 반환할 페이지를 담은 ModelAndView
+	 */
 	@RequestMapping(value = "view/login.do", method = RequestMethod.POST)
-	public ModelAndView doLogin(@ModelAttribute("mem") MemberVO mem) {
+	public ModelAndView doLogin(@ModelAttribute("mem") MemberVO mem, HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
 		Object obj = new MemberService().loginMember(mem.getId(), mem.getPassword());
 		if (obj instanceof MemberVO) {
 			MemberVO vo = (MemberVO) obj;
 			String flag = vo.getTeacher_flag();
-			System.out.println(vo.toString());
-			System.out.println(vo.toString());
+
+			// 세션 추가
+			HttpSession session = null;
+			session = req.getSession();
+			session.setAttribute("mem", vo);
+
 			if (flag.equals("Y"))
 				mav.setViewName("teacherMain");
 			else
@@ -56,21 +69,33 @@ public class MemberController {
 		return "index";
 	}
 
+	/**
+	 * 회원가입 수행
+	 * 
+	 * @param mem
+	 * @param valiResult
+	 * @return
+	 */
 	@RequestMapping(value = "view/join.do", method = RequestMethod.POST)
-	public String doJoin(@ModelAttribute("mem") MemberVO mem, BindingResult valiResult) {
+	public String doJoin(@ModelAttribute("mem") TeacherVO mem, BindingResult valiResult) {
 		// 유효성 체크
-		new MemberValidator().validate(mem, valiResult); // 유효성 체크할 객체, 오류발생시
-															// 등록할 Map객체
-		// ** result가 비어있으면 내용이 등록되지 않았으므로 오류가 없다!
-		if (valiResult.hasErrors())// 에러를 가지고 있는지 확인. = (isEmpty() 와 반대)
-			return "index";
+		/*
+		 * new MemberValidator().validate(mem, valiResult); // 유효성 체크할 객체, 오류발생시
+		 * // 등록할 Map객체 // ** result가 비어있으면 내용이 등록되지 않았으므로 오류가 없다! if
+		 * (valiResult.hasErrors())// 에러를 가지고 있는지 확인. = (isEmpty() 와 반대) return
+		 * "index";
+		 */
+
+		if (mem == null)
+			System.out.println("아무것도 없어염");
+
+		System.out.println("controller:  " + mem.getTeacher_flag());
 
 		String str = new MemberService().joinMember(mem);
 
-/*		if (str.equals("가입완료"))
-			return "loin";
-		else
-			return "index";*/
+		
+		 // if (str.equals("가입완료")) return "loin"; else return "index";
+		 
 		return "index";
 	}
 }

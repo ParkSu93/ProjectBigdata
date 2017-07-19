@@ -5,16 +5,16 @@ import java.io.File;
 import org.springframework.web.multipart.MultipartFile;
 
 public class MemberVO {
-	private String id;
-	private String password;
-	private String username;
-	private String birthday;
-	private String email;
-	private String phonenum;
-	private String addr;
-	private String introduce;
-	private String teacher_flag;
-	private MultipartFile profile;
+	public String id;
+	public String password;
+	public String username;
+	public String birthday;
+	public String email;
+	public String phonenum;
+	public String addr;
+	public String introduce;
+	public String teacher_flag;
+	public MultipartFile profile;
 
 	public MemberVO() {
 		super();
@@ -93,7 +93,11 @@ public class MemberVO {
 	}
 
 	public void setTeacher_flag(String teacher_flag) {
-		this.teacher_flag = teacher_flag;
+		if(teacher_flag.equals("학생")){
+			this.teacher_flag = "N";
+		}else{
+			this.teacher_flag = "Y";
+		}
 	}
 
 	public MultipartFile getProfile() {

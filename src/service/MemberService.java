@@ -1,10 +1,11 @@
 package service;
 
 import org.springframework.stereotype.Service;
-import org.springframework.web.servlet.ModelAndView;
 
 import dao.MemberDAO;
+import dao.TeacherDAO;
 import vo.MemberVO;
+import vo.TeacherVO;
 
 /*
  * 회원 Service
@@ -12,13 +13,18 @@ import vo.MemberVO;
 @Service
 public class MemberService {
 
-	MemberDAO dao = new MemberDAO().getInstance();
+	MemberDAO memDao = new MemberDAO().getInstance();
+	TeacherDAO teaDao = new TeacherDAO().getInstance();
 
 	/*
 	 * 회원가입
 	 */
-	public String joinMember(MemberVO mem) {
-		dao.insertMember(mem);
+	public String joinMember(TeacherVO mem) {
+		if(mem.getTeacher_flag().equals("Y")){
+			teaDao.insertTeacher(mem);
+		}else{
+			memDao.insertMember((MemberVO)mem);			
+		}
 		return "가입완료";
 	}
 
@@ -29,7 +35,7 @@ public class MemberService {
 		MemberVO vo = null;
 		String result = null;
 		try {
-			 vo = dao.searchMember(id);
+			 vo = memDao.searchMember(id);
 			if (password.equals(vo.getPassword())) {
 				result = "로그인 성공";
 			} else{
