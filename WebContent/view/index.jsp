@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+pageEncoding="utf-8"%>
 <html lang="ko">
 <head>
 	<title>빅데이터</title>
@@ -115,21 +115,32 @@
 			background-color: #1CA347;
 			border-color: #1CA347;
 		}
+		.radioBtn .notActive{
+			float: left;
+			color: #3276b1;
+			background-color: #fff;
+		}
 
 	</style>
 	<script type="text/javascript">
 		$(document).ready(function(){
-			$("#teacher_flag").change(function(){
-				if($("#teacher_flag").is(":checked"))
-				{
+			$('#radioBtn a').click(function() {
+				console.log("hi");
+				var sel = $(this).data('title');
+				var tog = $(this).data('toggle');
+				$(this).parent().next('.' + tog).prop('value', sel);
+
+				if(sel == 'N'){
+					console.log("N");
+					$("#edu_background").hide(100);	
+					$("#career").hide(100);	
+				}else{
+					console.log("Y");
 					$("#edu_background").show(100);	
 					$("#career").show(100);	
 				}
-				else{
-					$("#edu_background").hide(100);	
-					$("#career").hide(100);	
-				}
-
+				$(this).parent().find('a[data-toggle="' + tog + '"]').not('[data-title="' + sel + '"]').removeClass('active').addClass('notActive');
+				$(this).parent().find('a[data-toggle="' + tog + '"][data-title="' + sel + '"]').removeClass('notActive').addClass('active');
 			});
 		});
 
@@ -271,9 +282,14 @@
 
 										<div class="form-group">
 											<div class="row">
-												<div class="col-md-4 text-center"><br>
-													강사 여부</span><br><input type="radio" name="teacher_flag" id="teacher_flag" value="Y">강사 
-													<input type="radio" name="teacher_flag"  value="N" checked="checked"> 학생
+												<div class="col-sm-4">
+													<div class="input-group">
+														<div id="radioBtn" class="btn-group">
+															<a class="btn btn-primary btn-sm active" data-toggle="happy" data-title="N" value="N">학생</a>
+															<a id= "teacher_flag" class="btn btn-primary btn-sm notActive" data-toggle="happy" data-title="Y" value="Y">강사</a>
+														</div>
+														<input type="hidden" name="happy" id="happy">
+													</div>
 												</div>
 												<div class="col-md-8" >
 													<input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Register Now">
