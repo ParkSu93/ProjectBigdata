@@ -6,7 +6,7 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
-	<context:component-scan base-package="com.edu.test" /> <!-- @으로 bean설정을 햇으니까, 찾아서 bean으로 만들어줘. -->
+	<context:component-scan base-package="controller" /> <!-- @으로 bean설정을 햇으니까, 찾아서 bean으로 만들어줘. -->
 
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
@@ -25,7 +25,7 @@
 	<!-- 세상 제일 중요한놈 -->
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/view/" />
+		<property name="prefix" value="/View/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
 
