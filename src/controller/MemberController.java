@@ -20,12 +20,12 @@ public class MemberController {
 	 * 
 	 * @return login.jsp(로그인 페이지)
 	 */
-	@RequestMapping(value = "View/login.do", method = RequestMethod.GET)
+	@RequestMapping(value = "view/login.do", method = RequestMethod.GET)
 	public String getMemberLoginPage() {
 		return "index";
 	}
 
-	@RequestMapping(value = "View/login.do", method = RequestMethod.POST)
+	@RequestMapping(value = "view/login.do", method = RequestMethod.POST)
 	public ModelAndView doLogin(@ModelAttribute("mem") MemberVO mem) {
 		ModelAndView mav = new ModelAndView();
 		System.out.println(mem.toString());
@@ -52,12 +52,12 @@ public class MemberController {
 	 * 
 	 * @return join.jsp(로그인 페이지)
 	 */
-	@RequestMapping(value = "View/join.do", method = RequestMethod.GET)
+	@RequestMapping(value = "view/join.do", method = RequestMethod.GET)
 	public String getMemberJoinPage() {
 		return "index";
 	}
 
-	@RequestMapping(value = "View/join.do", method = RequestMethod.POST)
+	@RequestMapping(value = "view/join.do", method = RequestMethod.POST)
 	public String doJoin(@ModelAttribute("mem") MemberVO mem, BindingResult valiResult) {
 		// 유효성 체크
 		new MemberValidator().validate(mem, valiResult); // 유효성 체크할 객체, 오류발생시
