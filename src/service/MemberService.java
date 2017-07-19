@@ -20,10 +20,10 @@ public class MemberService {
 	 * 회원가입
 	 */
 	public String joinMember(TeacherVO mem) {
-		if(mem.getTeacher_flag().equals("Y")){
+		if (mem.getTeacher_flag().equals("Y")) {
 			teaDao.insertTeacher(mem);
-		}else{
-			memDao.insertMember((MemberVO)mem);			
+		} else {
+			memDao.insertMember((MemberVO) mem);
 		}
 		return "가입완료";
 	}
@@ -35,10 +35,10 @@ public class MemberService {
 		MemberVO vo = null;
 		String result = null;
 		try {
-			 vo = memDao.searchMember(id);
+			vo = memDao.searchMember(id);
 			if (password.equals(vo.getPassword())) {
 				result = "로그인 성공";
-			} else{
+			} else {
 				result = "비밀번호가 틀렸습니다";
 				return result;
 			}
@@ -48,5 +48,15 @@ public class MemberService {
 		}
 
 		return vo;
+	}
+
+	public Object getMemberInfo(String id, String flag) {
+		Object obj = null;
+		if (flag.equals("Y")) {
+			obj = teaDao.searchTeacher(id);
+		} else {
+			obj = memDao.searchMember(id);
+		}
+		return obj;
 	}
 }

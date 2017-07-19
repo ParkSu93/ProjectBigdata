@@ -17,6 +17,8 @@ import vo.TeacherVO;
 @Controller
 public class MemberController {
 
+	static MemberService service = new MemberService();
+
 	/**
 	 * 첫 로그인 페이지를 호출한다.
 	 * 
@@ -37,7 +39,7 @@ public class MemberController {
 	@RequestMapping(value = "view/login.do", method = RequestMethod.POST)
 	public ModelAndView doLogin(@ModelAttribute("mem") MemberVO mem, HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
-		Object obj = new MemberService().loginMember(mem.getId(), mem.getPassword());
+		Object obj = service.loginMember(mem.getId(), mem.getPassword());
 		if (obj instanceof MemberVO) {
 			MemberVO vo = (MemberVO) obj;
 			String flag = vo.getTeacher_flag();
@@ -47,10 +49,18 @@ public class MemberController {
 			session = req.getSession();
 			session.setAttribute("mem", vo);
 
-			if (flag.equals("Y"))
+			Object obj2 = service.getMemberInfo(vo.getId(), vo.getTeacher_flag());
+			if (flag.equals("Y")){
+				TeacherVO mem2 =  (TeacherVO)obj2;
+				mav.addObject("memberInfo", mem2);			
 				mav.setViewName("teacherMain");
-			else
+				System.out.println(mem.toString());
+			}else{
+				MemberVO mem2 = (MemberVO)obj2;
+				mav.addObject("memberInfo", mem2);
 				mav.setViewName("studentMain");
+				System.out.println(mem.toString());
+			}
 		} else {
 			String result = (String) obj;
 			mav.addObject("result", result);
@@ -91,11 +101,36 @@ public class MemberController {
 
 		System.out.println("controller:  " + mem.getTeacher_flag());
 
-		String str = new MemberService().joinMember(mem);
+		String str = service.joinMember(mem);
 
-		
-		 // if (str.equals("가입완료")) return "loin"; else return "index";
-		 
+		// if (str.equals("가입완료")) return "loin"; else return "index";
+
 		return "index";
 	}
+
+	@RequestMapping(value = "view/profile.do")
+	public ModelAndView getProfilePage(HttpServletRequest req) {
+		ModelAndView mav = new ModelAndView();
+
+		HttpSession session = null;
+		session = req.getSession();
+		MemberVO vo = (MemberVO) session.getAttribute("mem");
+
+		Object obj = service.getMemberInfo(vo.getId(), vo.getTeacher_flag());
+		if(obj instanceof TeacherVO){
+			TeacherVO mem =  (TeacherVO)obj;
+			mav.addObject("memberInfo", mem);			
+			mav.setViewName("teacherProfile");
+			System.out.println(mem.toString());
+		}else{
+			MemberVO mem = (MemberVO)obj;
+			mav.addObject("memberInfo", mem);
+			mav.setViewName("studentProfile");
+			System.out.println(mem.toString());
+		}
+
+		System.out.println();
+		return mav;
+	}
+
 }

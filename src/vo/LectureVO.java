@@ -7,14 +7,13 @@ public class LectureVO {
 	private String lec_password;
 	private short enroll_num;
 	private byte completion_rate;
-	private String lec_start_date;
-	private String lec_closing_date;
+	private short lec_total_date;
 
 	public LectureVO() {
 		super();
 		enroll_num = 0;
 		completion_rate = 70;
-		lec_closing_date = null;
+		lec_total_date = 1;
 	}
 
 	public int getLec_no() {
@@ -65,28 +64,20 @@ public class LectureVO {
 		this.completion_rate = completion_rate;
 	}
 
-	public String getLec_start_date() {
-		return lec_start_date;
+	
+	public short getLec_total_date() {
+		return lec_total_date;
 	}
 
-	public void setLec_start_date(String lec_start_date) {
-		this.lec_start_date = lec_start_date;
-	}
-
-	public String getLec_closing_date() {
-		return lec_closing_date;
-	}
-
-	public void setLec_closing_date(String lec_closing_date) {
-		this.lec_closing_date = lec_closing_date;
+	public void setLec_total_date(short lec_total_date) {
+		this.lec_total_date = lec_total_date;
 	}
 
 	@Override
 	public String toString() {
 		return "LectureVO [lec_no=" + lec_no + ", teacher_id=" + teacher_id + ", lec_name=" + lec_name
 				+ ", lec_password=" + lec_password + ", enroll_num=" + enroll_num + ", completion_rate="
-				+ completion_rate + ", lec_start_date=" + lec_start_date + ", lec_closing_date=" + lec_closing_date
-				+ "]";
+				+ completion_rate + ", lec_total_date=" + lec_total_date + "]";
 	}
 
 }

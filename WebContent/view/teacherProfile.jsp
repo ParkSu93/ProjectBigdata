@@ -76,7 +76,7 @@
 
 		<div class="col-md-7 ">
 			<div class="panel panel-default">
-				<div class="panel-heading">  <h4 >User Profile</h4></div>
+				<div class="panel-heading">  <h4 >User Profile </h4></div>
 				<div class="panel-body">
 					<div class="box box-info">
 
@@ -96,50 +96,50 @@
 							</div>
 							<div class="col-sm-6">
 								<h4 style="color:#00b1b1;">강사</h4></span>
-								<span id="username" name="username"><p>이모개</p></span>            
+								<span id="username" name="username"><p>${memberInfo.username}</p></span>            
 							</div>
 							<div class="clearfix"></div>
 							<hr style="margin:5px 0 5px 0;">
 
 
-							<div class="col-sm-5 col-xs-6 tital " id="id" name="id" >Id:</div><div class="col-sm-7 col-xs-6 ">Prasad</div>
+							<div class="col-sm-5 col-xs-6 tital " id="id" name="id" >Id:</div><div class="col-sm-7 col-xs-6 ">${memberInfo.id}</div>
 							<div class="clearfix"></div>
 							<div class="bot-border"></div>
 
-							<div class="col-sm-5 col-xs-6 tital " id="username" name="username">이름:</div><div class="col-sm-7"> Shankar</div>
+							<div class="col-sm-5 col-xs-6 tital " id="username" name="username">이름:</div><div class="col-sm-7"> ${memberInfo.username}</div>
 							<div class="clearfix"></div>
 							<div class="bot-border"></div>
 
-							<div class="col-sm-5 col-xs-6 tital " id="brithday" name="brithday">생년 월일:</div><div class="col-sm-7"> Huddedar</div>
+							<div class="col-sm-5 col-xs-6 tital " id="brithday" name="brithday">생년 월일:</div><div class="col-sm-7"> ${memberInfo.birthday}</div>
 							<div class="clearfix"></div>
 							<div class="bot-border"></div>
 
-							<div class="col-sm-5 col-xs-6 tital " id="email" name="email">이메일:</div><div class="col-sm-7">15 Jun 2016</div>
-
-							<div class="clearfix"></div>
-							<div class="bot-border"></div>
-
-							<div class="col-sm-5 col-xs-6 tital " id="phonenum" name="phonenum">핸드폰번호:</div><div class="col-sm-7">11 Jun 1998</div>
+							<div class="col-sm-5 col-xs-6 tital " id="email" name="email">이메일:</div><div class="col-sm-7">${memberInfo.email}</div>
 
 							<div class="clearfix"></div>
 							<div class="bot-border"></div>
 
-							<div class="col-sm-5 col-xs-6 tital " id="addr" name="addr">주소:</div><div class="col-sm-7">Shirdi</div>
+							<div class="col-sm-5 col-xs-6 tital " id="phonenum" name="phonenum">핸드폰번호:</div><div class="col-sm-7">${memberInfo.phonenum}</div>
 
 							<div class="clearfix"></div>
 							<div class="bot-border"></div>
 
-							<div class="col-sm-5 col-xs-6 tital " id="introduce" name="introduce">자기소개:</div><div class="col-sm-7">Indian</div>
+							<div class="col-sm-5 col-xs-6 tital " id="addr" name="addr">주소:</div><div class="col-sm-7">${memberInfo.addr}</div>
 
 							<div class="clearfix"></div>
 							<div class="bot-border"></div>
 
-							<div class="col-sm-5 col-xs-6 tital " id="edu_background" name="edu_background">학력:</div><div class="col-sm-7">Hindu</div>
+							<div class="col-sm-5 col-xs-6 tital " id="introduce" name="introduce">자기소개:</div><div class="col-sm-7">${memberInfo.introduce}</div>
 
 							<div class="clearfix"></div>
 							<div class="bot-border"></div>
 
-							<div class="col-sm-5 col-xs-6 tital " id="career" name="career">경력:</div><div class="col-sm-7">Hindu</div>
+							<div class="col-sm-5 col-xs-6 tital " id="edu_background" name="edu_background">학력:</div><div class="col-sm-7">${memberInfo.edu_background}</div>
+
+							<div class="clearfix"></div>
+							<div class="bot-border"></div>
+
+							<div class="col-sm-5 col-xs-6 tital " id="career" name="career">경력:</div><div class="col-sm-7">${memberInfo.career}</div>
 							<!-- /.box-body -->
 						</div>
 						<!-- /.box -->

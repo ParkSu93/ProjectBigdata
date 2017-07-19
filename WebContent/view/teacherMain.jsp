@@ -113,8 +113,13 @@ pageEncoding="utf-8"%>
 		<div class="collapse navbar-collapse"
 		id="bs-example-navbar-collapse-1">
 		<ul class="nav navbar-nav">
+<<<<<<< HEAD
+			<li class="active"><a href="#">강의<span class="sr-only"></span></a></li>
+			<li><a href="profile.do">프로필</a></li>
+=======
 			<li class="active"><a href="teacherMain.jsp">강의<span class="sr-only"></span></a></li>
 			<li><a href="teacherProfile.jsp">프로필</a></li>
+>>>>>>> 86c72ff9ac01ec8547f3eb43ae21f57f10ca42f0
 			<li class="dropdown"><a href="#" class="dropdown-toogle"
 				data-toggle="dropdown" role="button" aria-haspopup="true"
 				arie-expanded="false">3<span class="caret"></span></a>
@@ -135,8 +140,8 @@ pageEncoding="utf-8"%>
 					data-toggle="dropdown" role="button" aria-haspopup="true"
 					arie-expanded="false">접속하기<span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="index.html">로그인</a></li>
-						<li><a href="index.html">로그아웃</a></li>
+						<li><a href="index.jsp">로그인</a></li>
+						<li><a href="index.jsp">로그아웃</a></li>
 					</ul></li>
 				</ul>
 			</div>
@@ -171,11 +176,9 @@ pageEncoding="utf-8"%>
 							</a>
 						</div>
 						<div class="media-body">
-							<h4 class="media-heading">박영수</h4>
+							<h4 class="media-heading"> ${memberInfo.username}</h4>
 							<br>
-							<h5 class="media-heading">
-								간단한 자기소개
-							</h4>
+							<h5 class="media-heading"> ${memberInfo.introduce}</h5><br>
 							<br>
 						</div>
 					</div>
