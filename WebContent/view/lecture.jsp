@@ -13,14 +13,14 @@
 	<style type="text/css">
 	</style>
 	<script type="text/javascript">
-		$(document).ready(function(){
-			$.get("index.html", function(data){
-				$("#nav").replaceWith(data);
-			});
+		$(decumnet).ready(function(){
+			$('#content').load('navbar_teacher.html', null, function(responseText, textStatus, xhr) {
+    			alert(textStatus); // see what the response status is
+    		});
 		});
 	</script>
 </head>
 <body>
-	<div id="nav">test</div>
+	<div id="content"></div>
 </body>
 </html>
