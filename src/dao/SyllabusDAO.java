@@ -4,7 +4,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
+import vo.MyLectureVO;
 import vo.SyllabusVO;
 
 public class SyllabusDAO {
@@ -124,6 +126,45 @@ public class SyllabusDAO {
 				e2.printStackTrace();
 			}
 		}
+	}
+
+	public ArrayList<MyLectureVO> myLectureList(String id){
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ArrayList<MyLectureVO> list = new ArrayList<MyLectureVO>();
+		ResultSet rs = null;
+
+		MyLectureVO lecture = null;
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement("select l.lec_no,l.lec_name,l.lec_total_date,l.lec_enroll_num,s.lec_time from lecture l, syllabus s where l.lec_no = s.lec_no and l.teacher_id = ?");
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				lecture = new MyLectureVO();
+				lecture.setLec_no(rs.getInt(1));
+				lecture.setLec_name(rs.getString(2));
+				lecture.setLec_total_date(rs.getShort(3));
+				lecture.setEnroll_num(rs.getShort(4));
+				lecture.setLec_time(rs.getString(5));
+				list.add(lecture);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+				if (rs != null)
+					rs.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+
+		return list;
 	}
 
 }
