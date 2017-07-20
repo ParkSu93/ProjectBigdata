@@ -14,44 +14,59 @@ pageEncoding="utf-8"%>
 	<script src="js/bootstrap.js"></script>
 	<script src="https://www.jsviews.com/download/jsrender.js"></script>
 	<style type="text/css">
-		.modal-header {
-			padding-bottom: 5px;
-		}
+	body {
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+	
+	
+.modal-header {
+	padding-bottom: 5px;
+}
 
-		.modal-footer {
-			padding: 0;
-		}
+.modal-footer {
+	padding: 0;
+}
 
-		.modal-footer .btn-group button {
-			height: 40px;
-			border-top-left-radius: 0;
-			border-top-right-radius: 0;
-			border: none;
-			border-right: 1px solid #ddd;
-		}
+.modal-footer .btn-group button {
+	height: 40px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+	border: none;
+	border-right: 1px solid #ddd;
+}
 
-		.modal-footer .btn-group:last-child>button {
-			border-right: 0;
-		}
+.modal-footer .btn-group:last-child>button {
+	border-right: 0;
+}
 
-		.btn-circle {
-			width: 30px;
-			height: 30px;
-			text-align: center;
-			padding: 6px 0;
-			font-size: 12px;
-			line-height: 1.428571429;
-			border-radius: 15px;
-		}
-	</style>
+.btn-circle {
+	width: 30px;
+	height: 30px;
+	text-align: center;
+	padding: 6px 0;
+	font-size: 12px;
+	line-height: 1.428571429;
+	border-radius: 15px;
+}
+
+#wrapper {
+	width: 100%;
+	height: 50%;
+	position: relative;
+}
+</style>
 	<script type="text/javascript">
-		$(document).ready(function(){
-			
+		$(document).ready(function() {
+
 		});
 	</script>
 </head>
 <body>
 	<%@include file="navbar_student.jsp" %> 
+	<div id="wrapper">
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12">
@@ -142,7 +157,7 @@ pageEncoding="utf-8"%>
 	</div>
 </div>
 </div>
-
+</div>
 
 <!-- 출석부 확인 -->
 <div class="modal fade my_mdl_lecture" id="squarespaceModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
@@ -338,6 +353,7 @@ pageEncoding="utf-8"%>
 			});
 		});
 	</script>
+
 	<%@include file="footer.jsp"%>
 </body>
 </html>
