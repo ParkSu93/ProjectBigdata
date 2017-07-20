@@ -1,19 +1,26 @@
 package vo;
 
 public class LectureVO {
-	 int lec_no;
-	 String teacher_id;
-	 String lec_name;
-	 String lec_password;
-	 short enroll_num;
-	 byte completion_rate;
-	 short lec_total_date;
+
+	public int lec_no;
+	public String teacher_id;
+	public String lec_name;
+	public String lec_password;
+	public short enroll_num;
+	public byte completion_rate;
+	public short lec_total_date;
+	public String lec_check;
+	public String total_lec_check;
+	public String my_lec_check;
 
 	public LectureVO() {
 		super();
 		enroll_num = 0;
 		completion_rate = 70;
 		lec_total_date = 1;
+		lec_check = "<button type=\"button\" class=\"btn btn-success btn-circle moveAttandence\"><i class=\"glyphicon glyphicon-link\"></i></button>";
+		total_lec_check = "<button type=\"button\" class=\"btn btn-success btn-circle total_lecture\"><i class=\"glyphicon glyphicon-star\"></i></button>";
+		my_lec_check = "<button type=\"button\" class=\"btn btn-success btn-circle my_lecture\"> <i class=\"glyphicon glyphicon-heart\"></i></button>";
 	}
 
 	public int getLec_no() {
@@ -71,6 +78,18 @@ public class LectureVO {
 
 	public void setLec_total_date(short lec_total_date) {
 		this.lec_total_date = lec_total_date;
+	}
+	
+	public String getLec_check() {
+		return lec_check;
+	}
+
+	public String getTotal_lec_check() {
+		return total_lec_check;
+	}
+	
+	public String getMy_lec_check() {
+		return my_lec_check;
 	}
 
 	@Override

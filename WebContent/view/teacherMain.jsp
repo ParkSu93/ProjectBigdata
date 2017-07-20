@@ -143,9 +143,13 @@
 		<%= result %>
 	</div>
 
+<<<<<<< HEAD
 	<<<<<<< HEAD <<<<<<< HEAD
 
 
+=======
+
+>>>>>>> 6cb4b02aaa58de4ea145e6734a275891fd0da1b1
 	<%@include file="navbar_teacher.jsp"%>
 	<div class="container">
 		<div class="row">
@@ -275,7 +279,40 @@
 					</div>
 					>>>>>>> dd00b3d2e277772a78cc2e4226b4e9521524a5ee
 				</div>
+<<<<<<< HEAD
 			</div>
+=======
+				<table class="table">
+					<thead>
+						<tr>
+							<th>강의 이름</th>
+							<th>강의 총 일수</th>
+							<th>현재 듣는 학생 수</th>
+							<th>수업 시간</th>
+							<th>출석 체크</th>
+						</tr>
+					</thead>
+					<tbody class="tr_btn" style="padding: 10px">
+						<tr id="tr_index">
+							<td id="r_lec_name" name="r_lec_name"></td>
+							<td id="r_lec_totall_date" name="r_lec_totall_date">100</td>
+							<td id="r_enroll_num" name="r_lec_name">30명</td>
+							<td id="r_lec_time" name="r_lec_name">2017-3-30</td>
+							<td id="r_lec_check" name="r_lec_check">
+								<button type="button"
+								class="btn btn-success btn-circle moveAttandence">
+								<i class="glyphicon glyphicon-link"></i>
+							</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+</div>
+</div>
+>>>>>>> 6cb4b02aaa58de4ea145e6734a275891fd0da1b1
 
 
 			<!-- line modal -->
@@ -350,7 +387,11 @@
 				</div>
 			</div>
 
+<<<<<<< HEAD
 
 			<%@include file="footer.jsp"%>
+=======
+<%@include file="footer.jsp"%>
+>>>>>>> 6cb4b02aaa58de4ea145e6734a275891fd0da1b1
 </body>
 </html>

@@ -39,5 +39,4 @@ public class MyLectureVO extends LectureVO{
 		return "MyLectureVO [lec_no=" + lec_no + ", lec_name=" + lec_name + ", lec_total_date=" + lec_total_date
 				+ ", enroll_num=" + enroll_num + ", lec_time=" + lec_time + "]";
 	}
-
 }
