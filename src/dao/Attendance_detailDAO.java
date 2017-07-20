@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import vo.Attendance_detailVO;
@@ -163,49 +164,70 @@ public class Attendance_detailDAO {
 		return aInfo;
 	}
 
-	public StudentListVO searchAllStudent(int lec_no){
+	public ArrayList<StudentListVO> searchAllStudent(int lec_no){
 		Connection conn = null;
-		PreparedStatement pstmt = null;
-		StudentListVO aInfo = new StudentListVO();
-		ResultSet rs = null;
-		ArrayList<String> list = new ArrayList<String>();
+		ResultSet rs2 = null;
+		ArrayList<StudentListVO> stuList = new ArrayList<StudentListVO>();
+		int chk;
+		PreparedStatement stmt = null;
 		try {
-			pstmt = conn.prepareStatement("select m.id, m.username, m.birthday, m.email, m.phonenum, m.addr, m.introduce, m.profile, b.stu_start_date, b.stu_closing_date, b.attendance_rate, d.attendance_status from member m, attendance_book b, attendance_detail d, lecture l where m.id=b.student_id and b.student_id=d.student_id and l.lec_no = ?");
-			pstmt.setInt(1, lec_no);
-			rs = pstmt.executeQuery();
-			if (rs.next()) {
-				aInfo.setId(rs.getString("id"));
-				aInfo.setUsername(rs.getString("username"));
-				aInfo.setBirthday(rs.getString("birthday"));
-				aInfo.setEmail(rs.getString("email"));
-				aInfo.setPhonenum(rs.getString("phonenum"));
-				aInfo.setAddr(rs.getString("addr"));
-				aInfo.setIntroduce(rs.getString("introduce"));
-				aInfo.setProfile(rs.getString("profile"));
-				aInfo.setStu_start_date(rs.getShort("stu_start_date"));
-				aInfo.setStu_closing_date(rs.getShort("stu_closing_date"));
-				aInfo.setAttendance_rate(rs.getByte("attendance_rate"));
-				list.add(rs.getString("attendance_status"));
+			stmt = conn.prepareStatement("select student_id from course where lec_no = ?");
+			stmt.setInt(1, lec_no);
+			rs2 = stmt.executeQuery();
+			while(rs2.next()){
+				chk = 0;
+				ResultSet rs = null;
+				try {
+					StudentListVO aInfo = null;
+					ArrayList<String> list = new ArrayList<String>();
+					aInfo = new StudentListVO();
+					PreparedStatement pstmt = null;
+					pstmt = conn.prepareStatement("select m.id, m.username, m.birthday, m.email, m.phonenum, m.addr, m.introduce, m.profile, b.stu_start_date, b.stu_closing_date, b.attendance_rate, d.attendance_status from member m, attendance_book b, attendance_detail d, lecture l where m.id=b.student_id and b.student_id=d.student_id and l.lec_no = ? and m.id = ?");
+					pstmt.setInt(1, lec_no);
+					pstmt.setString(2, rs2.getString("student_id"));
+					rs = pstmt.executeQuery();
+					if (rs.next()) {
+						chk++;
+						aInfo.setId(rs.getString("id"));
+						aInfo.setUsername(rs.getString("username"));
+						aInfo.setBirthday(rs.getString("birthday"));
+						aInfo.setEmail(rs.getString("email"));
+						aInfo.setPhonenum(rs.getString("phonenum"));
+						aInfo.setAddr(rs.getString("addr"));
+						aInfo.setIntroduce(rs.getString("introduce"));
+						aInfo.setProfile(rs.getString("profile"));
+						aInfo.setStu_start_date(rs.getShort("stu_start_date"));
+						aInfo.setStu_closing_date(rs.getShort("stu_closing_date"));
+						aInfo.setAttendance_rate(rs.getByte("attendance_rate"));
+						list.add(rs.getString("attendance_status"));
+					}
+					while (rs.next()) {
+						list.add(rs.getString("attendance_status"));
+					}
+					if(chk>0){
+						aInfo.setAttendance_status(list);
+						stuList.add(aInfo);
+					}
+					if (pstmt != null)
+						pstmt.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				} finally {
+					try {
+						if (conn != null)
+							conn.close();
+						if (rs != null)
+							rs.close();
+					} catch (Exception e2) {
+						e2.printStackTrace();
+					}
+				}
 			}
-			while (rs.next()) {
-				list.add(rs.getString("attendance_status"));
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (pstmt != null)
-					pstmt.close();
-				if (conn != null)
-					conn.close();
-				if (rs != null)
-					rs.close();
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
+		} catch (SQLException e1) {
+			e1.printStackTrace();
 		}
 		
-		aInfo.setAttendance_status(list);
-		return aInfo;
+		
+		return stuList;
 	}
 }
