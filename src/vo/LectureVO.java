@@ -1,6 +1,7 @@
 package vo;
 
 public class LectureVO {
+
 	public int lec_no;
 	public String teacher_id;
 	public String lec_name;
@@ -9,17 +10,24 @@ public class LectureVO {
 	public byte completion_rate;
 	public short lec_total_date;
 	public String lec_check;
+<<<<<<< HEAD
 	public String total_lec_check;
 	public String my_lec_check;
 	
+=======
+
+>>>>>>> bb66dbb6e9c05e73073990981e4a007322009ff7
 	public LectureVO() {
 		super();
 		enroll_num = 0;
 		completion_rate = 70;
 		lec_total_date = 1;
 		lec_check = "<button type=\"button\" class=\"btn btn-success btn-circle moveAttandence\"><i class=\"glyphicon glyphicon-link\"></i></button>";
+<<<<<<< HEAD
 		total_lec_check = "<button type=\"button\" class=\"btn btn-success btn-circle total_lecture\"><i class=\"glyphicon glyphicon-star\"></i></button>";
 		my_lec_check = "<button type=\"button\" class=\"btn btn-success btn-circle my_lecture\"> <i class=\"glyphicon glyphicon-heart\"></i></button>";
+=======
+>>>>>>> bb66dbb6e9c05e73073990981e4a007322009ff7
 	}
 
 	public int getLec_no() {
