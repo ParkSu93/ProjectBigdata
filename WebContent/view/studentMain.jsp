@@ -1,3 +1,5 @@
+<%@page import="controller.Converter"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 pageEncoding="utf-8"%>
 <!DOCTYPE html>
@@ -66,6 +68,22 @@ pageEncoding="utf-8"%>
 	</script>
 </head>
 <body>
+<%
+	ArrayList allList =(ArrayList)request.getAttribute("allList");
+	String result = Converter.convertToJson(allList);
+%>
+<div id = "a" style = display:none>
+<%= result %>
+</div>
+<%
+	ArrayList totalList =(ArrayList)request.getAttribute("totalList");
+	String result2 = Converter.convertToJson(totalList);
+%>
+<div id = "b" style = display:none>
+<%= result2 %>
+</div>
+
+
 	<%@include file="navbar_student.jsp" %> 
 	<div id="wrapper">
 	<div class="container">
@@ -103,7 +121,7 @@ pageEncoding="utf-8"%>
 							</tr>
 						</thead>
 						<tbody class="tr_btn" style="padding: 10px">
-							<tr id="tr_index">
+							<tr id="tb_index">
 								<td id="my_lec_name" name="my_lec_name">c언어</td>
 								<td id="my_lec_teacher_name" name="my_lec_teacher_name">100</td>
 								<td id="my_lec_time" name="my_lec_time">30명</td>
@@ -140,7 +158,7 @@ pageEncoding="utf-8"%>
 							<th>강의 추가</th>
 						</tr>
 					</thead>
-					<tbody class="tr_btn" style="padding: 10px">
+					<tbody class="tb_btn" style="padding: 10px">
 						<tr id="tr_index">
 							<td id="total_lec_name" name="total_lec_name">c언어</td>
 							<td id="total_lec_teacher_name" name="total_lec_teacher_name">100</td>
@@ -268,6 +286,29 @@ pageEncoding="utf-8"%>
 </div>
 </div>
 
+   <script type="text/javascript">
+$(document).ready(function() {		
+				 lecture = $("#a").html();
+				lecture2 = JSON.parse(lecture)
+				console.log(lecture2);
+				 //jsrender를 이용한 테이블 추가.
+			    var tmpl = $.templates("#contact_template");
+			    var str = tmpl.render(lecture2);
+			    $(".tr_btn").append(str);
+		});
+</script>   
+   <script type="text/javascript">
+$(document).ready(function() {		
+				 lecture = $("#b").html();
+				lecture3 = JSON.parse(lecture)
+				console.log(lecture3);
+				 //jsrender를 이용한 테이블 추가.
+			    var tmpl = $.templates("#contact_template2");
+			    var str = tmpl.render(lecture3);
+			    $(".tb_btn").append(str);
+		});
+</script>  
+
 <script type="text/javascript">
 		var my_mdl_lecture=[]; //선택한 강의의 출석현황.
 		var my_lecture=[]; //내가 듣고 있는 lecture 목록. 받아오고
@@ -304,7 +345,7 @@ pageEncoding="utf-8"%>
 				sub_tr.append('<th> x </th>');
 			}
 
-			for(var i=start_day;i<=total_day+start_day;i++){
+			for(var i=start_day;i<=total_day;i++){
 				sub_tr.append('<th>'+i+'일</th>');
 			}
 		};
@@ -320,7 +361,7 @@ pageEncoding="utf-8"%>
 				show_my_mdl_lecture();
 			});
 
-			$(".tr_btn").on("click", ".total_lecture", function() { //나의 강의 목록 출석 확인
+			$(".tb_btn").on("click", ".total_lecture", function() { //나의 강의 목록 출석 확인
 				index_add_lecture = $(this).parent().parent().index(); //index 안에 해당하는 listindex들어가있음
 				console.log(index_add_lecture);
 				//모달창
@@ -329,31 +370,47 @@ pageEncoding="utf-8"%>
 			});
 
 			$(".bts").click(function() { //모달창 상에서 total_lecture 추가
-				// lecture = {
-				// 	lec_name : $("#lec_name").val(),
-				// 	lec_password : $("#lec_password").val(),
-				// 	lec_outline : $("#lec_outline")
-				// 	.val(),
-				// 	lec_goal : $("#lec_goal").val(),
-				// 	lec_time : $("#lec_time").val(),
-				// 	lec_total_date : $(
-				// 		"#lec_total_date")
-				// 	.val(),
-				// 	enroll_num : $("#enroll_num")
-				// 	.val()
-				// };
+				 lecture = {
+				 	lec_name : $("#lec_name").val(),
+				 	lec_password : $("#lec_password").val(),
+				 	lec_outline : $("#lec_outline")
+				 	.val(),
+				 	lec_goal : $("#lec_goal").val(),
+				 	lec_time : $("#lec_time").val(),
+				 	lec_total_date : $(
+				 		"#lec_total_date")
+				 	.val(),
+				 	enroll_num : $("#enroll_num")
+				 	.val()
+				};
 
-				// lecture.lec_check = '<button type="button" class="btn btn-success btn-circle moveAttandence"><i class="glyphicon glyphicon-link"></i></button>';
-				// console.log(lecture);
-				// $(".modal").hide();
+				 lecture.lec_check = '<button type="button" class="btn btn-success btn-circle moveAttandence"><i class="glyphicon glyphicon-link"></i></button>';
+				 console.log(lecture);
+				 $(".modal").hide();
 
-				// //jsrender를 이용한 테이블 추가.
-				// var tmpl = $.templates("#contact_template");ㅇㅇ
-				// var str = tmpl.render(lecture);
-				// $(".tr_btn").append(str);
+				 //jsrender를 이용한 테이블 추가.
+				 var tmpl = $.templates("#contact_template");
+				 var str = tmpl.render(lecture);
+				 $(".tr_btn").append(str);
 			});
 		});
 	</script>
+<script id="contact_template" type="text/x-jsrender">
+   <tr>
+      <td>{{:lec_name}}</td>
+      <td>{{:teacher_id}}</td>
+      <td>{{:lec_time}}</td>
+      <td>{{:lec_check}}</td>
+   </tr>
+</script>
+<script id="contact_template2" type="text/x-jsrender">
+   <tr>
+      <td>{{:lec_name}}</td>
+      <td>{{:teacher_id}}</td>
+      <td>{{:lec_time}}</td>
+      <td>{{:lec_check}}</td>
+   </tr>
+</script>
 
 	<%@include file="footer.jsp"%>
 </body>

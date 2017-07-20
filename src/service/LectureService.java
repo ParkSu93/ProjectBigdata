@@ -1,5 +1,6 @@
 package service;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import org.springframework.stereotype.Service;
@@ -8,7 +9,6 @@ import dao.CourseDAO;
 import dao.LectureDAO;
 import dao.MemberDAO;
 import dao.SyllabusDAO;
-
 import vo.CourseVO;
 import vo.LectureVO;
 import vo.MyLectureVO;
@@ -17,10 +17,17 @@ import vo.Attendance_detailVO;
 @Service
 public class LectureService {
 
+<<<<<<< HEAD
 	static SyllabusDAO syllaDao = new SyllabusDAO();
 	static LectureDAO lecDao = new LectureDAO();
 	static CourseDAO corseDao = new CourseDAO();
 	static Attendance_detailDAO attDao = new Attendance_detailDAO();
+=======
+	SyllabusDAO dao = new SyllabusDAO();
+	LectureDAO dao2 = new LectureDAO();
+	CourseDAO dao3 = new CourseDAO();
+	Attendance_detailDAO dao4 = new Attendance_detailDAO();
+>>>>>>> 6d9306ee0f6508ac08c3d7e6271f739074634316
 	
 	public void insertSyllabus(SyllabusVO vo){
 		syllaDao.insertSyllabus(vo);
@@ -36,6 +43,11 @@ public class LectureService {
 	public ArrayList<MyLectureVO> lectureList(String id) {
 		ArrayList<MyLectureVO> list = syllaDao.myLectureList(id);
 		return list;
+	}
+	
+	public ArrayList<LectureVO> Alllecturelist(String student_id){
+		ArrayList<LectureVO> alllist = dao2.lectureAllList(student_id);
+		return alllist;
 	}
 
 	public void insertLecture(MyLectureVO vo){
@@ -75,7 +87,6 @@ public class LectureService {
 
 	}
 	
-	
 	public void insertAttDetail(Attendance_detailVO vo){
 		attDao.insertAttDetail(vo);
 	}
@@ -83,5 +94,8 @@ public class LectureService {
 	public void updateAttDetail(Attendance_detailVO vo) {
 		attDao.updateAttDetail(vo);
 	}
-
+	public ArrayList<LectureVO> totallecturelist(){
+		ArrayList<LectureVO> totalLecuturelist = dao2.totalLectureList();
+		return totalLecuturelist;
+	}
 }

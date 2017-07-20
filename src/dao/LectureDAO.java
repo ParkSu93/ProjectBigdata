@@ -187,7 +187,6 @@ public class LectureDAO {
 				e2.printStackTrace();
 			}
 		}
-
 		return list;
 	}
 
