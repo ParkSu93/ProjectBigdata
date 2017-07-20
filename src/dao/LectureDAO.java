@@ -189,4 +189,42 @@ public class LectureDAO {
 		return list;
 	}
 
+	public ArrayList<LectureVO> totalLectureList() {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ArrayList<LectureVO> list = new ArrayList<LectureVO>();
+		LectureVO lecture = null;
+		ResultSet rs = null;
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement("select * from lecture");
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				lecture = new LectureVO();
+				lecture.setLec_no(rs.getInt("lec_no"));
+				lecture.setTeacher_id(rs.getString("teacher_id"));
+				lecture.setLec_name(rs.getString("lec_name"));
+				lecture.setLec_password(rs.getString("lec_password"));
+				lecture.setEnroll_num(rs.getShort("enroll_num"));
+				lecture.setCompletion_rate(rs.getByte("completion_rate"));
+				lecture.setLec_total_date(rs.getShort("lec_total_date"));
+				list.add(lecture);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+				if (rs != null)
+					rs.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+
+		return list;
+	}
 }

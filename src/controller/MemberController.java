@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+
+
 import service.LectureService;
 import service.MemberService;
 import vo.LectureVO;
@@ -84,10 +86,7 @@ public class MemberController {
 				
 				MemberVO mem2 = (MemberVO)obj2;
 				mav.addObject("memberInfo", mem2);
-				// mav.setViewName("studentMain");
-				// 원래 위에 함수가 맞음!! 현제 studentMain 구현중이므로 테스트용으로 studentProfile로
-				// 이동
-				mav.setViewName("studentProfile");
+				mav.setViewName("studentMain");
 				System.out.println("로그인 학생" + mem.toString());
 			}
 		} else {
@@ -133,7 +132,6 @@ public class MemberController {
 		String str = service.joinMember(mem);
 
 		// if (str.equals("가입완료")) return "loin"; else return "index";
-
 		return "index";
 	}
 
@@ -171,37 +169,29 @@ public class MemberController {
 	 * @return user 프로필 페이지
 	 */
 	@RequestMapping(value = "view/modifyProfile.do", method = RequestMethod.POST)
-	public ModelAndView doModifyProfile(HttpServletRequest req) {
+	public String doModifyProfile(@ModelAttribute("user")MemberVO vo,HttpServletRequest req) {
 		
-		ModelAndView mav = new ModelAndView();
-		HttpSession session = null;
-		session = req.getSession();
-		MemberVO vo = null;
-		if (session != null) {
-			vo = (MemberVO) session.getAttribute("mem");
-		} else {
-			mav.setViewName("login");
-		}
-		// 여기서 정보 업데이트
-		String email = (String) req.getAttribute("modify_email");
-		String addr = (String) req.getAttribute("modify_addr");
-		String phone = (String) req.getAttribute("modify_phonenum");
-		String intro = (String) req.getAttribute("modify_introduce");
-
-		System.out.println("너 여기 오긴 오기 = email : " + email + ", addr : "+addr+ ", phone : " + phone + ", intro : " + intro);
+		HttpSession se = req.getSession();
+		MemberVO mem =null;
 		
-		vo.setEmail(email);
-		vo.setAddr(addr);
-		vo.setPhonenum(phone);
-		vo.setIntroduce(intro);
-		if (vo.getTeacher_flag().equals("Y") || vo.getTeacher_flag().equals("y")) {
-			TeacherVO tea = (TeacherVO) vo;
-			tea.setCareer((String) req.getAttribute("modify_career"));
-			tea.setEdu_background((String) req.getAttribute("modify_edu_background"));
+		Object obj = se.getAttribute("mem");
+		if(obj instanceof TeacherVO){
+			TeacherVO tea = (TeacherVO)obj;
+			
 			service.updateMemberInfo(tea);
-		} else
-			service.updateMemberInfo(vo);
+		}else{
 
-		return getProfilePage(req);
+			mem = (MemberVO)obj;
+			mem.setEmail(vo.getEmail());
+			mem.setAddr(vo.getAddr());
+			mem.setPhonenum(vo.getPhonenum());
+			mem.setIntroduce(vo.getIntroduce());
+			
+			service.updateMemberInfo(mem);
+		}
+		
+		System.out.println(mem);
+	
+		return "studentProfile";
 	}
 }

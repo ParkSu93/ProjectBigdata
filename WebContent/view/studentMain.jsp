@@ -16,39 +16,53 @@ pageEncoding="utf-8"%>
 	<script src="js/bootstrap.js"></script>
 	<script src="https://www.jsviews.com/download/jsrender.js"></script>
 	<style type="text/css">
-		.modal-header {
-			padding-bottom: 5px;
-		}
+	body {
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+	
+	
+.modal-header {
+	padding-bottom: 5px;
+}
 
-		.modal-footer {
-			padding: 0;
-		}
+.modal-footer {
+	padding: 0;
+}
 
-		.modal-footer .btn-group button {
-			height: 40px;
-			border-top-left-radius: 0;
-			border-top-right-radius: 0;
-			border: none;
-			border-right: 1px solid #ddd;
-		}
+.modal-footer .btn-group button {
+	height: 40px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+	border: none;
+	border-right: 1px solid #ddd;
+}
 
-		.modal-footer .btn-group:last-child>button {
-			border-right: 0;
-		}
+.modal-footer .btn-group:last-child>button {
+	border-right: 0;
+}
 
-		.btn-circle {
-			width: 30px;
-			height: 30px;
-			text-align: center;
-			padding: 6px 0;
-			font-size: 12px;
-			line-height: 1.428571429;
-			border-radius: 15px;
-		}
-	</style>
+.btn-circle {
+	width: 30px;
+	height: 30px;
+	text-align: center;
+	padding: 6px 0;
+	font-size: 12px;
+	line-height: 1.428571429;
+	border-radius: 15px;
+}
+
+#wrapper {
+	width: 100%;
+	height: 50%;
+	position: relative;
+}
+</style>
 	<script type="text/javascript">
-		$(document).ready(function(){
-			
+		$(document).ready(function() {
+
 		});
 	</script>
 </head>
@@ -63,7 +77,11 @@ pageEncoding="utf-8"%>
 
 
 	<%@include file="navbar_student.jsp" %> 
+<<<<<<< HEAD
 
+=======
+	<div id="wrapper">
+>>>>>>> 3df762412f13eaa24611ca59fc423648917862d2
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12">
@@ -154,7 +172,7 @@ pageEncoding="utf-8"%>
 	</div>
 </div>
 </div>
-
+</div>
 
 <!-- 출석부 확인 -->
 <div class="modal fade my_mdl_lecture" id="squarespaceModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
@@ -366,6 +384,7 @@ $(document).ready(function() {
 			});
 		});
 	</script>
+<<<<<<< HEAD
 <script id="contact_template" type="text/x-jsrender">
    <tr>
       <td>{{:lec_name}}</td>
@@ -374,5 +393,9 @@ $(document).ready(function() {
       <td>{{:lec_check}}</td>
    </tr>
 </script>
+=======
+
+	<%@include file="footer.jsp"%>
+>>>>>>> 3df762412f13eaa24611ca59fc423648917862d2
 </body>
 </html>
