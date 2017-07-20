@@ -58,4 +58,18 @@ public class MemberService {
 		}
 		return obj;
 	}
+
+	/**
+	 * 회원정보 업데이트
+	 * 
+	 * @param vo
+	 */
+	public void updateMemberInfo(Object vo) {
+		if (vo instanceof MemberVO) {
+			dao.updateMember((MemberVO) vo);
+		} else {
+			dao.updateTeacher((TeacherVO) vo);
+		}
+
+	}
 }

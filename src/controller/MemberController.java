@@ -84,7 +84,10 @@ public class MemberController {
 				
 				MemberVO mem2 = (MemberVO)obj2;
 				mav.addObject("memberInfo", mem2);
-				mav.setViewName("studentMain");
+				// mav.setViewName("studentMain");
+				// 원래 위에 함수가 맞음!! 현제 studentMain 구현중이므로 테스트용으로 studentProfile로
+				// 이동
+				mav.setViewName("studentProfile");
 				System.out.println("로그인 학생" + mem.toString());
 			}
 		} else {
@@ -140,10 +143,10 @@ public class MemberController {
 
 		HttpSession session = null;
 		session = req.getSession();
-		MemberVO vo =null;
+		MemberVO vo = null;
 		if (session != null) {
-			 vo = (MemberVO) session.getAttribute("mem");
-		}else{
+			vo = (MemberVO) session.getAttribute("mem");
+		} else {
 			mav.setViewName("login");
 		}
 		Object obj = service.getMemberInfo(vo.getId(), vo.getTeacher_flag());
@@ -159,8 +162,46 @@ public class MemberController {
 			System.out.println("프로필 학생" + mem.toString());
 		}
 
-		System.out.println();
 		return mav;
 	}
 
+	/**
+	 * 회원정보 수정
+	 * 
+	 * @return user 프로필 페이지
+	 */
+	@RequestMapping(value = "view/modifyProfile.do", method = RequestMethod.POST)
+	public ModelAndView doModifyProfile(HttpServletRequest req) {
+		
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = null;
+		session = req.getSession();
+		MemberVO vo = null;
+		if (session != null) {
+			vo = (MemberVO) session.getAttribute("mem");
+		} else {
+			mav.setViewName("login");
+		}
+		// 여기서 정보 업데이트
+		String email = (String) req.getAttribute("modify_email");
+		String addr = (String) req.getAttribute("modify_addr");
+		String phone = (String) req.getAttribute("modify_phonenum");
+		String intro = (String) req.getAttribute("modify_introduce");
+
+		System.out.println("너 여기 오긴 오기 = email : " + email + ", addr : "+addr+ ", phone : " + phone + ", intro : " + intro);
+		
+		vo.setEmail(email);
+		vo.setAddr(addr);
+		vo.setPhonenum(phone);
+		vo.setIntroduce(intro);
+		if (vo.getTeacher_flag().equals("Y") || vo.getTeacher_flag().equals("y")) {
+			TeacherVO tea = (TeacherVO) vo;
+			tea.setCareer((String) req.getAttribute("modify_career"));
+			tea.setEdu_background((String) req.getAttribute("modify_edu_background"));
+			service.updateMemberInfo(tea);
+		} else
+			service.updateMemberInfo(vo);
+
+		return getProfilePage(req);
+	}
 }

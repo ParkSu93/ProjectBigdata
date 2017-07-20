@@ -63,7 +63,6 @@ pageEncoding="utf-8"%>
 
 
 	<%@include file="navbar_student.jsp" %> 
-
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12">
@@ -312,7 +311,7 @@ $(document).ready(function() {
 				sub_tr.append('<th> x </th>');
 			}
 
-			for(var i=start_day;i<=total_day;i++){
+			for(var i=start_day;i<=total_day+start_day;i++){
 				sub_tr.append('<th>'+i+'일</th>');
 			}
 		};
@@ -355,6 +354,7 @@ $(document).ready(function() {
 				 console.log(lecture);
 				 $(".modal").hide();
 
+<<<<<<< HEAD
 				 //jsrender를 이용한 테이블 추가.
 				 var tmpl = $.templates("#contact_template");
 				 var str = tmpl.render(lecture);
@@ -374,5 +374,15 @@ $(document).ready(function() {
       <td>{{:lec_check}}</td>
    </tr>
 </script>
+=======
+				// //jsrender를 이용한 테이블 추가.
+				// var tmpl = $.templates("#contact_template");ㅇㅇ
+				// var str = tmpl.render(lecture);
+				// $(".tr_btn").append(str);
+			});
+		});
+	</script>
+	<%@include file="footer.jsp"%>
+>>>>>>> 71d3f11a38307b56ca316465d185c9106faec4e2
 </body>
 </html>
