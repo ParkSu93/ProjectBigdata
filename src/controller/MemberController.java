@@ -58,11 +58,9 @@ public class MemberController {
 
 			Object obj2 = service.getMemberInfo(vo.getId(), vo.getTeacher_flag());
 
-			if (flag.equals("Y")){
-				
+			String id = mem.getId();
+			if (flag.equals("Y")){				
 				ArrayList<MyLectureVO> lecturelist = new ArrayList<>();
-				String id = mem.id;
-				
 				LectureService service = new LectureService();
 				lecturelist = service.lectureList(id);
 				
@@ -75,12 +73,11 @@ public class MemberController {
 			}else{
 				ArrayList<LectureVO> allList = new ArrayList<>();
 				ArrayList<LectureVO> totallist = new ArrayList<>();
-				String student_id = mem.id;
 				
-				System.out.println(student_id);
+				System.out.println(id);
 				
 				LectureService service = new LectureService();
-				allList = service.Alllecturelist(student_id);
+				allList = service.Alllecturelist(id);
 				
 				LectureService service2 = new LectureService();
 				totallist = service.totallecturelist();

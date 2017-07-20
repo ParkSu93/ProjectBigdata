@@ -80,7 +80,7 @@
          $.ajax({
  			url:'myAttedance.do', //이쪽 url로
  			type:'post', //포스트형식으로
- 			data:goAttandence; // lectureVO 형식으로 넘어감
+ 			data:goAttandence // lectureVO 형식으로 넘어감
  		});
          console.log(index);
      });
@@ -142,14 +142,6 @@
 	<div id="a" style="display: none">
 		<%= result %>
 	</div>
-
-<<<<<<< HEAD
-	<<<<<<< HEAD <<<<<<< HEAD
-
-
-=======
-
->>>>>>> 6cb4b02aaa58de4ea145e6734a275891fd0da1b1
 	<%@include file="navbar_teacher.jsp"%>
 	<div class="container">
 		<div class="row">

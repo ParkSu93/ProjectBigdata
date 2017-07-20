@@ -183,24 +183,14 @@ pageEncoding="utf-8"%>
 		var first_index = 0; // 새로운 학생이 시작하는 index;
 		for (var j = first_index; j < (attend_student_list.length); j++) { // 전체 리스트에 대해서 
 			var now_student = attend_student_list[j];
-			if(now_student.student_id != before_student_id){ // 새로운 학생 정보를 만나는 순간.
-				before_student_id = now_student.student_id;
-				first_index = j;
-				//1. 현재 학생의 이름 출력
-				while (i++<day_num) { 
-					if (i == 0) { 
-						
-						// 현재 학생 id로 이름 알아오기.
-						
-							th_tr.append('<td>{}</td>');
-					}
-					th_tr.append('<td><input type="text" class="td_day td_'+i+'_day" value ='now_student.attendance_status'/></td>'); // 한 학생의 해당 날짜.
-								//한번 더 유저에 해당하는 값 뿌려주고.
+			th_tr.append('<td>now_student.username</td>');		
+			while (i++<day_num) { 
+				if(now_student.attendance_status[i] != null){// 출결정보 있을때
+					th_tr.append('<td><input type="text" class="td_day td_'+i+'_day" value ='now_student.attendance_status[i]'/></td>');
+				}else{ // 출결정보 없을때 빈칸
+					th_tr.append('<td><input type="text" class="td_day td_'+i+'_day"/></td>');	
 				}
-				//2. 현재 학생의 존재하는 출결여부 출력
-				// 3. 이후로는 day_num까지 빈칸 출력
 			}
-			
 			
 		}
 	});
