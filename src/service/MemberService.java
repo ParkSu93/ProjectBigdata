@@ -59,6 +59,17 @@ public class MemberService {
 		return obj;
 	}
 
+	public void insertTeacher(TeacherVO vo){
+		dao.insertTeacher(vo);
+	}
+	public TeacherVO searchTeacher(String id){
+		TeacherVO vo = dao.searchTeacher(id);
+		return vo;
+	}
+	public void updateTeacher(TeacherVO vo){
+		dao.updateTeacher(vo);
+	}
+
 	/**
 	 * 회원정보 업데이트
 	 * 
@@ -70,6 +81,7 @@ public class MemberService {
 		} else {
 			dao.updateTeacher((TeacherVO) vo);
 		}
+
 
 	}
 }
