@@ -47,6 +47,7 @@
 <script type="text/javascript">
 	var lecture; //모달강의 저장용
 	var lecture_list; //모달 강의 리스트용 처음 시작할 때, 서버로 부터 한번 아이디에 해당하는 모든 강의 받아오고, 뿌려준다. 그리고 추가하는 형식
+<<<<<<< HEAD
 	$(document).ready(function() {
 		$("#addUser").click(function() { //강의추가
 			console.log("h");
@@ -88,6 +89,57 @@
 			// $("#r_lec_check").html(td);
 		});
 	});
+=======
+	$(document)
+			.ready(
+					function() {
+						$("#addUser").click(function() { //강의추가
+							console.log("h");
+							$(".modal").show();
+							$(".modal").modal();
+						});
+
+						$(".tr_btn").on("click", ".moveAttandence", function() { //출석부 페이지로 고고싱
+							var index = $(this).parent().parent().index(); //index 안에 해당하는 listindex들어가있음
+							console.log(index);
+						});
+						$(".btc").click(function() { //모달창 상에서 close
+							lecture = "hi";
+							console.log(lecture);
+						});
+						$(".bts")
+								.click(
+										function() { //모달창 상에서 stroe
+											lecture = {
+												lec_name : $("#lec_name").val(),
+												lec_password : $(
+														"#lec_password").val(),
+												lec_outline : $("#lec_outline")
+														.val(),
+												lec_goal : $("#lec_goal").val(),
+												lec_time : $("#lec_time").val(),
+												lec_totall_date : $(
+														"#lec_totall_date")
+														.val(),
+												enroll_num : $("#enroll_num")
+														.val()
+											};
+
+											lecture.lec_check = '<button type="button" class="btn btn-success btn-circle moveAttandence"><i class="glyphicon glyphicon-link"></i></button>';
+											console.log(lecture);
+											$(".modal").hide();
+
+											//jsrender를 이용한 테이블 추가.
+											var tmpl = $
+													.templates("#contact_template");
+											var str = tmpl.render(lecture);
+											$(".tr_btn").append(str);
+
+											// var td = "<button type="button" class="btn btn-success btn-circle"><i class="glyphicon glyphicon-link"></i></button>";
+											// $("#r_lec_check").html(td);
+										});
+					});
+>>>>>>> 596b0c87d72c75e53a503279d08688cc3f889858
 </script>
 <script id="contact_template" type="text/x-jsrender">
 	<tr>
@@ -101,6 +153,7 @@
 </head>
 
 <body>
+<<<<<<< HEAD
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -147,6 +200,9 @@
 	</nav>
 
 
+=======
+	<%@include file="navbar_teacher.jsp"%>
+>>>>>>> 596b0c87d72c75e53a503279d08688cc3f889858
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12">
@@ -174,6 +230,7 @@
 								</a>
 							</div>
 							<div class="media-body">
+<<<<<<< HEAD
 								<h4 class="media-heading">박영수</h4>
 								<br>
 								<h5 class="media-heading">
@@ -181,6 +238,12 @@
 									${list}
 									</h4>
 									<br>
+=======
+								<h4 class="media-heading">${memberInfo.username}</h4>
+								<br>
+								<h5 class="media-heading">${memberInfo.introduce}</h5>
+								<br> <br>
+>>>>>>> 596b0c87d72c75e53a503279d08688cc3f889858
 							</div>
 						</div>
 					</div>
@@ -260,6 +323,10 @@
 								<label>수업 시간</label> <input type="text" class="form-control mdf"
 									id="lec_time" name="lec_time" placeholder="수업 시간">
 							</div>
+<<<<<<< HEAD
+=======
+						</div>
+>>>>>>> 596b0c87d72c75e53a503279d08688cc3f889858
 					</form>
 
 				</div>

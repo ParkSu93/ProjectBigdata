@@ -1,23 +1,16 @@
 package vo;
 
 public class Attendance_detailVO {
-	private String detail_name;
 	private int lec_no;
 	private String student_id;
-	private String day;
+	private short day;
 	private String attendance_status;
 	private String report;
 
 	public Attendance_detailVO() {
 		super();
-	}
-
-	public String getDetail_name() {
-		return detail_name;
-	}
-
-	public void setDetail_name(String detail_name) {
-		this.detail_name = detail_name;
+		attendance_status = "°á¼®";
+		report = null;
 	}
 
 	public int getLec_no() {
@@ -36,11 +29,11 @@ public class Attendance_detailVO {
 		this.student_id = student_id;
 	}
 
-	public String getDay() {
+	public short getDay() {
 		return day;
 	}
 
-	public void setDay(String day) {
+	public void setDay(short day) {
 		this.day = day;
 	}
 
@@ -62,7 +55,7 @@ public class Attendance_detailVO {
 
 	@Override
 	public String toString() {
-		return "Attendance_detailVO [detail_name=" + detail_name + ", lec_no=" + lec_no + ", student_id=" + student_id
+		return "Attendance_detailVO [lec_no=" + lec_no + ", student_id=" + student_id
 				+ ", day=" + day + ", attendance_status=" + attendance_status + ", report=" + report + "]";
 	}
 
