@@ -54,16 +54,42 @@
 			lecture = "hi";
 			console.log(lecture);
 		});
-		$(".bts").click(function() { //모달창 상에서 수정
+		$("#saveImage").click(function() { //모달창 상에서 수정
 			user={
 				modify_email : $("#modify_email").val(),
 				modify_addr : $("#modify_addr").val(),
 				modify_phonenum : $("#modify_phonenum").val(),
-				modify_introduce : $("#modify_introduce").val(),
+				modify_introduce : $("#modify_introduce").val()
 			}
 			console.log(user); //user에 새롭게 바뀐 객체 정보 들어가있음.
+			
+			// user 정보 수정 호출						
 			$(".modal").hide();
+
+			modify_goto("modifyProfile.do", user, false);
 		});
+
+	function modify_goto(url, parm,target) {
+			var f = document.createElement('form');
+			var objs, value;
+			for ( var key in parm) {
+				value = parm[key];
+				objs = document.createElement('input');
+				objs.attr('type', 'hidden');
+				objs.attr('name', key);
+				objs.attr('value', value);
+				f.appendChild(objs);
+			}
+			
+			if (target)
+			    f.attr('target', target);
+
+			f.attr('method', 'post');
+			f.attr('action', url);
+			document.body.appendChild(f);
+			f.submit();
+		}
+
 	});
 </script>
 </head>
@@ -185,21 +211,21 @@
 						<div class="form-group">
 							<div class="form-group">
 								<label>이메일</label> <input type="text" class="form-control mdf"
-									id="modify_email" name="modify_email" placeholder="이메일">
+									id="modify_email" name="modify_email" placeholder="이메일" value="${memberInfo.email}">
 							</div>
 							<div class="form-group">
 								<label>핸드폰번호</label> <input type="text"
 									class="form-control mdf" id="modify_phonenum" name="modify_phonenum"
-									placeholder="핸드폰번호">
+									placeholder="핸드폰번호" value="${memberInfo.phonenum}">
 							</div>
 							<div class="form-group">
 								<label>주소</label> <input type="text"
 									class="form-control mdf" id="modify_addr"
-									name="modify_addr" placeholder="주소">
+									name="modify_addr" placeholder="주소" value="${memberInfo.addr}">
 							</div>
 							<div class="form-group">
 								<label>자기소개</label> <input type="text" class="form-control mdf"
-									id="modify_introduce" name="modify_introduce" placeholder="자기소개">
+									id="modify_introduce" name="modify_introduce" placeholder="자기소개" value="${memberInfo.introduce}">
 							</div>
 						</div>
 					</form>
@@ -215,7 +241,7 @@
 						<div class="btn-group" role="group">
 							<button type="button" id="saveImage"
 								class="btn btn-default btn-hover-green bts" data-action="save"
-								role="button">수정</button>
+								role="button" >수정</button>
 						</div>
 					</div>
 				</div>

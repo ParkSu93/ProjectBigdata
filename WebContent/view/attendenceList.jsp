@@ -81,71 +81,73 @@ pageEncoding="utf-8"%>
         		search_id=$("#search").val(); //찾기
         		console.log("search_id");
         		$("#search").val("");
-        		}
-        	});
+        	}
+        });
 			
 			$("#storeUser").click(function(){ //저장 눌렀을때 바로 db에 뿌린다. 그리고 다시 그려?
 
 			});
-    	});
+		});
 	</script>
 </head>
 <body>
-<%@include file="navbar_teacher.jsp" %> 
+	<%@include file="navbar_teacher.jsp" %> 
 
-		<div class="container">
-			<div class="row">
-				<div class="col-md-4 col-md-offset-3">
-					<div class="search-form">
-						<div class="form-group has-feedback">
-							<label for="search" class="sr-only">Search</label> <input
-							type="text" class="form-control" name="search" id="search"
-							placeholder="search"> <span
-							class="glyphicon glyphicon-search form-control-feedback"></span>
-						</div>
+	<div class="container">
+		<div class="row">
+			<h4 style="display: inline-block;"> 회원검색 </h4>
+			<div class="col-md-4">
+				<div class="search-form">
+					<div class="form-group has-feedback">
+						<label for="search" class="sr-only">Search</label> <input
+						type="text" class="form-control" name="search" id="search"
+						placeholder="search"> <span
+						class="glyphicon glyphicon-search form-control-feedback"></span>
 					</div>
 				</div>
 			</div>
-		</div>
 
-		<div class="container">
-			<div class="row">
-				<div class="col-xs-12">
-					<div class="panel panel-primary">
-						<div class="panel-heading">
-							<h3 class="panel-title">
-								<span class="glyphicon glyphicon-tags"></span> <span
-								class="panel-span panel-left">출석부</span>
-								<div class="pull-right text-center">
-									<span class="panel-title btn-group">
-										<button id="storeUser" ng-disabled="underCreation" type="button"
-										class="btn btn-default btn-sm" ng-click="addUser()">
-										<span class="glyphicon glyphicon-exclamation-sign  text-primary"></span> <span
-										class="text-primary"><strong>저장</strong></span>
-									</button>
-								</span>
-							</div>
-						</h3>
-					</div>
-					<div class="panel-body">
-						<table class="table">
-							<thead>
-								<tr id="main_tr">
-									<th class="tr_name">학생 이름</th>
-								</tr>
-							</thead>
-							<tbody class="tr_btn" style="padding: 10px">
-								<tr id="tr_index">
-									<td id="r_lec_name" name="r_lec_name">박영수</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h3 class="panel-title">
+							<span class="glyphicon glyphicon-tags"></span> <span
+							class="panel-span panel-left">출석부</span>
+							<div class="pull-right text-center">
+								<span class="panel-title btn-group">
+									<button id="storeUser" ng-disabled="underCreation" type="button"
+									class="btn btn-default btn-sm" ng-click="addUser()">
+									<span class="glyphicon glyphicon-exclamation-sign  text-primary"></span> <span
+									class="text-primary"><strong>저장</strong></span>
+								</button>
+							</span>
+						</div>
+					</h3>
+				</div>
+				<div class="panel-body">
+					<table class="table">
+						<thead>
+							<tr id="main_tr">
+								<th class="tr_name">학생 이름</th>
+							</tr>
+						</thead>
+						<tbody class="tr_btn" style="padding: 10px">
+							<tr id="tr_index">
+								<td id="r_lec_name" name="r_lec_name">박영수</td>
+							</tr>
+						</tbody>
+					</table>
 				</div>
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript">
+</div>
+<script type="text/javascript">
 		var day_num = 60; //day 받으면 됨
 		var attend_student = null; //여기서 수강 학생 받으셈.
 		$(document)
