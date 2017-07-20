@@ -83,9 +83,12 @@ pageEncoding="utf-8"%>
         		$("#search").val("");
         	}
         });
-			
 			$("#storeUser").click(function(){ //저장 눌렀을때 바로 db에 뿌린다. 그리고 다시 그려?
+				console.log(2);
+			});
 
+			$("#checkUser").click(function(){ //버튼 눌렀을 때.
+				console.log(1);
 			});
 		});
 	</script>
@@ -113,7 +116,7 @@ pageEncoding="utf-8"%>
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12">
-				<div class="panel panel-primary" >
+				<div class="panel panel-primary">
 					<div class="panel-heading">
 						<h3 class="panel-title">
 							<span class="glyphicon glyphicon-tags"></span> <span
@@ -121,31 +124,40 @@ pageEncoding="utf-8"%>
 							<div class="pull-right text-center">
 								<span class="panel-title btn-group">
 									<button id="storeUser" ng-disabled="underCreation" type="button"
-									class="btn btn-default btn-sm" ng-click="addUser()">
+									class="btn btn-default btn-sm" ng-click="addUser()" style="padding-left: 10px">
 									<span class="glyphicon glyphicon-exclamation-sign  text-primary"></span> <span
 									class="text-primary"><strong>저장</strong></span>
 								</button>
 							</span>
 						</div>
-					</h3>
-				</div>
-				<div class="panel-body"  style="overflow-x: scroll;">
-					<table class="table">
-						<thead>
-							<tr id="main_tr">
-								<th class="tr_name" >학생 이름</th>
-							</tr>
-						</thead>
-						<tbody class="tr_btn" style="padding: 10px">
-							<tr id="tr_index">
-								<td id="r_lec_name" name="r_lec_name">박영수</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
+						<div class="pull-right text-center">
+							<span class="panel-title btn-group">
+								<button id="checkUser" ng-disabled="underCreation" type="button"
+								class="btn btn-default btn-sm" ng-click="addUser()" style="padding-right: 10px">
+								<span class="glyphicon glyphicon-user  text-primary"></span> <span
+								class="text-primary"><strong>일괄출석</strong></span>
+							</button>
+						</span>
+					</div>
+				</h3>
+			</div>
+			<div class="panel-body"  style="overflow-x: scroll;">
+				<table class="table">
+					<thead>
+						<tr id="main_tr">
+							<th class="tr_name" >학생 이름</th>
+						</tr>
+					</thead>
+					<tbody class="tr_btn" style="padding: 10px">
+						<tr id="tr_index">
+							<td id="r_lec_name" name="r_lec_name">박영수</td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
 		</div>
 	</div>
+</div>
 </div>
 <script type="text/javascript">
 		var day_num = 60; //day 받으면 됨
@@ -164,6 +176,7 @@ pageEncoding="utf-8"%>
 			//여기서 for 구문 하나 더써서 학생 이름까지 돌리삼+학생이름 해서
 			for (var i = 1; i <= day_num; i++) {
 				th_tr.append('<td><input type="text" class="td_day td_'+i+'_day"/></td>');
+				//한번 더 유저에 해당하는 값 뿌려주고.
 			}
 		});
 	</script>
@@ -175,8 +188,9 @@ pageEncoding="utf-8"%>
 
 		}
 		#r_lec_name{
-			 width: 50px;
+			width: 50px;
 		}
+
 	</style>
 </body>
 </html>
