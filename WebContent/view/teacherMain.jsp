@@ -45,6 +45,10 @@ pageEncoding="utf-8"%>
 			line-height: 1.428571429;
 			border-radius: 15px;
 		}
+		
+		.container{
+			margin-top: 100px;
+		}
 	</style>
 	
 	<script type="text/javascript">
@@ -138,6 +142,7 @@ pageEncoding="utf-8"%>
 	</div>
 
 	<%@include file="navbar_teacher.jsp"%>
+	
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12">
