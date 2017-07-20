@@ -55,11 +55,11 @@ pageEncoding="utf-8"%>
 	border-radius: 15px;
 }
 
-#wrapper {
+#wrapper-main{
 	width: 100%;
 	height: 50%;
 	position: relative;
-		margin-top: 100px;
+	margin-top: 80px;
 }
 </style>
 	<script type="text/javascript">
@@ -90,7 +90,7 @@ pageEncoding="utf-8"%>
 </div>
 
 	<%@include file="navbar_student.jsp" %> 
-	<div id="wrapper">
+	<div id="wrapper-main">
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12">
