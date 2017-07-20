@@ -28,32 +28,28 @@ public class SyllabusDAO {
 		PreparedStatement pstmt = null;
 		try {
 			conn = getConnection();
-			pstmt = conn.prepareStatement("insert into Syllabus(lec_no) values(?)");
-			pstmt.setInt(1, vo.getLec_no());
+			pstmt = conn.prepareStatement("insert into Syllabus(lec_no) values((select max(lec_no) from lecture))");
 			pstmt.executeUpdate();
 
 			if (vo.getLec_outline() != null) {
 				PreparedStatement stmt = null;
-				stmt = conn.prepareStatement("update syllabus set lec_outline = ? where lec_no = ?");
+				stmt = conn.prepareStatement("update syllabus set lec_outline = ? where lec_no = (select max(lec_no) from lecture)");
 				stmt.setString(1, vo.getLec_outline());
-				stmt.setInt(2, vo.getLec_no());
 				stmt.executeUpdate();
 				stmt.close();
 			}
 			if (vo.getLec_goal() != null) {
 				PreparedStatement stmt = null;
-				stmt = conn.prepareStatement("update syllabus set lec_goal = ? where lec_no = ?");
+				stmt = conn.prepareStatement("update syllabus set lec_goal = ? where lec_no = (select max(lec_no) from lecture)");
 				stmt.setString(1, vo.getLec_goal());
-				stmt.setInt(2, vo.getLec_no());
 				stmt.executeUpdate();
 				stmt.close();
 			}
 			if (vo.getLec_time() != null) {
 				PreparedStatement stmt = null;
-				stmt = conn.prepareStatement("update syllabus set lec_time = ? where lec_no = ?");
+				stmt = conn.prepareStatement("update syllabus set lec_time = ? where lec_no = (select max(lec_no) from lecture)");
 				stmt.setString(1, vo.getLec_time());
-				stmt.setInt(2, vo.getLec_no());
-				stmt.executeUpdate();
+				stmt.executeUpdate();                                                       
 				stmt.close();
 			}
 		} catch (Exception e) {

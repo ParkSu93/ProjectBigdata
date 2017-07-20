@@ -64,7 +64,7 @@ pageEncoding="utf-8"%>
 			</script>   
 			
 			<script type="text/javascript">
-   var lecture; //모달강의 저장용
+   var lecture = null; //모달강의 저장용
    var lecture_list; //모달 강의 리스트용 처음 시작할 때, 서버로 부터 한번 아이디에 해당하는 모든 강의 받아오고, 뿌려준다. 그리고 추가하는 형식
    $(document).ready(function() {
       $("#addUser").click(function() { //강의추가
@@ -84,17 +84,12 @@ pageEncoding="utf-8"%>
       $(".bts").click(function() { //모달창 상에서 stroe
       	lecture = {
       		lec_name : $("#lec_name").val(),
-      		lec_password : $(
-      			"#lec_password").val(),
-      		lec_outline : $("#lec_outline")
-      		.val(),
+      		lec_password : $("#lec_password").val(),
+      		lec_outline : $("#lec_outline").val(),
       		lec_goal : $("#lec_goal").val(),
       		lec_time : $("#lec_time").val(),
-      		lec_total_date : $(
-      			"#lec_totall_date")
-      		.val(),
-      		enroll_num : $("#enroll_num")
-      		.val()
+      		lec_total_date : $("#lec_totall_date").val(),
+      		enroll_num : $("#enroll_num").val()
       	};
 
       	lecture.lec_check = '<button type="button" class="btn btn-success btn-circle moveAttandence"><i class="glyphicon glyphicon-link"></i></button>';
@@ -102,21 +97,21 @@ pageEncoding="utf-8"%>
       	
       	//첫번째로 LectureController를 만들고, RequestMapping 함수를 만든다.
       	//아무거나 url을 만든다.
+      	$(".modal").hide();
       	
       	$.ajax({
-				url:'modifyProfile.do', //이쪽 url로
+				url:'regLecture.do', //이쪽 url로
 				type:'post', //포스트형식으로
 				data:lecture, //데이터 user를 보낸다. 근데 데이터는 무조건 {변수:변수값, 변수:변수값};
 				success:function(data){
 				}
 			});
       	
-      	$(".modal").hide();
-
          //jsrender를 이용한 테이블 추가.
          var tmpl = $.templates("#contact_template");
          var str = tmpl.render(lecture);
          $(".tr_btn").append(str);
+
      });
   });
 </script>

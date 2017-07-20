@@ -61,6 +61,7 @@ public class LectureDAO {
 				e2.printStackTrace();
 			}
 		}
+		
 	}
 
 	public LectureVO searchLecture(int lec_no) {

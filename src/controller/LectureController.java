@@ -1,5 +1,8 @@
 package controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -10,11 +13,29 @@ import service.LectureService;
 import vo.Attendance_detailVO;
 import vo.CourseVO;
 import vo.LectureVO;
+import vo.MemberVO;
+import vo.MyLectureVO;
 import vo.SyllabusVO;
 import vo.TeacherVO;
 
 @Controller
 public class LectureController {
+	
+	static LectureService service = new LectureService();
+
+	//령현 - 강의 추가
+	@RequestMapping(value = "view/regLecture.do", method = RequestMethod.POST)
+	public String insertLecture(@ModelAttribute("lec") MyLectureVO lec, HttpServletRequest req) {
+		HttpSession se = req.getSession();
+		String teacher_id = ((MemberVO)se.getAttribute("mem")).getId();
+		lec.setTeacher_id(teacher_id);
+		
+		service.insertLecture(lec);
+		return "teacherMain";
+	}
+
+
+
 	@RequestMapping(value = "syllabus.do", method = RequestMethod.GET)
 	public String syllabus() {
 
@@ -25,7 +46,7 @@ public class LectureController {
 	public String insertSyllabus(@ModelAttribute("syl") SyllabusVO syl, BindingResult result) {
 		System.out.println(syl);
 
-		new LectureService().insertSyllabus(syl);
+		service.insertSyllabus(syl);
 		
 		
 		return "syllabusOutput";
@@ -34,7 +55,7 @@ public class LectureController {
 	public String searchSyllabus(@ModelAttribute("syl2") SyllabusVO syl2, BindingResult result) {
 		System.out.println(syl2);
 
-		new LectureService().searchSyllabus(syl2.getLec_no());
+		service.searchSyllabus(syl2.getLec_no());
 		
 		
 		return "syllabusOutput";
@@ -45,7 +66,7 @@ public class LectureController {
 	public String updateSyllabus(@ModelAttribute("syl3") SyllabusVO syl3, BindingResult result) {
 		System.out.println(syl3);
 
-		new LectureService().updateSyllabus(syl3);
+		service.updateSyllabus(syl3);
 		
 		
 		return "syllabusOutput";
@@ -54,7 +75,7 @@ public class LectureController {
 	public String myLectureList(@ModelAttribute("syl4") TeacherVO syl4, BindingResult result) {
 		System.out.println(syl4);
 
-		new LectureService().lectureList(syl4.getId());
+		service.lectureList(syl4.getId());
 		
 		
 		return "syllabusOutput";
@@ -64,21 +85,12 @@ public class LectureController {
 
 		return "lectureInput";
 	}
-
-	@RequestMapping(value = "lecPlus.do", method = RequestMethod.POST)
-	public String insertLecture(@ModelAttribute("lec") LectureVO lec, BindingResult result) {
-		System.out.println(lec);
-
-		new LectureService().insertLecture(lec);
-		
-		
-		return "lectureOutput";
-	}
+	
 	@RequestMapping(value = "lecPlus2.do", method = RequestMethod.POST)
 	public String searchLecture(@ModelAttribute("lec2") LectureVO lec2, BindingResult result) {
 		System.out.println(lec2);
 
-		new LectureService().searchLecture(lec2.getLec_no());
+		service.searchLecture(lec2.getLec_no());
 		
 		
 		return "lectureOutput";
@@ -87,7 +99,7 @@ public class LectureController {
 	public String deleteLecture(@ModelAttribute("lec3") LectureVO lec3, BindingResult result) {
 		System.out.println(lec3);
 
-		new LectureService().deleteLecture(lec3.getLec_no());
+		service.deleteLecture(lec3.getLec_no());
 		
 		
 		return "lectureOutput";
@@ -96,7 +108,7 @@ public class LectureController {
 	public String lecPlus(@ModelAttribute("lec") LectureVO lec, BindingResult result) {
 		System.out.println(lec);
 
-		new LectureService().updateLecture(lec);
+		service.updateLecture(lec);
 		
 		
 		return "lectureOutput";
@@ -111,7 +123,7 @@ public class LectureController {
 	public String insertCourse(@ModelAttribute("cou") CourseVO cou, BindingResult result) {
 		System.out.println(cou);
 
-		new LectureService().insertCourse(cou);
+		service.insertCourse(cou);
 		
 		
 		return "courseOutput";
@@ -120,7 +132,7 @@ public class LectureController {
 	public String searchCourse(@ModelAttribute("cou2") CourseVO cou2, BindingResult result) {
 		System.out.println(cou2);
 
-		new LectureService().searchCourse(cou2.getStudent_id());
+		service.searchCourse(cou2.getStudent_id());
 		
 		
 		return "courseOutput";
@@ -129,7 +141,7 @@ public class LectureController {
 	public String deleteCourse(@ModelAttribute("cou3") CourseVO cou3, BindingResult result) {
 		System.out.println(cou3);
 
-		new LectureService().deleteCourse(cou3.getLec_no(), cou3.getStudent_id());
+		service.deleteCourse(cou3.getLec_no(), cou3.getStudent_id());
 		
 		
 		return "courseOutput";
@@ -144,7 +156,7 @@ public class LectureController {
 	public String insertAttDetail(@ModelAttribute("ade") Attendance_detailVO ade, BindingResult result) {
 		System.out.println(ade);
 
-		new LectureService().insertAttDetail(ade);
+		service.insertAttDetail(ade);
 		
 		
 		return "attendance_detailOutput";
@@ -154,7 +166,7 @@ public class LectureController {
 	public String updateAttDetail(@ModelAttribute("ade2") Attendance_detailVO ade2, BindingResult result) {
 		System.out.println(ade2);
 
-		new LectureService().updateAttDetail(ade2);
+		service.updateAttDetail(ade2);
 		
 		
 		return "attendance_detailOutput";
