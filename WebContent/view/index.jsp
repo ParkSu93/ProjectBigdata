@@ -124,7 +124,9 @@ pageEncoding="utf-8"%>
 		width: 45px;
 		height: 30px;
 		}
-
+#radioBtn input {
+display: none;
+}
 	</style>
 	<script type="text/javascript">
 		$(document).ready(function(){
@@ -289,8 +291,10 @@ pageEncoding="utf-8"%>
 												<div class="col-sm-4">
 													<div class="input-group">
 														<div id="radioBtn" class="btn-group">
-															<input  class="btn btn-primary btn-sm active" name="teacher_flag" data-toggle="happy" data-title="N" value="학생"></a>
-															<input  id= "teacher_flag" class="btn btn-primary btn-sm notActive" name="teacher_flag" data-toggle="happy" data-title="Y" value="강사"></a>
+															<label for='student_radio' id="student_flag"class="btn btn-primary btn-sm active" name="teacher_flag" data-toggle="happy"  value="학생">학생</label>
+															<label for='teacher_radio' id= teacher_flag" class="btn btn-primary btn-sm notActive" name="teacher_flag" data-toggle="happy" value="강사">강사</label>
+															<input TYPE='radio' id='student_radio' name='teacher_flag'  data-title="N"value="N"/>
+															<input TYPE='radio' id='teacher_radio' name='teacher_flag'  data-title="Y"  value="Y"/>
 														</div>
 														<input type="hidden" name="happy" id="happy">
 													</div>
