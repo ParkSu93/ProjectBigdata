@@ -3,6 +3,8 @@ package service;
 import java.util.ArrayList;
 
 import org.springframework.stereotype.Service;
+
+import dao.Attendance_bookDAO;
 import dao.Attendance_detailDAO;
 import dao.CourseDAO;
 import dao.LectureDAO;
@@ -12,7 +14,9 @@ import dao.SyllabusDAO;
 import vo.CourseVO;
 import vo.LectureVO;
 import vo.MyLectureVO;
+import vo.SearchAttBookVO;
 import vo.SyllabusVO;
+import vo.Attendance_bookVO;
 import vo.Attendance_detailVO;
 @Service
 public class LectureService {
@@ -21,6 +25,8 @@ public class LectureService {
 	LectureDAO dao2 = new LectureDAO();
 	CourseDAO dao3 = new CourseDAO();
 	Attendance_detailDAO dao4 = new Attendance_detailDAO();
+	Attendance_bookDAO dao5 = new Attendance_bookDAO();
+
 	public void insertSyllabus(SyllabusVO vo){
 		dao.insertSyllabus(vo);
 	}
@@ -74,4 +80,19 @@ public class LectureService {
 		dao4.updateAttDetail(vo);
 	}
 
+	public void insertAttBook(Attendance_bookVO vo){
+		dao5.insertAttBook(vo);
+	}
+	
+	
+	public SearchAttBookVO searchAttBook(int lec_no, String student_id){
+		SearchAttBookVO vo =dao5.searchAttBook(lec_no,student_id);
+		return vo;
+	}
+	
+	public void updateAttBook(Attendance_bookVO vo){
+		dao5.updateAttBook(vo);
+	}
+		
+	
 }
