@@ -1,5 +1,6 @@
 <%@page import="controller.Converter"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="vo.MemberVO"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 pageEncoding="utf-8"%>
 <!DOCTYPE html>
@@ -78,11 +79,15 @@ pageEncoding="utf-8"%>
 <%
 	ArrayList totalList =(ArrayList)request.getAttribute("totalList");
 	String result2 = Converter.convertToJson(totalList);
+	MemberVO mem = (MemberVO)session.getAttribute("mem");
+	String id=mem.getId();
 %>
 <div id = "b" style = display:none>
 <%= result2 %>
 </div>
-
+<div id = "c" >
+<%= id %>
+</div>
 
 	<%@include file="navbar_student.jsp" %> 
 	<div id="wrapper">
@@ -254,11 +259,11 @@ pageEncoding="utf-8"%>
 					<div class="form-group">
 						<div class="form-group">
 							<label>강의 이름</label>
-							<h5>강의 이름을 써주세용</h5>
+							<h5 id="lecture_name"></h5>
 						</div>
 						<div class="form-group">
 							<label>강사 이름</label> 
-							<h5>강사 이름을 써주세용</h5>
+							<h5 id="teacher_name"></h5>
 						</div>
 						<div class="form-group">
 							<label>강의용 비밀번호</label> <input type="password"
@@ -330,6 +335,8 @@ $(document).ready(function() {
 		var show_my_mdl_lecture = function(){ //출석 표출용 mdl 함수 출석,결석,지각
 			var total_day = 90;
 			var start_day = 10;
+			var index_my_lecture = null;
+			var index_add_lecture = null;
 			var attandence_list = [];
 			//받아온 다음에 넣어주고,
 			var main_tr = $("#main_tr");
@@ -354,44 +361,38 @@ $(document).ready(function() {
 			show_my_lecture();
 			show_total_lecture();
 			$(".tr_btn").on("click", ".my_lecture", function() { //나의 강의 목록 출석 확인
-				var index_my_lecture = $(this).parent().parent().index(); //index 안에 해당하는 listindex들어가있음
+				index_my_lecture = $(this).parent().parent().index(); //index 안에 해당하는 listindex들어가있음
 				console.log(index_my_lecture);
 				$(".my_mdl_lecture").show();
 				$(".my_mdl_lecture").modal();
 				show_my_mdl_lecture();
 			});
 
-			$(".tb_btn").on("click", ".total_lecture", function() { //나의 강의 목록 출석 확인
+			$(".tb_btn").on("click", ".total_lecture", function() { //전체 강의 목록 출석
 				index_add_lecture = $(this).parent().parent().index(); //index 안에 해당하는 listindex들어가있음
 				console.log(index_add_lecture);
+				console.log(lecture3);
+				 $("#lecture_name").html(lecture3[index_add_lecture].lec_name);
+				 $("#teacher_name").html(lecture3[index_add_lecture].username);
 				//모달창
 				$(".add_lecture").show();
 				$(".add_lecture").modal();
 			});
 
 			$(".bts").click(function() { //모달창 상에서 total_lecture 추가
-				 lecture = {
-				 	lec_name : $("#lec_name").val(),
-				 	lec_password : $("#lec_password").val(),
-				 	lec_outline : $("#lec_outline")
-				 	.val(),
-				 	lec_goal : $("#lec_goal").val(),
-				 	lec_time : $("#lec_time").val(),
-				 	lec_total_date : $(
-				 		"#lec_total_date")
-				 	.val(),
-				 	enroll_num : $("#enroll_num")
-				 	.val()
+				var id = $("#c").html();
+				var course = { 
+					student_id : id,
+					lec_no : lecture3[index_add_lecture].lec_no
 				};
-
-				 lecture.lec_check = '<button type="button" class="btn btn-success btn-circle moveAttandence"><i class="glyphicon glyphicon-link"></i></button>';
-				 console.log(lecture);
-				 $(".modal").hide();
-
-				 //jsrender를 이용한 테이블 추가.
-				 var tmpl = $.templates("#contact_template");
-				 var str = tmpl.render(lecture);
-				 $(".tr_btn").append(str);
+				console.log(course);
+				$.ajax({
+				url:'addMyLecture.do', //이쪽 url로
+				type:'post', //포스트형식으로
+				data: course , //데이터 user를 보낸다. 근데 데이터는 무조건 {변수:변수값, 변수:변수값};
+				success:function(data){
+				}
+			});
 			});
 		});
 	</script>
@@ -400,7 +401,7 @@ $(document).ready(function() {
       <td>{{:lec_name}}</td>
       <td>{{:teacher_id}}</td>
       <td>{{:lec_time}}</td>
-      <td>{{:lec_check}}</td>
+      <td>{{:my_lec_check}}</td>
    </tr>
 </script>
 <script id="contact_template2" type="text/x-jsrender">
@@ -408,7 +409,7 @@ $(document).ready(function() {
       <td>{{:lec_name}}</td>
       <td>{{:teacher_id}}</td>
       <td>{{:lec_time}}</td>
-      <td>{{:lec_check}}</td>
+      <td>{{:total_lec_check}}</td>
    </tr>
 </script>
 
