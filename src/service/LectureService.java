@@ -89,8 +89,8 @@ public class LectureService {
 		attDao.updateAttDetail(vo);
 	}
 
-	public ArrayList<LectureVO> totallecturelist(){
-		ArrayList<LectureVO> totalLecuturelist = lecDao.totalLectureList();
+	public ArrayList<LectureVO> totallecturelist(String id){
+		ArrayList<LectureVO> totalLecuturelist = lecDao.totalLectureList(id);
 		return totalLecuturelist;
 	}
 }

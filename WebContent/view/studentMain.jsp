@@ -85,9 +85,7 @@ pageEncoding="utf-8"%>
 <div id = "b" style = display:none>
 <%= result2 %>
 </div>
-<div id = "c" >
-<%= id %>
-</div>
+<div id = "c" ><%=id%></div>
 
 	<%@include file="navbar_student.jsp" %> 
 	<div id="wrapper-main">
@@ -352,6 +350,7 @@ $(document).ready(function() {
 
 			$(".bts").click(function() { //모달창 상에서 total_lecture 추가
 				var id = $("#c").html();
+			console.log(id);
 				var course = { 
 					student_id : id,
 					lec_no : lecture3[index_add_lecture-1].lec_no

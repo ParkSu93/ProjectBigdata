@@ -75,7 +75,7 @@ public class MemberController {
 				
 				System.out.println(id);
 				allList = lecService.Alllecturelist(id);
-				totallist = lecService.totallecturelist();
+				totallist = lecService.totallecturelist(id);
 				System.out.println("totallist"+totallist.toString());
 				mav.addObject("totalList", totallist);
 				mav.addObject("allList", allList);

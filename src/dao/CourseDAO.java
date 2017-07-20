@@ -21,11 +21,13 @@ public class CourseDAO {
 	}
 
 	public void insertCourse(CourseVO vo) {
+		System.out.println("courseDAO::  " + vo);
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement("insert into course values(?,?)");
+			System.out.println(vo.getLec_no()+" "+vo.getStudent_id());
 			pstmt.setInt(1, vo.getLec_no());
 			pstmt.setString(2, vo.getStudent_id());
 			pstmt.executeUpdate();
