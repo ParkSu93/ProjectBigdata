@@ -113,7 +113,7 @@ pageEncoding="utf-8"%>
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12">
-				<div class="panel panel-primary">
+				<div class="panel panel-primary" >
 					<div class="panel-heading">
 						<h3 class="panel-title">
 							<span class="glyphicon glyphicon-tags"></span> <span
@@ -129,11 +129,11 @@ pageEncoding="utf-8"%>
 						</div>
 					</h3>
 				</div>
-				<div class="panel-body">
+				<div class="panel-body"  style="overflow-x: scroll;">
 					<table class="table">
 						<thead>
 							<tr id="main_tr">
-								<th class="tr_name">학생 이름</th>
+								<th class="tr_name" >학생 이름</th>
 							</tr>
 						</thead>
 						<tbody class="tr_btn" style="padding: 10px">
@@ -150,26 +150,33 @@ pageEncoding="utf-8"%>
 <script type="text/javascript">
 		var day_num = 60; //day 받으면 됨
 		var attend_student = null; //여기서 수강 학생 받으셈.
-		$(document)
-		.ready(
-			function() {
-				var main_tr = $("#main_tr");
-				var th_tr = $("#tr_index");
-				console.log(main_tr);
+		$(document).ready(function() {
+			var main_tr = $("#main_tr");
+			var th_tr = $("#tr_index");
+			console.log(main_tr);
 
-				for (var i = 1; i <= day_num; i++) {
-					main_tr.append('<th>' + i + '일</th>');
-				}
+			for (var i = 1; i <= day_num; i++) {
+				main_tr.append('<th>' + i + '일</th>');
+			}
 
-				main_tr.append('<th style="width: 20px">출석률</th>');
-				console.log(th_tr);
-							//여기서 for 구문 하나 더써서 학생 이름까지 돌리삼
-							for (var i = 1; i <= day_num; i++) {
-								th_tr
-								.append('<td><input type="text" class="td_day td_'+i+'_day"/></td>');
-							}
-						});
-					</script>
+			main_tr.append('<th style="width: 20px">출석률</th>');
+			console.log(th_tr);
+			//여기서 for 구문 하나 더써서 학생 이름까지 돌리삼+학생이름 해서
+			for (var i = 1; i <= day_num; i++) {
+				th_tr.append('<td><input type="text" class="td_day td_'+i+'_day"/></td>');
+			}
+		});
+	</script>
+	<style type="text/css">
+		.td_day{
+			width: 35px;
+		}
+		.table{
 
-				</body>
-				</html>
+		}
+		#r_lec_name{
+			 width: 50px;
+		}
+	</style>
+</body>
+</html>
