@@ -55,7 +55,7 @@ public class MemberController {
 			session.setAttribute("mem", vo);
 
 			Object obj2 = service.getMemberInfo(vo.getId(), vo.getTeacher_flag());
-<<<<<<< HEAD
+
 			if (flag.equals("Y")){
 				
 				ArrayList<MyLectureVO> lecturelist = new ArrayList<>();
@@ -73,15 +73,6 @@ public class MemberController {
 				System.out.println(mem.toString());
 			}else{
 				MemberVO mem2 = (MemberVO)obj2;
-=======
-			if (flag.equals("Y") || flag.equals("y")) {
-				TeacherVO mem2 = (TeacherVO) obj2;
-				mav.addObject("memberInfo", mem2);
-				mav.setViewName("teacherMain");
-				System.out.println("로그인 강사" + mem.toString());
-			} else {
-				MemberVO mem2 = (MemberVO) obj2;
->>>>>>> 620af6a6c317e55cf5401b7b408c2f20499be328
 				mav.addObject("memberInfo", mem2);
 				mav.setViewName("studentMain");
 				System.out.println("로그인 학생" + mem.toString());
