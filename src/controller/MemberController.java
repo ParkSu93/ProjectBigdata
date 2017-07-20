@@ -50,16 +50,16 @@ public class MemberController {
 			session.setAttribute("mem", vo);
 
 			Object obj2 = service.getMemberInfo(vo.getId(), vo.getTeacher_flag());
-			if (flag.equals("Y")){
-				TeacherVO mem2 =  (TeacherVO)obj2;
-				mav.addObject("memberInfo", mem2);			
+			if (flag.equals("Y") || flag.equals("y")) {
+				TeacherVO mem2 = (TeacherVO) obj2;
+				mav.addObject("memberInfo", mem2);
 				mav.setViewName("teacherMain");
-				System.out.println(mem.toString());
-			}else{
-				MemberVO mem2 = (MemberVO)obj2;
+				System.out.println("로그인 강사" + mem.toString());
+			} else {
+				MemberVO mem2 = (MemberVO) obj2;
 				mav.addObject("memberInfo", mem2);
 				mav.setViewName("studentMain");
-				System.out.println(mem.toString());
+				System.out.println("로그인 학생" + mem.toString());
 			}
 		} else {
 			String result = (String) obj;
@@ -114,19 +114,23 @@ public class MemberController {
 
 		HttpSession session = null;
 		session = req.getSession();
-		MemberVO vo = (MemberVO) session.getAttribute("mem");
-
-		Object obj = service.getMemberInfo(vo.getId(), vo.getTeacher_flag());
-		if(obj instanceof TeacherVO){
-			TeacherVO mem =  (TeacherVO)obj;
-			mav.addObject("memberInfo", mem);			
-			mav.setViewName("teacherProfile");
-			System.out.println(mem.toString());
+		MemberVO vo =null;
+		if (session != null) {
+			 vo = (MemberVO) session.getAttribute("mem");
 		}else{
-			MemberVO mem = (MemberVO)obj;
+			mav.setViewName("login");
+		}
+		Object obj = service.getMemberInfo(vo.getId(), vo.getTeacher_flag());
+		if (obj instanceof TeacherVO) {
+			TeacherVO mem = (TeacherVO) obj;
+			mav.addObject("memberInfo", mem);
+			mav.setViewName("teacherProfile");
+			System.out.println("프로필 강사" + mem.toString());
+		} else {
+			MemberVO mem = (MemberVO) obj;
 			mav.addObject("memberInfo", mem);
 			mav.setViewName("studentProfile");
-			System.out.println(mem.toString());
+			System.out.println("프로필 학생" + mem.toString());
 		}
 
 		System.out.println();
