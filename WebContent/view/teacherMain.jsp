@@ -78,7 +78,7 @@ pageEncoding="utf-8"%>
          console.log(index);
          
          $.ajax({
-				url:'myAttedance.do', //이쪽 url로
+				url:'myAttendance.do', //이쪽 url로
 				type:'post', //포스트형식으로
 				data: lecture2[index-1] , //데이터 user를 보낸다. 근데 데이터는 무조건 {변수:변수값, 변수:변수값};
 				success:function(data){
