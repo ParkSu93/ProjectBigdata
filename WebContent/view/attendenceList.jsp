@@ -74,7 +74,9 @@ pageEncoding="utf-8"%>
    </style>
    <script type="text/javascript">
       var search_id = null; //검색한 이름
-      var attend_student_list = null; //받아올 학생 리스트.
+      var attend_student_list = ${list}; //받아올 학생 리스트.
+      //학생 리스트 받아오기
+
       $(document).ready(function(){ 
          $("input[name=search]").keydown(function (key) { //학생 검색
             if(key.keyCode == 13){//키가 13이면 실행 (엔터는 13)
@@ -160,9 +162,10 @@ pageEncoding="utf-8"%>
 </div>
 </div>
 <script type="text/javascript">
-      var day_num = 60; //day 받으면 됨
-      var attend_student = null; //여기서 수강 학생 받으셈.
-      $(document).ready(function() {
+   var day_num = 60; //day 받으면 됨
+   var attend_student_all = null; //여기서 수강 학생 받으셈. 전체학생 리스트
+   var cur_id = null; // 현재 학생의 id
+   $(document).ready(function() {
          var main_tr = $("#main_tr");
          var th_tr = $("#tr_index");
          console.log(main_tr);
@@ -173,13 +176,35 @@ pageEncoding="utf-8"%>
 
          main_tr.append('<th style="width: 20px">출석률</th>');
          console.log(th_tr);
-         //여기서 for 구문 하나 더써서 학생 이름까지 돌리삼+학생이름 해서
-         for (var i = 1; i <= day_num; i++) {
-            th_tr.append('<td><input type="text" class="td_day td_'+i+'_day"/></td>');
-            //한번 더 유저에 해당하는 값 뿌려주고.
-         }
-      });
-   </script>
+  
+
+		var before_student_id =  attend_student_list[i].student_id;
+		var i =0;
+		var first_index = 0; // 새로운 학생이 시작하는 index;
+		for (var j = first_index; j < (attend_student_list.length); j++) { // 전체 리스트에 대해서 
+			var now_student = attend_student_list[j];
+			if(now_student.student_id != before_student_id){ // 새로운 학생 정보를 만나는 순간.
+				before_student_id = now_student.student_id;
+				first_index = j;
+				//1. 현재 학생의 이름 출력
+				while (i++<day_num) { 
+					if (i == 0) { 
+						
+						// 현재 학생 id로 이름 알아오기.
+						
+							th_tr.append('<td>{}</td>');
+					}
+					th_tr.append('<td><input type="text" class="td_day td_'+i+'_day" value ='now_student.attendance_status'/></td>'); // 한 학생의 해당 날짜.
+								//한번 더 유저에 해당하는 값 뿌려주고.
+				}
+				//2. 현재 학생의 존재하는 출결여부 출력
+				// 3. 이후로는 day_num까지 빈칸 출력
+			}
+			
+			
+		}
+	});
+</script>
    <style type="text/css">
       .td_day{
          width: 35px;

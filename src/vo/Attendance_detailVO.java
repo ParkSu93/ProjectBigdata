@@ -5,11 +5,11 @@ public class Attendance_detailVO {
 	private String student_id;
 	private short day;
 	private String attendance_status;
-	private String report;
+	private String report; // 기타사항
 
 	public Attendance_detailVO() {
 		super();
-		attendance_status = "�Ἦ";
+		attendance_status = "�Ἦ";
 		report = null;
 	}
 
