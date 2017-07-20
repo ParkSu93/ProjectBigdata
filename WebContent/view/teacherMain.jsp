@@ -141,6 +141,73 @@ pageEncoding="utf-8"%>
 		<%= result %>
 	</div>
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+
+   <%@include file="navbar_teacher.jsp"%>
+   <div class="container">
+      <div class="row">
+         <div class="col-xs-12">
+            <div class="panel panel-primary">
+               <div class="panel-heading">
+                  <h3 class="panel-title">
+                     <span class="glyphicon glyphicon-tags"></span> <span
+                     class="panel-span panel-left">강의목록</span>
+                     <div class="pull-right text-center">
+                        <span class="panel-title btn-group">
+                           <button id="addUser" ng-disabled="underCreation" type="button"
+                           class="btn btn-default btn-sm" ng-click="addUser()">
+                           <span class="glyphicon glyphicon-plus text-primary"></span> <span
+                           class="text-primary"><strong>강의추가</strong></span>
+                        </button>
+                     </span>
+                  </div>
+               </h3>
+            </div>
+            <div class="panel-body">
+               <div class="media">
+                  <div class="media-left">
+                     <a href="#"> <img class="media-object"
+                        src="images/temp1.jpg">
+                     </a>
+                  </div>
+                  <div class="media-body">
+                     <h4 class="media-heading">${memberInfo.username}</h4>
+                     <br>
+                     <h5 class="media-heading">${memberInfo.introduce}</h5>
+                     <br> <br>
+                  </div>
+               </div>
+            </div>
+            <table class="table">
+               <thead>
+                  <tr>
+                     <th>강의 이름</th>
+                     <th>강의 총 일수</th>
+                     <th>현재 듣는 학생 수</th>
+                     <th>수업 시간</th>
+                     <th>출석 체크</th>
+                  </tr>
+               </thead>
+               <tbody class="tr_btn" style="padding: 10px">
+                  <tr id="tr_index">
+                     <td id="r_lec_name" name="r_lec_name"></td>
+                     <td id="r_lec_totall_date" name="r_lec_total_date">100</td>
+                     <td id="r_enroll_num" name="r_lec_name">30명</td>
+                     <td id="r_lec_time" name="r_lec_name">2017-3-30</td>
+                     <td id="r_lec_check" name="r_lec_check">
+                        <button type="button"
+                        class="btn btn-success btn-circle moveAttandence">
+                        <i class="glyphicon glyphicon-link"></i>
+                     </button>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </div>
+=======
 	<%@include file="navbar_teacher.jsp"%>
 	
 	<div class="container">
@@ -204,6 +271,7 @@ pageEncoding="utf-8"%>
 			</table>
 		</div>
 	</div>
+>>>>>>> dd00b3d2e277772a78cc2e4226b4e9521524a5ee
 </div>
 </div>
 
