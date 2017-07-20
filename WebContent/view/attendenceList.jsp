@@ -195,5 +195,6 @@ pageEncoding="utf-8"%>
          width: 50px;
       }
    </style>
+   <%@include file="footer.jsp"%>
 </body>
 </html>

@@ -289,7 +289,7 @@ pageEncoding="utf-8"%>
 				sub_tr.append('<th> x </th>');
 			}
 
-			for(var i=start_day;i<=total_day;i++){
+			for(var i=start_day;i<=total_day+start_day;i++){
 				sub_tr.append('<th>'+i+'일</th>');
 			}
 		};
@@ -333,11 +333,12 @@ pageEncoding="utf-8"%>
 				// $(".modal").hide();
 
 				// //jsrender를 이용한 테이블 추가.
-				// var tmpl = $.templates("#contact_template");
+				// var tmpl = $.templates("#contact_template");ㅇㅇ
 				// var str = tmpl.render(lecture);
 				// $(".tr_btn").append(str);
 			});
 		});
 	</script>
+	<%@include file="footer.jsp"%>
 </body>
 </html>
