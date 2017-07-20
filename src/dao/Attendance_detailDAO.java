@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import vo.Attendance_detailVO;
-import vo.ReturnAttdanceVO;
 import vo.StudentListVO;
 
 public class Attendance_detailDAO {
@@ -126,7 +125,7 @@ public class Attendance_detailDAO {
 		}
 	}
 
-	public ReturnAttdanceVO searchAttDetail(int lec_no, String student_id) {
+	/*public ReturnAttdanceVO searchAttDetail(int lec_no, String student_id) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ReturnAttdanceVO aInfo = new ReturnAttdanceVO();
@@ -162,7 +161,7 @@ public class Attendance_detailDAO {
 		}
 		aInfo.setList(list);
 		return aInfo;
-	}
+	}*/
 
 	public ArrayList<StudentListVO> searchAllStudent(int lec_no){
 		Connection conn = null;
