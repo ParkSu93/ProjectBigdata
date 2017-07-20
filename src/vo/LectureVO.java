@@ -2,15 +2,14 @@ package vo;
 
 public class LectureVO {
 
-	private int lec_no;
-	private String teacher_id;
-	private String lec_name;
-	private String lec_password;
-	private short enroll_num;
-	private byte completion_rate;
-	private short lec_total_date;
-	private String lec_check;
-
+	public int lec_no;
+	public String teacher_id;
+	public String lec_name;
+	public String lec_password;
+	public short enroll_num;
+	public byte completion_rate;
+	public short lec_total_date;
+	public String lec_check;
 
 	public LectureVO() {
 		super();
