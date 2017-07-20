@@ -35,7 +35,6 @@
 				data-toggle="dropdown" role="button" aria-haspopup="true"
 				arie-expanded="false">접속하기<span class="caret"></span></a>
 				<ul class="dropdown-menu">
-					<li><a href="index.jsp">로그인</a></li>
 					<li><a href="index.jsp">로그아웃</a></li>
 				</ul></li>
 			</ul>
