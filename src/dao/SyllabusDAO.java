@@ -137,7 +137,7 @@ public class SyllabusDAO {
 		MyLectureVO lecture = null;
 		try {
 			conn = getConnection();
-			pstmt = conn.prepareStatement("select l.lec_no,l.lec_name,l.lec_total_date,l.lec_enroll_num,s.lec_time from lecture l, syllabus s where l.lec_no = s.lec_no and l.teacher_id = ?");
+			pstmt = conn.prepareStatement("select l.lec_no,l.lec_name,l.lec_total_date,l.enroll_num,s.lec_time from lecture l, syllabus s where l.lec_no = s.lec_no and l.teacher_id = ?");
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
@@ -163,7 +163,6 @@ public class SyllabusDAO {
 				e2.printStackTrace();
 			}
 		}
-
 		return list;
 	}
 

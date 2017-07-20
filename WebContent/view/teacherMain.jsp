@@ -1,3 +1,5 @@
+<%@page import="controller.Converter"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 pageEncoding="utf-8"%>
 <!DOCTYPE html>
@@ -44,6 +46,19 @@ pageEncoding="utf-8"%>
          border-radius: 15px;
       }
    </style>
+   
+   <script type="text/javascript">
+$(document).ready(function() {		
+				 lecture = $("#a").html();
+				lecture2 = JSON.parse(lecture)
+				console.log(lecture2);
+				 //jsrender를 이용한 테이블 추가.
+			    var tmpl = $.templates("#contact_template");
+			    var str = tmpl.render(lecture2);
+			    $(".tr_btn").append(str);
+		});
+</script>   
+   
    <script type="text/javascript">
    var lecture; //모달강의 저장용
    var lecture_list; //모달 강의 리스트용 처음 시작할 때, 서버로 부터 한번 아이디에 해당하는 모든 강의 받아오고, 뿌려준다. 그리고 추가하는 형식
@@ -71,7 +86,7 @@ pageEncoding="utf-8"%>
             .val(),
             lec_goal : $("#lec_goal").val(),
             lec_time : $("#lec_time").val(),
-            lec_totall_date : $(
+            lec_total_date : $(
                "#lec_totall_date")
             .val(),
             enroll_num : $("#enroll_num")
@@ -92,7 +107,7 @@ pageEncoding="utf-8"%>
 <script id="contact_template" type="text/x-jsrender">
    <tr>
       <td>{{:lec_name}}</td>
-      <td>{{:lec_totall_date}}</td>
+      <td>{{:lec_total_date}}</td>
       <td>{{:enroll_num}}</td>
       <td>{{:lec_time}}</td>
       <td>{{:lec_check}}</td>
@@ -101,6 +116,17 @@ pageEncoding="utf-8"%>
 </head>
 
 <body>
+
+<%
+	ArrayList list =(ArrayList)request.getAttribute("list");
+	String result = Converter.convertToJson(list);
+%>
+<div id = "a" style = "display:none">
+<%= result %>
+</div>
+
+
+
    <%@include file="navbar_teacher.jsp"%>
    <div class="container">
       <div class="row">
@@ -148,7 +174,7 @@ pageEncoding="utf-8"%>
                </thead>
                <tbody class="tr_btn" style="padding: 10px">
                   <tr id="tr_index">
-                     <td id="r_lec_name" name="r_lec_name">박영수</td>
+                     <td id="r_lec_name" name="r_lec_name"></td>
                      <td id="r_lec_totall_date" name="r_lec_totall_date">100</td>
                      <td id="r_enroll_num" name="r_lec_name">30명</td>
                      <td id="r_lec_time" name="r_lec_name">2017-3-30</td>
