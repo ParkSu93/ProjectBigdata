@@ -4,9 +4,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import vo.Attendance_detailVO;
+import vo.ReturnAttdanceVO;
 
 public class Attendance_detailDAO {
 	public Connection getConnection() {
@@ -123,7 +125,7 @@ public class Attendance_detailDAO {
 		}
 	}
 
-	/* 본인이 수강한 한 과목에 대해 날짜별 출결정보 반환 */
+	/* 본인이 수강한 한 과목에 대해 날짜별 출결정보 반환 
 	public ArrayList<Attendance_detailVO> searchAttDetail(int lec_no, String student_id) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -159,6 +161,43 @@ public class Attendance_detailDAO {
 		}
 
 		return list;
+	}*/
+	
+	public ReturnAttdanceVO searchAttDetail(int lec_no, String student_id){
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ReturnAttdanceVO aInfo = new ReturnAttdanceVO();
+		ResultSet rs = null;
+		ArrayList<String> list = new ArrayList<String>();
+		try {
+			pstmt = conn.prepareStatement("select b.stu_start_date,b.stu_closing_date,d.attendance_status from attendance_book b, attendance_detail d where b.lec_no = d.lec_no and b.student_id = d.student_id and b.lec_no = ? and b.student_id = ? order by d.day");
+			pstmt.setInt(1, lec_no);
+			pstmt.setString(2, student_id);
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				aInfo.setStu_start_date(rs.getShort("stu_start_date"));
+				aInfo.setStu_closing_date(rs.getShort("stu_closing_date"));
+				list.add(rs.getString("attendance_status"));
+			}
+			while(rs.next()){
+				list.add(rs.getString("attendance_status"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+				if (rs != null)
+					rs.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		aInfo.setList(list);
+		return aInfo;
 	}
 
 }
