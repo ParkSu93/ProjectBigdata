@@ -160,13 +160,13 @@ public class LectureDAO {
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(
-					"select l.lec_no,l.teacher_id,l.lec_name,l.lec_password,l.enroll_num,l.completion_rate,l.lec_total_date from lecture l,course c where c.lec_no = l.lec_no and c.student_id = ?");
+					"select l.lec_no,m.username,l.lec_name,l.lec_password,l.enroll_num,l.completion_rate,l.lec_total_date from member m, lecture l,course c where m.id = l.teacher_id and c.lec_no = l.lec_no and c.student_id = ?");
 			pstmt.setString(1, student_id);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				lecture = new LectureVO();
 				lecture.setLec_no(rs.getInt("lec_no"));
-				lecture.setTeacher_id(rs.getString("teacher_id"));
+				lecture.setTeacher_id(rs.getString("username"));
 				lecture.setLec_name(rs.getString("lec_name"));
 				lecture.setLec_password(rs.getString("lec_password"));
 				lecture.setEnroll_num(rs.getShort("enroll_num"));
