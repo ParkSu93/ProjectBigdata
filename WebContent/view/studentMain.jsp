@@ -74,14 +74,17 @@ pageEncoding="utf-8"%>
 <div id = "a" style = display:none>
 <%= result %>
 </div>
+<%
+	ArrayList totalList =(ArrayList)request.getAttribute("totalList");
+	String result2 = Converter.convertToJson(totalList);
+%>
+<div id = "b" style = display:none>
+<%= result2 %>
+</div>
 
 
 	<%@include file="navbar_student.jsp" %> 
-<<<<<<< HEAD
-
-=======
 	<div id="wrapper">
->>>>>>> 3df762412f13eaa24611ca59fc423648917862d2
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12">
@@ -293,6 +296,17 @@ $(document).ready(function() {
 			    $(".tr_btn").append(str);
 		});
 </script>   
+   <script type="text/javascript">
+$(document).ready(function() {		
+				 lecture = $("#b").html();
+				lecture3 = JSON.parse(lecture)
+				console.log(lecture3);
+				 //jsrender를 이용한 테이블 추가.
+			    var tmpl = $.templates("#contact_template2");
+			    var str = tmpl.render(lecture3);
+			    $(".tb_btn").append(str);
+		});
+</script>  
 
 <script type="text/javascript">
 		var my_mdl_lecture=[]; //선택한 강의의 출석현황.
@@ -346,7 +360,7 @@ $(document).ready(function() {
 				show_my_mdl_lecture();
 			});
 
-			$(".tr_btn").on("click", ".total_lecture", function() { //나의 강의 목록 출석 확인
+			$(".tb_btn").on("click", ".total_lecture", function() { //나의 강의 목록 출석 확인
 				index_add_lecture = $(this).parent().parent().index(); //index 안에 해당하는 listindex들어가있음
 				console.log(index_add_lecture);
 				//모달창
@@ -377,14 +391,9 @@ $(document).ready(function() {
 				 var tmpl = $.templates("#contact_template");
 				 var str = tmpl.render(lecture);
 				 $(".tr_btn").append(str);
-/* 				 //jsrender를 이용한 테이블 추가.
-				 var tmpl2 = $.templates("#contact_template");
-				 var str2 = tmpl.render(lecture1);
-				 $(".tb_btn").append(str); */
 			});
 		});
 	</script>
-<<<<<<< HEAD
 <script id="contact_template" type="text/x-jsrender">
    <tr>
       <td>{{:lec_name}}</td>
@@ -393,9 +402,15 @@ $(document).ready(function() {
       <td>{{:lec_check}}</td>
    </tr>
 </script>
-=======
+<script id="contact_template2" type="text/x-jsrender">
+   <tr>
+      <td>{{:lec_name}}</td>
+      <td>{{:teacher_id}}</td>
+      <td>{{:lec_time}}</td>
+      <td>{{:lec_check}}</td>
+   </tr>
+</script>
 
 	<%@include file="footer.jsp"%>
->>>>>>> 3df762412f13eaa24611ca59fc423648917862d2
 </body>
 </html>

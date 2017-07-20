@@ -9,12 +9,6 @@ import dao.CourseDAO;
 import dao.LectureDAO;
 import dao.MemberDAO;
 import dao.SyllabusDAO;
-<<<<<<< HEAD
-import vo.LectureVO;
-import vo.MyLectureVO;
-=======
->>>>>>> 3df762412f13eaa24611ca59fc423648917862d2
-
 import vo.CourseVO;
 import vo.LectureVO;
 import vo.MyLectureVO;
@@ -25,11 +19,9 @@ public class LectureService {
 
 	SyllabusDAO dao = new SyllabusDAO();
 	LectureDAO dao2 = new LectureDAO();
-<<<<<<< HEAD
-	int a;
-=======
 	CourseDAO dao3 = new CourseDAO();
 	Attendance_detailDAO dao4 = new Attendance_detailDAO();
+	
 	public void insertSyllabus(SyllabusVO vo){
 		dao.insertSyllabus(vo);
 	}
@@ -39,21 +31,17 @@ public class LectureService {
 	}
 	public void updateSyllabus(SyllabusVO vo){
 		dao.updateSyllabus(vo);
->>>>>>> 3df762412f13eaa24611ca59fc423648917862d2
 
 	}
 	public ArrayList<MyLectureVO> lectureList(String id) {
 		ArrayList<MyLectureVO> list = dao.myLectureList(id);
 		return list;
 	}
-<<<<<<< HEAD
 	
 	public ArrayList<LectureVO> Alllecturelist(String student_id){
 		ArrayList<LectureVO> alllist = dao2.lectureAllList(student_id);
 		return alllist;
 	}
-}
-=======
 
 	public void insertLecture(LectureVO vo){
 		dao2.insertLecture(vo);
@@ -83,7 +71,6 @@ public class LectureService {
 
 	}
 	
-	
 	public void insertAttDetail(Attendance_detailVO vo){
 		dao4.insertAttDetail(vo);
 	}
@@ -91,5 +78,8 @@ public class LectureService {
 	public void updateAttDetail(Attendance_detailVO vo) {
 		dao4.updateAttDetail(vo);
 	}
+	public ArrayList<LectureVO> totallecturelist(){
+		ArrayList<LectureVO> totalLecuturelist = dao2.totalLectureList();
+		return totalLecuturelist;
+	}
 }
->>>>>>> 3df762412f13eaa24611ca59fc423648917862d2
