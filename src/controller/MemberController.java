@@ -184,4 +184,5 @@ public class MemberController {
 	
 		return "studentProfile";
 	}
+	
 }

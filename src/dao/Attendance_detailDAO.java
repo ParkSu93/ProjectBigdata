@@ -4,11 +4,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import vo.Attendance_detailVO;
 import vo.ReturnAttdanceVO;
+import vo.StudentListVO;
 
 public class Attendance_detailDAO {
 	public Connection getConnection() {
@@ -34,7 +34,7 @@ public class Attendance_detailDAO {
 			pstmt.setString(2, vo.getStudent_id());
 			pstmt.setShort(3, vo.getDay());
 			pstmt.executeUpdate();
-			if (!vo.getAttendance_status().equals("결석")) {
+			if (!vo.getAttendance_status().equals("占써석")) {
 				PreparedStatement stmt = null;
 				stmt = conn.prepareStatement(
 						"update attendance_detail set attendance_status = ? where lec_no = ? and student_id = ? and day = ?");
@@ -50,7 +50,7 @@ public class Attendance_detailDAO {
 				stmt2.setString(2, vo.getStudent_id());
 				stmt2.executeUpdate();
 				stmt2.close();
-			} else{
+			} else {
 				PreparedStatement stmt = null;
 				stmt = conn.prepareStatement("execute calc_attendance_rate(?,?)");
 				stmt.setInt(1, vo.getLec_no());
@@ -125,61 +125,24 @@ public class Attendance_detailDAO {
 		}
 	}
 
-	/* 본인이 수강한 한 과목에 대해 날짜별 출결정보 반환 
-	public ArrayList<Attendance_detailVO> searchAttDetail(int lec_no, String student_id) {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		Attendance_detailVO aInfo = null;
-		ArrayList<Attendance_detailVO> list = new ArrayList<Attendance_detailVO>();
-		ResultSet rs = null;
-		try {
-			conn = getConnection();
-			pstmt = conn.prepareStatement("select day,attendance_status,report where lec_no = ? and student_id = ?");
-			pstmt.setInt(1, lec_no);
-			pstmt.setString(2, student_id);
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				aInfo = new Attendance_detailVO();
-				aInfo.setDay(rs.getShort("day"));
-				aInfo.setAttendance_status(rs.getString("attendance_status"));
-				aInfo.setReport(rs.getString(rs.getString("report")));
-				list.add(aInfo);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (pstmt != null)
-					pstmt.close();
-				if (conn != null)
-					conn.close();
-				if (rs != null)
-					rs.close();
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
-		}
-
-		return list;
-	}*/
-	
-	public ReturnAttdanceVO searchAttDetail(int lec_no, String student_id){
+	public ReturnAttdanceVO searchAttDetail(int lec_no, String student_id) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ReturnAttdanceVO aInfo = new ReturnAttdanceVO();
 		ResultSet rs = null;
 		ArrayList<String> list = new ArrayList<String>();
 		try {
-			pstmt = conn.prepareStatement("select b.stu_start_date,b.stu_closing_date,d.attendance_status from attendance_book b, attendance_detail d where b.lec_no = d.lec_no and b.student_id = d.student_id and b.lec_no = ? and b.student_id = ? order by d.day");
+			pstmt = conn.prepareStatement(
+					"select b.stu_start_date,b.stu_closing_date,d.attendance_status from attendance_book b, attendance_detail d where b.lec_no = d.lec_no and b.student_id = d.student_id and b.lec_no = ? and b.student_id = ? order by d.day");
 			pstmt.setInt(1, lec_no);
 			pstmt.setString(2, student_id);
 			rs = pstmt.executeQuery();
-			if(rs.next()){
+			if (rs.next()) {
 				aInfo.setStu_start_date(rs.getShort("stu_start_date"));
 				aInfo.setStu_closing_date(rs.getShort("stu_closing_date"));
 				list.add(rs.getString("attendance_status"));
 			}
-			while(rs.next()){
+			while (rs.next()) {
 				list.add(rs.getString("attendance_status"));
 			}
 		} catch (Exception e) {
@@ -200,4 +163,49 @@ public class Attendance_detailDAO {
 		return aInfo;
 	}
 
+	public StudentListVO searchAllStudent(int lec_no){
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		StudentListVO aInfo = new StudentListVO();
+		ResultSet rs = null;
+		ArrayList<String> list = new ArrayList<String>();
+		try {
+			pstmt = conn.prepareStatement("select m.id, m.username, m.birthday, m.email, m.phonenum, m.addr, m.introduce, m.profile, b.stu_start_date, b.stu_closing_date, b.attendance_rate, d.attendance_status from member m, attendance_book b, attendance_detail d, lecture l where m.id=b.student_id and b.student_id=d.student_id and l.lec_no = ?");
+			pstmt.setInt(1, lec_no);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				aInfo.setId(rs.getString("id"));
+				aInfo.setUsername(rs.getString("username"));
+				aInfo.setBirthday(rs.getString("birthday"));
+				aInfo.setEmail(rs.getString("email"));
+				aInfo.setPhonenum(rs.getString("phonenum"));
+				aInfo.setAddr(rs.getString("addr"));
+				aInfo.setIntroduce(rs.getString("introduce"));
+				aInfo.setProfile(rs.getString("profile"));
+				aInfo.setStu_start_date(rs.getShort("stu_start_date"));
+				aInfo.setStu_closing_date(rs.getShort("stu_closing_date"));
+				aInfo.setAttendance_rate(rs.getByte("attendance_rate"));
+				list.add(rs.getString("attendance_status"));
+			}
+			while (rs.next()) {
+				list.add(rs.getString("attendance_status"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+				if (rs != null)
+					rs.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		
+		aInfo.setAttendance_status(list);
+		return aInfo;
+	}
 }

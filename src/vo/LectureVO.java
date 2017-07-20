@@ -8,12 +8,14 @@ public class LectureVO {
 	private short enroll_num;
 	private byte completion_rate;
 	private short lec_total_date;
+	private String lec_check;
 
 	public LectureVO() {
 		super();
 		enroll_num = 0;
 		completion_rate = 70;
 		lec_total_date = 1;
+		lec_check = "\'<button type=\"button\" class=\"btn btn-success btn-circle moveAttandence\"><i class=\"glyphicon glyphicon-link\"></i></button>\'";
 	}
 
 	public int getLec_no() {
@@ -71,6 +73,10 @@ public class LectureVO {
 
 	public void setLec_total_date(short lec_total_date) {
 		this.lec_total_date = lec_total_date;
+	}
+	
+	public String getLec_check() {
+		return lec_check;
 	}
 
 	@Override
