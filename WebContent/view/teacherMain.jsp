@@ -175,7 +175,7 @@ $(document).ready(function() {
                <tbody class="tr_btn" style="padding: 10px">
                   <tr id="tr_index">
                      <td id="r_lec_name" name="r_lec_name"></td>
-                     <td id="r_lec_totall_date" name="r_lec_totall_date">100</td>
+                     <td id="r_lec_totall_date" name="r_lec_total_date">100</td>
                      <td id="r_enroll_num" name="r_lec_name">30명</td>
                      <td id="r_lec_time" name="r_lec_name">2017-3-30</td>
                      <td id="r_lec_check" name="r_lec_check">
