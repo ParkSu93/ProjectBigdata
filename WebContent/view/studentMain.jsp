@@ -121,7 +121,6 @@ pageEncoding="utf-8"%>
 						class="panel-span panel-left">전체 강의 목록</span>
 					</h3>
 				</div>
-
 				<table class="table">
 					<thead>
 						<tr>
@@ -151,52 +150,111 @@ pageEncoding="utf-8"%>
 </div>
 
 
-<!-- line modal -->
-<div class="modal fade add_lecture" id="squarespaceModal" tabindex="-1"
-role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-<div class="modal-dialog">
-	<div class="modal-content">
-		<div class="modal-header">
-			<button type="button" class="close btc" data-dismiss="modal">
-				<span aria-hidden="true">×</span><span class="sr-only">Close</span>
-			</button>
-			<h3 class="modal-title" id="lineModalLabel">강의목록</h3>
-		</div>
-		<div class="modal-body">
-			<!-- content goes here -->
-			<form>
-				<div class="form-group">
-					<div class="form-group">
-						<label>강의 이름</label>
-						<h5>강의 이름을 써주세용</h5>
-					</div>
-					<div class="form-group">
-						<label>강사 이름</label> 
-						<h5>강사 이름을 써주세용</h5>
-					</div>
-					<div class="form-group">
-						<label>강의용 비밀번호</label> <input type="password"
-						class="form-control mdf" id="lec_password" name="lec_password"
-						placeholder="강의용 비밀번호">
+<!-- 출석부 확인 -->
+<div class="modal fade my_mdl_lecture" id="squarespaceModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close btc" data-dismiss="modal">
+					<span aria-hidden="true">×</span><span class="sr-only">Close</span>
+				</button>
+				<h3 class="modal-title" id="lineModalLabel">출석 확인</h3>
+			</div>
+			<div class="modal-body">
+				<!-- content goes here -->
+				<div class="ct">
+					<div class="row">
+						<div class="col-xs-12">
+							<div class="panel panel-primary">
+								<div class="panel-heading">
+									<h3 class="panel-title">
+										<span class="glyphicon glyphicon-tags"></span> <span
+										class="panel-span panel-left">출석부</span>
+
+									</h3>
+								</div>
+								<div class="panel-body"  style="overflow-x: scroll;">
+									<table class="table">
+										<thead>
+											<tr id="main_tr">
+												<th class="tr_name" >학생 이름</th>
+											</tr>
+										</thead>
+										<tbody class="tr_btn" style="padding: 10px">
+											<tr id="sub_tr">
+												<td id="r_lec_name" name="r_lec_name">박영수</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
-			</form>
-		</div>
-		<div class="modal-footer">
-			<div class="btn-group btn-group-justified" role="group"
-			aria-label="group button">
-			<div class="btn-group" role="group">
-				<button type="button" class="btn btn-default btc"
-				data-dismiss="modal" role="button">닫기</button>
 			</div>
-			<div class="btn-group" role="group">
-				<button type="button" id="saveImage"
-				class="btn btn-default btn-hover-green bts" data-action="save"
-				role="button">확인</button>
+			<div class="modal-footer">
+				<div class="btn-group btn-group-justified" role="group"
+				aria-label="group button">
+				<div class="btn-group" role="group">
+					<button type="button" class="btn btn-default btc"
+					data-dismiss="modal" role="button">닫기</button>
+				</div>
+				<div class="btn-group" role="group">
+					<button type="button" id="saveImage"
+					class="btn btn-default btn-hover-green bts" data-action="save"
+					role="button">확인</button>
+				</div>
 			</div>
 		</div>
 	</div>
 </div>
+</div>
+
+<!-- 강의 추가 -->
+<div class="modal fade add_lecture" id="squarespaceModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close btc" data-dismiss="modal">
+					<span aria-hidden="true">×</span><span class="sr-only">Close</span>
+				</button>
+				<h3 class="modal-title" id="lineModalLabel">강의목록</h3>
+			</div>
+			<div class="modal-body">
+				<!-- content goes here -->
+				<form>
+					<div class="form-group">
+						<div class="form-group">
+							<label>강의 이름</label>
+							<h5>강의 이름을 써주세용</h5>
+						</div>
+						<div class="form-group">
+							<label>강사 이름</label> 
+							<h5>강사 이름을 써주세용</h5>
+						</div>
+						<div class="form-group">
+							<label>강의용 비밀번호</label> <input type="password"
+							class="form-control mdf" id="lec_password" name="lec_password"
+							placeholder="강의용 비밀번호">
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<div class="btn-group btn-group-justified" role="group"
+				aria-label="group button">
+				<div class="btn-group" role="group">
+					<button type="button" class="btn btn-default btc"
+					data-dismiss="modal" role="button">닫기</button>
+				</div>
+				<div class="btn-group" role="group">
+					<button type="button" id="saveImage"
+					class="btn btn-default btn-hover-green bts" data-action="save"
+					role="button">확인</button>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 </div>
 
@@ -213,6 +271,7 @@ $(document).ready(function() {
 </script>   
 
 <script type="text/javascript">
+		var my_mdl_lecture=[]; //선택한 강의의 출석현황.
 		var my_lecture=[]; //내가 듣고 있는 lecture 목록. 받아오고
 		var total_lecture=[]; //전체 목록. 받아오고
 		var index_add_lecture=null;//추가할 강의 인덱스
@@ -222,18 +281,45 @@ $(document).ready(function() {
 			for(var i=1;i<=my_lecture.length;i++){ //요기가 my_lecture 받아오는 부분.
 				var str = '<tr id="tr_index"><td id="my_lec_name" name="my_lec_name">'+'c언어'+'</td><td id="my_lec_teacher_name" name="my_lec_total_date">'+'100'+'</td><td id="my_lec_time" name="my_lec_name">'+'30명'+'</td><td id="my_lec_check" name="my_lec_check"><button type="button" class="btn btn-success btn-circle my_lecture"><i class="glyphicon glyphicon-link"></i></button></td></tr>'
 			}
-		}
+		};
 		var show_total_lecture = function(){
 			for(var i=1;i<=total_lecture.length;i++){ //요기가 전체 받아오는 부분.
 				var str = '<tr id="tr_index"><td id="total_lec_name" name="total_lec_name">'+'c언어'+'</td><td id="total_lec_teacher_name" name="total_lec_total_date">'+'100'+'</td><td id="total_lec_time" name="r_lec_name">'+'30명'+'</td><td id="total_lec_check" name="total_lec_check"><button type="button" class="btn btn-success btn-circle total_lecture"><i class="glyphicon glyphicon-link"></i></button></td></tr>'
 			}
-		}
+		};
+
+		var show_my_mdl_lecture = function(){ //출석 표출용 mdl 함수 출석,결석,지각
+			var total_day = 90;
+			var start_day = 10;
+			var attandence_list = [];
+			//받아온 다음에 넣어주고,
+			var main_tr = $("#main_tr");
+			var sub_tr = $("#sub_tr");
+
+			for(var i=1;i<=total_day;i++){
+				main_tr.append('<th>'+i+'일</th>');
+			}
+			main_tr.append('출석률');
+
+			//여기서 리스트 받아와서 출력만 해주면 됨.
+			for(var i=1;i<start_day;i++){
+				sub_tr.append('<th> x </th>');
+			}
+
+			for(var i=start_day;i<=total_day;i++){
+				sub_tr.append('<th>'+i+'일</th>');
+			}
+		};
+
 		$(document).ready(function(){
 			show_my_lecture();
 			show_total_lecture();
 			$(".tr_btn").on("click", ".my_lecture", function() { //나의 강의 목록 출석 확인
 				var index_my_lecture = $(this).parent().parent().index(); //index 안에 해당하는 listindex들어가있음
 				console.log(index_my_lecture);
+				$(".my_mdl_lecture").show();
+				$(".my_mdl_lecture").modal();
+				show_my_mdl_lecture();
 			});
 
 			$(".tr_btn").on("click", ".total_lecture", function() { //나의 강의 목록 출석 확인
@@ -245,28 +331,28 @@ $(document).ready(function() {
 			});
 
 			$(".bts").click(function() { //모달창 상에서 total_lecture 추가
-				lecture = {
-					lec_name : $("#lec_name").val(),
-					lec_password : $("#lec_password").val(),
-					lec_outline : $("#lec_outline")
-					.val(),
-					lec_goal : $("#lec_goal").val(),
-					lec_time : $("#lec_time").val(),
-					lec_total_date : $(
-						"#lec_total_date")
-					.val(),
-					enroll_num : $("#enroll_num")
-					.val()
-				};
+				// lecture = {
+				// 	lec_name : $("#lec_name").val(),
+				// 	lec_password : $("#lec_password").val(),
+				// 	lec_outline : $("#lec_outline")
+				// 	.val(),
+				// 	lec_goal : $("#lec_goal").val(),
+				// 	lec_time : $("#lec_time").val(),
+				// 	lec_total_date : $(
+				// 		"#lec_total_date")
+				// 	.val(),
+				// 	enroll_num : $("#enroll_num")
+				// 	.val()
+				// };
 
-				lecture.lec_check = '<button type="button" class="btn btn-success btn-circle moveAttandence"><i class="glyphicon glyphicon-link"></i></button>';
-				console.log(lecture);
-				$(".modal").hide();
+				// lecture.lec_check = '<button type="button" class="btn btn-success btn-circle moveAttandence"><i class="glyphicon glyphicon-link"></i></button>';
+				// console.log(lecture);
+				// $(".modal").hide();
 
-				//jsrender를 이용한 테이블 추가.
-				var tmpl = $.templates("#contact_template");
-				var str = tmpl.render(lecture);
-				$(".tr_btn").append(str);
+				// //jsrender를 이용한 테이블 추가.
+				// var tmpl = $.templates("#contact_template");
+				// var str = tmpl.render(lecture);
+				// $(".tr_btn").append(str);
 			});
 		});
 	</script>

@@ -185,12 +185,15 @@ pageEncoding="utf-8"%>
          width: 35px;
       }
       .table{
+		}
+		#r_lec_name{
+			width: 50px;
+		}
 
       }
       #r_lec_name{
          width: 50px;
       }
-
    </style>
 </body>
 </html>
