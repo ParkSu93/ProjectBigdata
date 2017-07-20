@@ -13,17 +13,16 @@ import vo.TeacherVO;
 @Service
 public class MemberService {
 
-	MemberDAO memDao = new MemberDAO().getInstance();
-	TeacherDAO teaDao = new TeacherDAO().getInstance();
+	TeacherDAO dao = new TeacherDAO().getInstance();
 
 	/*
 	 * 회원가입
 	 */
 	public String joinMember(TeacherVO mem) {
 		if (mem.getTeacher_flag().equals("Y")) {
-			teaDao.insertTeacher(mem);
+			dao.insertTeacher(mem);
 		} else {
-			memDao.insertMember((MemberVO) mem);
+			dao.insertMember((MemberVO) mem);
 		}
 		return "가입완료";
 	}
@@ -35,7 +34,7 @@ public class MemberService {
 		MemberVO vo = null;
 		String result = null;
 		try {
-			vo = memDao.searchMember(id);
+			vo = dao.searchMember(id);
 			if (password.equals(vo.getPassword())) {
 				result = "로그인 성공";
 			} else {
@@ -52,10 +51,10 @@ public class MemberService {
 
 	public Object getMemberInfo(String id, String flag) {
 		Object obj = null;
-		if (flag.equals("Y")) {
-			obj = teaDao.searchTeacher(id);
+		if (flag.equals("Y") || flag.equals("y")) {
+			obj = dao.searchTeacher(id);
 		} else {
-			obj = memDao.searchMember(id);
+			obj = dao.searchMember(id);
 		}
 		return obj;
 	}

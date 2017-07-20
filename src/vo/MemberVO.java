@@ -93,11 +93,7 @@ public class MemberVO {
 	}
 
 	public void setTeacher_flag(String teacher_flag) {
-		if(teacher_flag.equals("학생")){
-			this.teacher_flag = "N";
-		}else{
-			this.teacher_flag = "Y";
-		}
+		this.teacher_flag = teacher_flag;
 	}
 
 	public MultipartFile getProfile() {
