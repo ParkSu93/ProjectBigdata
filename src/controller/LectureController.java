@@ -178,32 +178,4 @@ public class LectureController {
 		return "attendance_bookInput";
 	}
 
-	@RequestMapping(value = "attendance_book.do", method = RequestMethod.POST)
-	public String insertAttBook(@ModelAttribute("atb") Attendance_bookVO atb, BindingResult result) {
-		System.out.println(atb);
-
-		new LectureService().insertAttBook(atb);
-		
-		
-		return "attendance_bookOutput";
-	}
-	@RequestMapping(value = "attendance_book2.do", method = RequestMethod.POST)
-	public String searchAttBook(@ModelAttribute("atb2") Attendance_bookVO atb2, BindingResult result) {
-		System.out.println(atb2);
-
-		new LectureService().searchAttBook(atb2.getLec_no(),atb2.getStudent_id());
-		
-		
-		return "attendance_bookOutput";
-		
-	}
-	@RequestMapping(value = "attendance_book3.do", method = RequestMethod.POST)
-	public String updateAttBook(@ModelAttribute("atb3") Attendance_bookVO atb3, BindingResult result) {
-		System.out.println(atb3);
-
-		new LectureService().updateAttBook(atb3);
-		
-		
-		return "attendance_bookOutput";
-	}
 }

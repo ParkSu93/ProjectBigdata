@@ -4,34 +4,17 @@ import java.util.ArrayList;
 
 import org.springframework.stereotype.Service;
 
-import dao.Attendance_bookDAO;
 import dao.Attendance_detailDAO;
 import dao.CourseDAO;
 import dao.LectureDAO;
 import dao.SyllabusDAO;
+import vo.Attendance_bookVO;
 import vo.Attendance_detailVO;
 import vo.CourseVO;
 import vo.LectureVO;
 import vo.MyLectureVO;
 import vo.SearchAttBookVO;
 import vo.SyllabusVO;
-<<<<<<< HEAD
-import vo.Attendance_bookVO;
-import vo.Attendance_detailVO;
-@Service
-public class LectureService {
-
-	SyllabusDAO dao = new SyllabusDAO();
-	LectureDAO dao2 = new LectureDAO();
-	CourseDAO dao3 = new CourseDAO();
-	Attendance_detailDAO dao4 = new Attendance_detailDAO();
-<<<<<<< HEAD
-	Attendance_bookDAO dao5 = new Attendance_bookDAO();
-
-=======
-	
->>>>>>> 6d9306ee0f6508ac08c3d7e6271f739074634316
-=======
 @Service
 public class LectureService {
 
@@ -40,7 +23,6 @@ public class LectureService {
 	static CourseDAO corseDao = new CourseDAO();
 	static Attendance_detailDAO attDao = new Attendance_detailDAO();
 
->>>>>>> 7623da595186b127acb2221bde14321dfbbd231f
 	public void insertSyllabus(SyllabusVO vo){
 		syllaDao.insertSyllabus(vo);
 	}
@@ -106,28 +88,10 @@ public class LectureService {
 	public void updateAttDetail(Attendance_detailVO vo) {
 		attDao.updateAttDetail(vo);
 	}
-<<<<<<< HEAD
 
-	public void insertAttBook(Attendance_bookVO vo){
-		dao5.insertAttBook(vo);
-	}
-	
-	
-	public SearchAttBookVO searchAttBook(int lec_no, String student_id){
-		SearchAttBookVO vo =dao5.searchAttBook(lec_no,student_id);
-		return vo;
-	}
-	
-	public void updateAttBook(Attendance_bookVO vo){
-		dao5.updateAttBook(vo);
-	}
-		
-	
-}
-=======
 	public ArrayList<LectureVO> totallecturelist(){
 		ArrayList<LectureVO> totalLecuturelist = lecDao.totalLectureList();
 		return totalLecuturelist;
 	}
 }
->>>>>>> 6d9306ee0f6508ac08c3d7e6271f739074634316
+

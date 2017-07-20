@@ -196,43 +196,4 @@ public class MemberController {
 	
 		return "studentProfile";
 	}
-<<<<<<< HEAD
-	@RequestMapping(value = "teacher.do", method = RequestMethod.GET)
-	public String teacher() {
-
-		return "teacherInput";
-	}
-
-	@RequestMapping(value = "teacher.do", method = RequestMethod.POST)
-	public String insertTeacher(@ModelAttribute("tea") TeacherVO tea, BindingResult result) {
-		System.out.println(tea);
-
-		new MemberService().insertTeacher(tea);
-		
-		
-		return "teacherOutput";
-	}
-	@RequestMapping(value = "teacher2.do", method = RequestMethod.POST)
-	public String searchTeacher(@ModelAttribute("tea2") TeacherVO tea2, BindingResult result) {
-		System.out.println(tea2);
-
-		new MemberService().searchTeacher(tea2.getId());
-		
-		
-		return "teacherOutput";
-	}
-	
-	
-	@RequestMapping(value = "teacher3.do", method = RequestMethod.POST)
-	public String updateTeacher(@ModelAttribute("tea3") TeacherVO tea3, BindingResult result) {
-		System.out.println(tea3);
-
-		new MemberService().updateTeacher(tea3);
-		
-		
-		return "teacherOutput";
-	}
-=======
-	
->>>>>>> 7623da595186b127acb2221bde14321dfbbd231f
 }
