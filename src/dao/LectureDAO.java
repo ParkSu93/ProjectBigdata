@@ -192,7 +192,7 @@ public class LectureDAO {
 		return list;
 	}
 
-	public ArrayList<LectureVO> totalLectureList() {
+	public ArrayList<LectureVO> totalLectureList(String student_id) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ArrayList<LectureVO> list = new ArrayList<LectureVO>();
@@ -200,13 +200,14 @@ public class LectureDAO {
 		ResultSet rs = null;
 		try {
 			conn = getConnection();
-			pstmt = conn.prepareStatement("select l.lec_no, l.teacher_id, m.username, l.lec_name, l.lec_password, l.enroll_num, l.completion_rate, l.lec_total_date from lecture l, member m where l.teacher_id = m.id");
+			pstmt = conn.prepareStatement("select l.lec_no, l.teacher_id, m.username, l.lec_name, l.lec_password, l.enroll_num, l.completion_rate, l.lec_total_date from lecture l, member m where l.teacher_id = m.id and lec_no not in(select l.lec_no from lecture l, course c where l.lec_no = c.lec_no and c.student_id = ?)");
+			pstmt.setString(1, student_id);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				lecture = new LectureVO();
 				lecture.setLec_no(rs.getInt("lec_no"));
 				lecture.setTeacher_id(rs.getString("teacher_id"));
-				lecture.setTeacher_name(rs.getString("username"));
+				lecture.setTeacher_name(rs.getString("username")); //선생님이름 변수명 teacher_name
 				lecture.setLec_name(rs.getString("lec_name"));
 				lecture.setLec_password(rs.getString("lec_password"));
 				lecture.setEnroll_num(rs.getShort("enroll_num"));
