@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import service.LectureService;
 import service.MemberService;
+import vo.LectureVO;
 import vo.MemberVO;
 import vo.MyLectureVO;
 import vo.TeacherVO;
@@ -45,7 +46,6 @@ public class MemberController {
 	@RequestMapping(value = "view/login.do", method = RequestMethod.POST)
 	public ModelAndView doLogin(@ModelAttribute("mem") MemberVO mem, HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
-		ModelAndView mav2 = new ModelAndView();
 		Object obj = service.loginMember(mem.getId(), mem.getPassword());
 		if (obj instanceof MemberVO) {
 			MemberVO vo = (MemberVO) obj;
@@ -67,17 +67,29 @@ public class MemberController {
 				lecturelist = service.lectureList(id);
 				
 				TeacherVO mem2 =  (TeacherVO)obj2;
-				System.out.println("제발보여줘"+lecturelist.toString());
 				mav.addObject("list", lecturelist);;
 				mav.addObject("memberInfo", mem2);			
 				mav.setViewName("teacherMain");
 				
 				System.out.println(mem.toString());
 			}else{
+				ArrayList<LectureVO> allList = new ArrayList<>();
+				ArrayList<LectureVO> totallist = new ArrayList<>();
+				String student_id = mem.id;
+				
+				System.out.println(student_id);
+				
+				LectureService service = new LectureService();
+				allList = service.Alllecturelist(student_id);
+				
+				LectureService service2 = new LectureService();
+				totallist = service.totallecturelist();
+				System.out.println("totallist"+totallist.toString());
+				mav.addObject("totalList", totallist);
+				mav.addObject("allList", allList);
 				MemberVO mem2 = (MemberVO)obj2;
 				mav.addObject("memberInfo", mem2);
 				mav.setViewName("studentMain");
-				System.out.println("로그인 학생" + mem.toString());
 			}
 		} else {
 			String result = (String) obj;

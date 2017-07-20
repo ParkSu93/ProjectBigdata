@@ -11,7 +11,6 @@ import vo.CourseVO;
 public class CourseDAO {
 	public Connection getConnection() {
 		Connection conn = null;
-
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			conn = DriverManager.getConnection("jdbc:oracle:thin:@192.168.3.152:1521:xe", "pj", "pj");

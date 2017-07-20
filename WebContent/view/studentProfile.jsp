@@ -67,9 +67,9 @@
 			$(".modal").hide();
 
 			$.ajax({
-				url:'modifyProfile.do',
-				type:'post',
-				data:user,
+				url:'modifyProfile.do', //이쪽 url로
+				type:'post', //포스트형식으로
+				data:user, //데이터 user를 보낸다. 근데 데이터는 무조건 {변수:변수값, 변수:변수값};
 				success:function(data){
 				}
 			});

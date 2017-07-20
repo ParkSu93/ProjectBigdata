@@ -1,6 +1,7 @@
 package vo;
 
 public class LectureVO {
+<<<<<<< HEAD
 	private int lec_no;
 	private String teacher_id;
 	private String lec_name;
@@ -9,6 +10,15 @@ public class LectureVO {
 	private byte completion_rate;
 	private short lec_total_date;
 	private String lec_check;
+=======
+	 int lec_no;
+	 String teacher_id;
+	 String lec_name;
+	 String lec_password;
+	 short enroll_num;
+	 byte completion_rate;
+	 short lec_total_date;
+>>>>>>> e9d86080d48e74c46ef9e85ca57681efc6049b3e
 
 	public LectureVO() {
 		super();
