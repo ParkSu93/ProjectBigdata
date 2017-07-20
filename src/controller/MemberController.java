@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -10,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import service.LectureService;
 import service.MemberService;
 import vo.MemberVO;
+import vo.MyLectureVO;
 import vo.TeacherVO;
 
 @Controller
@@ -39,6 +43,7 @@ public class MemberController {
 	@RequestMapping(value = "view/login.do", method = RequestMethod.POST)
 	public ModelAndView doLogin(@ModelAttribute("mem") MemberVO mem, HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
+		ModelAndView mav2 = new ModelAndView();
 		Object obj = service.loginMember(mem.getId(), mem.getPassword());
 		if (obj instanceof MemberVO) {
 			MemberVO vo = (MemberVO) obj;
@@ -50,13 +55,24 @@ public class MemberController {
 			session.setAttribute("mem", vo);
 
 			Object obj2 = service.getMemberInfo(vo.getId(), vo.getTeacher_flag());
-			if (flag.equals("Y") || flag.equals("y")) {
-				TeacherVO mem2 = (TeacherVO) obj2;
-				mav.addObject("memberInfo", mem2);
+
+			if (flag.equals("Y")){
+				
+				ArrayList<MyLectureVO> lecturelist = new ArrayList<>();
+				String id = mem.id;
+				
+				LectureService service = new LectureService();
+				lecturelist = service.lectureList(id);
+				
+				TeacherVO mem2 =  (TeacherVO)obj2;
+				System.out.println("제발보여줘"+lecturelist.toString());
+				mav.addObject("list", lecturelist);;
+				mav.addObject("memberInfo", mem2);			
 				mav.setViewName("teacherMain");
-				System.out.println("로그인 강사" + mem.toString());
-			} else {
-				MemberVO mem2 = (MemberVO) obj2;
+				
+				System.out.println(mem.toString());
+			}else{
+				MemberVO mem2 = (MemberVO)obj2;
 				mav.addObject("memberInfo", mem2);
 				mav.setViewName("studentMain");
 				System.out.println("로그인 학생" + mem.toString());
