@@ -52,7 +52,6 @@ pageEncoding="utf-8"%>
 </head>
 <body>
 	<%@include file="navbar_student.jsp" %> 
-
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12">

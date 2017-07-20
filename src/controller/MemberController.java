@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+
+
 import service.LectureService;
 import service.MemberService;
 import vo.MemberVO;
@@ -120,7 +122,6 @@ public class MemberController {
 		String str = service.joinMember(mem);
 
 		// if (str.equals("가입완료")) return "loin"; else return "index";
-
 		return "index";
 	}
 
@@ -130,10 +131,10 @@ public class MemberController {
 
 		HttpSession session = null;
 		session = req.getSession();
-		MemberVO vo =null;
+		MemberVO vo = null;
 		if (session != null) {
-			 vo = (MemberVO) session.getAttribute("mem");
-		}else{
+			vo = (MemberVO) session.getAttribute("mem");
+		} else {
 			mav.setViewName("login");
 		}
 		Object obj = service.getMemberInfo(vo.getId(), vo.getTeacher_flag());
@@ -149,8 +150,38 @@ public class MemberController {
 			System.out.println("프로필 학생" + mem.toString());
 		}
 
-		System.out.println();
 		return mav;
 	}
 
+	/**
+	 * 회원정보 수정
+	 * 
+	 * @return user 프로필 페이지
+	 */
+	@RequestMapping(value = "view/modifyProfile.do", method = RequestMethod.POST)
+	public String doModifyProfile(@ModelAttribute("user")MemberVO vo,HttpServletRequest req) {
+		
+		HttpSession se = req.getSession();
+		MemberVO mem =null;
+		
+		Object obj = se.getAttribute("mem");
+		if(obj instanceof TeacherVO){
+			TeacherVO tea = (TeacherVO)obj;
+			
+			service.updateMemberInfo(tea);
+		}else{
+
+			mem = (MemberVO)obj;
+			mem.setEmail(vo.getEmail());
+			mem.setAddr(vo.getAddr());
+			mem.setPhonenum(vo.getPhonenum());
+			mem.setIntroduce(vo.getIntroduce());
+			
+			service.updateMemberInfo(mem);
+		}
+		
+		System.out.println(mem);
+	
+		return "studentProfile";
+	}
 }
