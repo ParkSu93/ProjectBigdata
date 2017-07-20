@@ -74,13 +74,7 @@ pageEncoding="utf-8"%>
    </style>
    <script type="text/javascript">
       var search_id = null; //검색한 이름
-<<<<<<< HEAD
       var attend_student_list = ${list}; //받아올 학생 리스트.
-      //학생 리스트 받아오기
-
-=======
-      var attend_student_list = null; //받아올 학생 리스트.
->>>>>>> 22e79ad93d0b70989171f48bea4252f03c0d6bf0
       $(document).ready(function(){ 
          $("input[name=search]").keydown(function (key) { //학생 검색
             if(key.keyCode == 13){//키가 13이면 실행 (엔터는 13)
@@ -148,12 +142,8 @@ pageEncoding="utf-8"%>
             </h3>
          </div>
          <div class="panel-body"  style="overflow-x: scroll;">
-<<<<<<< HEAD
-            <table class="table">
-=======
-          
+        
             <table class="table" style="width: 4000px;">
->>>>>>> 22e79ad93d0b70989171f48bea4252f03c0d6bf0
                <thead>
                   <tr id="main_tr">
                      <th class="tr_name" >학생 이름</th>
@@ -161,11 +151,7 @@ pageEncoding="utf-8"%>
                </thead>
                <tbody class="tr_btn" style="padding: 10px">
                   <tr id="tr_index">
-<<<<<<< HEAD
                      <td id="r_lec_name" name="r_lec_name">박영수</td>
-=======
-                     <td id="r_lec_name" name="r_lec_name" >박영수</td>
->>>>>>> 22e79ad93d0b70989171f48bea4252f03c0d6bf0
                   </tr>
                </tbody>
             </table>
@@ -175,16 +161,9 @@ pageEncoding="utf-8"%>
 </div>
 </div>
 <script type="text/javascript">
-<<<<<<< HEAD
-   var day_num = 60; //day 받으면 됨
-   var attend_student_all = null; //여기서 수강 학생 받으셈. 전체학생 리스트
-   var cur_id = null; // 현재 학생의 id
-   $(document).ready(function() {
-=======
       var day_num = 60; //day 받으면 됨
       var attend_student = null; //여기서 수강 학생 받으셈.
       $(document).ready(function() {
->>>>>>> 22e79ad93d0b70989171f48bea4252f03c0d6bf0
          var main_tr = $("#main_tr");
          var th_tr = $("#tr_index");
          console.log(main_tr);
@@ -193,7 +172,6 @@ pageEncoding="utf-8"%>
             main_tr.append('<th>' + i + '일</th>');
          }
 
-<<<<<<< HEAD
          main_tr.append('<th style="width: 20px">출석률</th>');
          console.log(th_tr);
   
@@ -215,17 +193,6 @@ pageEncoding="utf-8"%>
 		}
 	});
 </script>
-=======
-         main_tr.append('<th style="width: 70px">출석률</th>');
-         console.log(th_tr);
-         //여기서 for 구문 하나 더써서 학생 이름까지 돌리삼+학생이름 해서
-         for (var i = 1; i <= day_num; i++) {
-            th_tr.append('<td><input type="text" class="td_day td_'+i+'_day"/></td>');
-            //한번 더 유저에 해당하는 값 뿌려주고.
-         }
-      });
-   </script>
->>>>>>> 22e79ad93d0b70989171f48bea4252f03c0d6bf0
    <style type="text/css">
       .td_day{
          width: 35px;

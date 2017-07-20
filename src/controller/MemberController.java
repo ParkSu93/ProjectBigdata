@@ -25,6 +25,7 @@ import vo.TeacherVO;
 public class MemberController {
 
 	static MemberService service = new MemberService();
+	static LectureService lecService = new LectureService();
 
 	/**
 	 * 첫 로그인 페이지를 호출한다.
@@ -61,26 +62,20 @@ public class MemberController {
 			String id = mem.getId();
 			if (flag.equals("Y")){				
 				ArrayList<MyLectureVO> lecturelist = new ArrayList<>();
-				LectureService service = new LectureService();
-				lecturelist = service.lectureList(id);
+				lecturelist = lecService.lectureList(id);
 				
 				TeacherVO mem2 =  (TeacherVO)obj2;
 				mav.addObject("list", lecturelist);;
 				mav.addObject("memberInfo", mem2);			
 				mav.setViewName("teacherMain");
-				
 				System.out.println(mem.toString());
 			}else{
 				ArrayList<LectureVO> allList = new ArrayList<>();
 				ArrayList<LectureVO> totallist = new ArrayList<>();
 				
 				System.out.println(id);
-				
-				LectureService service = new LectureService();
-				allList = service.Alllecturelist(id);
-				
-				LectureService service2 = new LectureService();
-				totallist = service.totallecturelist();
+				allList = lecService.Alllecturelist(id);
+				totallist = lecService.totallecturelist();
 				System.out.println("totallist"+totallist.toString());
 				mav.addObject("totalList", totallist);
 				mav.addObject("allList", allList);
