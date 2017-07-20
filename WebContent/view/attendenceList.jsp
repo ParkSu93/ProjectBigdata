@@ -145,12 +145,12 @@ pageEncoding="utf-8"%>
             <table class="table">
                <thead>
                   <tr id="main_tr">
-                     <th class="tr_name" >학생 이름</th>
+                     <th class="tr_name" align="left" >학생 이름</th>
                   </tr>
                </thead>
                <tbody class="tr_btn" style="padding: 10px">
                   <tr id="tr_index">
-                     <td id="r_lec_name" name="r_lec_name">박영수</td>
+                     <td id="r_lec_name" name="r_lec_name" align="left" >박영수</td>
                   </tr>
                </tbody>
             </table>
