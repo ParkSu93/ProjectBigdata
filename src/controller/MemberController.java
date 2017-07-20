@@ -67,7 +67,6 @@ public class MemberController {
 				lecturelist = service.lectureList(id);
 				
 				TeacherVO mem2 =  (TeacherVO)obj2;
-				System.out.println("제발보여줘"+lecturelist.toString());
 				mav.addObject("list", lecturelist);;
 				mav.addObject("memberInfo", mem2);			
 				mav.setViewName("teacherMain");
@@ -91,7 +90,6 @@ public class MemberController {
 				MemberVO mem2 = (MemberVO)obj2;
 				mav.addObject("memberInfo", mem2);
 				mav.setViewName("studentMain");
-				System.out.println("로그인 학생" + mem.toString());
 			}
 		} else {
 			String result = (String) obj;
@@ -198,6 +196,7 @@ public class MemberController {
 	
 		return "studentProfile";
 	}
+<<<<<<< HEAD
 	@RequestMapping(value = "teacher.do", method = RequestMethod.GET)
 	public String teacher() {
 
@@ -233,4 +232,7 @@ public class MemberController {
 		
 		return "teacherOutput";
 	}
+=======
+	
+>>>>>>> 7623da595186b127acb2221bde14321dfbbd231f
 }

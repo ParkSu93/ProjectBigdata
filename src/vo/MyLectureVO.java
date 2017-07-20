@@ -1,46 +1,12 @@
 package vo;
 
-public class MyLectureVO {
-	private int lec_no;
-	private String lec_name;
-	private short lec_total_date;
-	private short enroll_num;
+public class MyLectureVO extends LectureVO{
 	private String lec_time;
-
+	private String lec_outline;
+	private String lec_goal;
+	
 	public MyLectureVO() {
 		super();
-	}
-
-	public int getLec_no() {
-		return lec_no;
-	}
-
-	public void setLec_no(int lec_no) {
-		this.lec_no = lec_no;
-	}
-
-	public String getLec_name() {
-		return lec_name;
-	}
-
-	public void setLec_name(String lec_name) {
-		this.lec_name = lec_name;
-	}
-
-	public short getLec_total_date() {
-		return lec_total_date;
-	}
-
-	public void setLec_total_date(short lec_total_date) {
-		this.lec_total_date = lec_total_date;
-	}
-
-	public short getEnroll_num() {
-		return enroll_num;
-	}
-
-	public void setEnroll_num(short enroll_num) {
-		this.enroll_num = enroll_num;
 	}
 
 	public String getLec_time() {
@@ -50,6 +16,23 @@ public class MyLectureVO {
 	public void setLec_time(String lec_time) {
 		this.lec_time = lec_time;
 	}
+
+	public String getLec_outline() {
+		return lec_outline;
+	}
+
+	public void setLec_outline(String lec_outline) {
+		this.lec_outline = lec_outline;
+	}
+
+	public String getLec_goal() {
+		return lec_goal;
+	}
+
+	public void setLec_goal(String lec_goal) {
+		this.lec_goal = lec_goal;
+	}
+
 
 	@Override
 	public String toString() {

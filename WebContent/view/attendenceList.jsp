@@ -142,15 +142,16 @@ pageEncoding="utf-8"%>
             </h3>
          </div>
          <div class="panel-body"  style="overflow-x: scroll;">
-            <table class="table">
+          
+            <table class="table" style="width: 4000px;">
                <thead>
                   <tr id="main_tr">
-                     <th class="tr_name" align="left" >학생 이름</th>
+                     <th class="tr_name" >학생 이름</th>
                   </tr>
                </thead>
                <tbody class="tr_btn" style="padding: 10px">
                   <tr id="tr_index">
-                     <td id="r_lec_name" name="r_lec_name" align="left" >박영수</td>
+                     <td id="r_lec_name" name="r_lec_name" >박영수</td>
                   </tr>
                </tbody>
             </table>
@@ -171,7 +172,7 @@ pageEncoding="utf-8"%>
             main_tr.append('<th>' + i + '일</th>');
          }
 
-         main_tr.append('<th style="width: 20px">출석률</th>');
+         main_tr.append('<th style="width: 70px">출석률</th>');
          console.log(th_tr);
          //여기서 for 구문 하나 더써서 학생 이름까지 돌리삼+학생이름 해서
          for (var i = 1; i <= day_num; i++) {
