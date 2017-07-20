@@ -78,8 +78,13 @@ public class LectureService {
 	public void updateAttDetail(Attendance_detailVO vo) {
 		dao4.updateAttDetail(vo);
 	}
+<<<<<<< HEAD
 	public ArrayList<LectureVO> totallecturelist(){
 		ArrayList<LectureVO> totalLecuturelist = dao2.totalLectureList();
 		return totalLecuturelist;
 	}
 }
+=======
+
+}
+>>>>>>> dd00b3d2e277772a78cc2e4226b4e9521524a5ee

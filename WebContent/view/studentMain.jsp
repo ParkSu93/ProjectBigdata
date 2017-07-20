@@ -58,6 +58,7 @@ pageEncoding="utf-8"%>
 	width: 100%;
 	height: 50%;
 	position: relative;
+		margin-top: 100px;
 }
 </style>
 	<script type="text/javascript">
