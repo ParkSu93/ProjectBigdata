@@ -1,21 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 pageEncoding="utf-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
+	<title>빅데이터</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<script src="http://cdn.alloyui.com/3.0.1/aui/aui-min.js"></script>
-	<link href="http://cdn.alloyui.com/3.0.1/aui-css/css/bootstrap.min.css"
-	rel="stylesheet"></link>
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<link rel="stylesheet" href="css/index.css">
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"
 	integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
 	crossorigin="anonymous"></script>
 	<script src="js/bootstrap.js"></script>
+	<script src="https://www.jsviews.com/download/jsrender.js"></script>
 	<style type="text/css">
-				.modal-header {
+		.modal-header {
 			padding-bottom: 5px;
 		}
 
@@ -47,15 +46,7 @@ pageEncoding="utf-8"%>
 	</style>
 	<script type="text/javascript">
 		$(document).ready(function(){
-			$(".tr_btn").on("click", ".my_lecture", function() { //나의 강의 목록 출석 확인
-			var index = $(this).parent().parent().index(); //index 안에 해당하는 listindex들어가있음
-			console.log(index);
-			});
-
-			$(".tr_btn").on("click", ".total_lecture", function() { //나의 강의 목록 출석 확인
-			var index = $(this).parent().parent().index(); //index 안에 해당하는 listindex들어가있음
-			console.log(index);
-			});
+			
 		});
 	</script>
 </head>
@@ -99,8 +90,8 @@ pageEncoding="utf-8"%>
 						<tbody class="tr_btn" style="padding: 10px">
 							<tr id="tr_index">
 								<td id="my_lec_name" name="my_lec_name">c언어</td>
-								<td id="my_lec_teacher_name" name="my_lec_totall_date">100</td>
-								<td id="my_lec_time" name="my_lec_name">30명</td>
+								<td id="my_lec_teacher_name" name="my_lec_teacher_name">100</td>
+								<td id="my_lec_time" name="my_lec_time">30명</td>
 								<td id="my_lec_check" name="my_lec_check">
 									<button type="button"
 									class="btn btn-success btn-circle my_lecture">
@@ -138,8 +129,8 @@ pageEncoding="utf-8"%>
 					<tbody class="tr_btn" style="padding: 10px">
 						<tr id="tr_index">
 							<td id="total_lec_name" name="total_lec_name">c언어</td>
-							<td id="total_lec_teacher_name" name="total_lec_totall_date">100</td>
-							<td id="total_lec_time" name="total_lec_name">30명</td>
+							<td id="total_lec_teacher_name" name="total_lec_teacher_name">100</td>
+							<td id="total_lec_time" name="total_lec_time">30명</td>
 							<td id="total_lec_check" name="total_lec_check">
 								<button type="button"
 								class="btn btn-success btn-circle total_lecture">
@@ -154,22 +145,112 @@ pageEncoding="utf-8"%>
 </div>
 </div>
 
+
+<!-- line modal -->
+<div class="modal fade add_lecture" id="squarespaceModal" tabindex="-1"
+role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+<div class="modal-dialog">
+	<div class="modal-content">
+		<div class="modal-header">
+			<button type="button" class="close btc" data-dismiss="modal">
+				<span aria-hidden="true">×</span><span class="sr-only">Close</span>
+			</button>
+			<h3 class="modal-title" id="lineModalLabel">강의목록</h3>
+		</div>
+		<div class="modal-body">
+			<!-- content goes here -->
+			<form>
+				<div class="form-group">
+					<div class="form-group">
+						<label>강의 이름</label>
+						<h5>강의 이름을 써주세용</h5>
+					</div>
+					<div class="form-group">
+						<label>강사 이름</label> 
+						<h5>강사 이름을 써주세용</h5>
+					</div>
+					<div class="form-group">
+						<label>강의용 비밀번호</label> <input type="password"
+						class="form-control mdf" id="lec_password" name="lec_password"
+						placeholder="강의용 비밀번호">
+					</div>
+				</div>
+			</form>
+		</div>
+		<div class="modal-footer">
+			<div class="btn-group btn-group-justified" role="group"
+			aria-label="group button">
+			<div class="btn-group" role="group">
+				<button type="button" class="btn btn-default btc"
+				data-dismiss="modal" role="button">닫기</button>
+			</div>
+			<div class="btn-group" role="group">
+				<button type="button" id="saveImage"
+				class="btn btn-default btn-hover-green bts" data-action="save"
+				role="button">확인</button>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+</div>
+
 <script type="text/javascript">
 		var my_lecture=[]; //내가 듣고 있는 lecture 목록. 받아오고
 		var total_lecture=[]; //전체 목록. 받아오고
+		var index_add_lecture=null;//추가할 강의 인덱스
+		var index_my_lecture=null;//내가 보고싶은 강의 인덱스
+
 		var show_my_lecture = function(){
 			for(var i=1;i<=my_lecture.length;i++){ //요기가 my_lecture 받아오는 부분.
-				var str = '<tr id="tr_index"><td id="my_lec_name" name="my_lec_name">'+'c언어'+'</td><td id="my_lec_teacher_name" name="my_lec_totall_date">'+'100'+'</td><td id="my_lec_time" name="my_lec_name">'+'30명'+'</td><td id="my_lec_check" name="my_lec_check"><button type="button" class="btn btn-success btn-circle my_lecture"><i class="glyphicon glyphicon-link"></i></button></td></tr>'
+				var str = '<tr id="tr_index"><td id="my_lec_name" name="my_lec_name">'+'c언어'+'</td><td id="my_lec_teacher_name" name="my_lec_total_date">'+'100'+'</td><td id="my_lec_time" name="my_lec_name">'+'30명'+'</td><td id="my_lec_check" name="my_lec_check"><button type="button" class="btn btn-success btn-circle my_lecture"><i class="glyphicon glyphicon-link"></i></button></td></tr>'
 			}
 		}
-		var show_totall_lecture = function(){
+		var show_total_lecture = function(){
 			for(var i=1;i<=total_lecture.length;i++){ //요기가 전체 받아오는 부분.
-				var str = '<tr id="tr_index"><td id="total_lec_name" name="total_lec_name">'+'c언어'+'</td><td id="total_lec_teacher_name" name="total_lec_totall_date">'+'100'+'</td><td id="total_lec_time" name="r_lec_name">'+'30명'+'</td><td id="total_lec_check" name="total_lec_check"><button type="button" class="btn btn-success btn-circle total_lecture"><i class="glyphicon glyphicon-link"></i></button></td></tr>'
+				var str = '<tr id="tr_index"><td id="total_lec_name" name="total_lec_name">'+'c언어'+'</td><td id="total_lec_teacher_name" name="total_lec_total_date">'+'100'+'</td><td id="total_lec_time" name="r_lec_name">'+'30명'+'</td><td id="total_lec_check" name="total_lec_check"><button type="button" class="btn btn-success btn-circle total_lecture"><i class="glyphicon glyphicon-link"></i></button></td></tr>'
 			}
 		}
 		$(document).ready(function(){
 			show_my_lecture();
-			show_totall_lecture();
+			show_total_lecture();
+			$(".tr_btn").on("click", ".my_lecture", function() { //나의 강의 목록 출석 확인
+				var index_my_lecture = $(this).parent().parent().index(); //index 안에 해당하는 listindex들어가있음
+				console.log(index_my_lecture);
+			});
+
+			$(".tr_btn").on("click", ".total_lecture", function() { //나의 강의 목록 출석 확인
+				index_add_lecture = $(this).parent().parent().index(); //index 안에 해당하는 listindex들어가있음
+				console.log(index_add_lecture);
+				//모달창
+				$(".add_lecture").show();
+				$(".add_lecture").modal();
+			});
+
+			$(".bts").click(function() { //모달창 상에서 total_lecture 추가
+				lecture = {
+					lec_name : $("#lec_name").val(),
+					lec_password : $("#lec_password").val(),
+					lec_outline : $("#lec_outline")
+					.val(),
+					lec_goal : $("#lec_goal").val(),
+					lec_time : $("#lec_time").val(),
+					lec_total_date : $(
+						"#lec_total_date")
+					.val(),
+					enroll_num : $("#enroll_num")
+					.val()
+				};
+
+				lecture.lec_check = '<button type="button" class="btn btn-success btn-circle moveAttandence"><i class="glyphicon glyphicon-link"></i></button>';
+				console.log(lecture);
+				$(".modal").hide();
+
+				//jsrender를 이용한 테이블 추가.
+				var tmpl = $.templates("#contact_template");
+				var str = tmpl.render(lecture);
+				$(".tr_btn").append(str);
+			});
 		});
 	</script>
 </body>
