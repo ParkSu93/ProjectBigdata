@@ -148,7 +148,7 @@ public class LectureDAO {
 		}
 	}
 
-	/* ÇÐ»ýÀÌ ¼Ò¼ÓµÈ ¸ðµç °­ÀÇ ¸®½ºÆ® ¹ÝÈ¯ */
+	/* ï¿½Ð»ï¿½ï¿½ï¿½ ï¿½Ò¼Óµï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½È¯ */
 	public ArrayList<LectureVO> lectureAllList(String student_id) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -186,7 +186,6 @@ public class LectureDAO {
 				e2.printStackTrace();
 			}
 		}
-
 		return list;
 	}
 

@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import service.LectureService;
 import service.MemberService;
+import vo.LectureVO;
 import vo.MemberVO;
 import vo.MyLectureVO;
 import vo.TeacherVO;
@@ -43,7 +44,6 @@ public class MemberController {
 	@RequestMapping(value = "view/login.do", method = RequestMethod.POST)
 	public ModelAndView doLogin(@ModelAttribute("mem") MemberVO mem, HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
-		ModelAndView mav2 = new ModelAndView();
 		Object obj = service.loginMember(mem.getId(), mem.getPassword());
 		if (obj instanceof MemberVO) {
 			MemberVO vo = (MemberVO) obj;
@@ -72,13 +72,15 @@ public class MemberController {
 				
 				System.out.println(mem.toString());
 			}else{
-				ArrayList<E> allList = new ArrayList<>();
-				String id = mem.id;
+				ArrayList<LectureVO> allList = new ArrayList<>();
+				String student_id = mem.id;
+				
+				System.out.println(student_id);
 				
 				LectureService service = new LectureService();
-				alllist = service.Alllecturelist(id);
+				allList = service.Alllecturelist(student_id);
 				
-				mav.addObject("allList", alllist);
+				mav.addObject("allList", allList);
 				
 				MemberVO mem2 = (MemberVO)obj2;
 				mav.addObject("memberInfo", mem2);

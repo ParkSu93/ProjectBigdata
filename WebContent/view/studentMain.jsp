@@ -53,7 +53,13 @@ pageEncoding="utf-8"%>
 	</script>
 </head>
 <body>
-
+<%
+	ArrayList allList =(ArrayList)request.getAttribute("allList");
+	String result = Converter.convertToJson(allList);
+%>
+<div id = "a" style = display:none>
+<%= result %>
+</div>
 
 
 	<%@include file="navbar_student.jsp" %> 
@@ -92,8 +98,8 @@ pageEncoding="utf-8"%>
 								<th>강의 확인</th>
 							</tr>
 						</thead>
-						<tbody class="tr_btn" style="padding: 10px">
-							<tr id="tr_index">
+						<tbody class="tb_btn" style="padding: 10px">
+							<tr id="tb_index">
 								<td id="my_lec_name" name="my_lec_name">c언어</td>
 								<td id="my_lec_teacher_name" name="my_lec_teacher_name">100</td>
 								<td id="my_lec_time" name="my_lec_time">30명</td>
@@ -314,7 +320,7 @@ $(document).ready(function() {
 		$(document).ready(function(){
 			show_my_lecture();
 			show_total_lecture();
-			$(".tr_btn").on("click", ".my_lecture", function() { //나의 강의 목록 출석 확인
+			$(".tb_btn").on("click", ".my_lecture", function() { //나의 강의 목록 출석 확인
 				var index_my_lecture = $(this).parent().parent().index(); //index 안에 해당하는 listindex들어가있음
 				console.log(index_my_lecture);
 				$(".my_mdl_lecture").show();
@@ -331,38 +337,42 @@ $(document).ready(function() {
 			});
 
 			$(".bts").click(function() { //모달창 상에서 total_lecture 추가
-				// lecture = {
-				// 	lec_name : $("#lec_name").val(),
-				// 	lec_password : $("#lec_password").val(),
-				// 	lec_outline : $("#lec_outline")
-				// 	.val(),
-				// 	lec_goal : $("#lec_goal").val(),
-				// 	lec_time : $("#lec_time").val(),
-				// 	lec_total_date : $(
-				// 		"#lec_total_date")
-				// 	.val(),
-				// 	enroll_num : $("#enroll_num")
-				// 	.val()
-				// };
+				 lecture = {
+				 	lec_name : $("#lec_name").val(),
+				 	lec_password : $("#lec_password").val(),
+				 	lec_outline : $("#lec_outline")
+				 	.val(),
+				 	lec_goal : $("#lec_goal").val(),
+				 	lec_time : $("#lec_time").val(),
+				 	lec_total_date : $(
+				 		"#lec_total_date")
+				 	.val(),
+				 	enroll_num : $("#enroll_num")
+				 	.val()
+				};
 
-				// lecture.lec_check = '<button type="button" class="btn btn-success btn-circle moveAttandence"><i class="glyphicon glyphicon-link"></i></button>';
-				// console.log(lecture);
-				// $(".modal").hide();
+				 lecture.lec_check = '<button type="button" class="btn btn-success btn-circle moveAttandence"><i class="glyphicon glyphicon-link"></i></button>';
+				 console.log(lecture);
+				 $(".modal").hide();
 
-				// //jsrender를 이용한 테이블 추가.
-				// var tmpl = $.templates("#contact_template");
-				// var str = tmpl.render(lecture);
-				// $(".tr_btn").append(str);
+				 //jsrender를 이용한 테이블 추가.
+				 var tmpl = $.templates("#contact_template");
+				 var str = tmpl.render(lecture);
+				 $(".tr_btn").append(str);
+				 //jsrender를 이용한 테이블 추가.
+				 var tmpl = $.templates("#contact_template");
+				 var str = tmpl.render(lecture);
+				 $(".tb_btn").append(str);
 			});
 		});
 	</script>
-<%
-	ArrayList allList =(ArrayList)request.getAttribute("allList");
-	String result = Converter.convertToJson(allList);
-%>
-<div id = "a" style = "display:none">
-<%= result %>
-</div>
-	
+<script id="contact_template" type="text/x-jsrender">
+   <tr>
+      <td>{{:lec_name}}</td>
+      <td>{{:teacher_id}}</td>
+      <td>{{:lec_time}}</td>
+      <td>{{:lec_check}}</td>
+   </tr>
+</script>
 </body>
 </html>
