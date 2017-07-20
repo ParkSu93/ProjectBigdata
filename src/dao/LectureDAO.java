@@ -200,12 +200,13 @@ public class LectureDAO {
 		ResultSet rs = null;
 		try {
 			conn = getConnection();
-			pstmt = conn.prepareStatement("select * from lecture");
+			pstmt = conn.prepareStatement("select l.lec_no, l.teacher_id, m.username, l.lec_name, l.lec_password, l.enroll_num, l.completion_rate, l.lec_total_date from lecture l, member m where l.teacher_id = m.id");
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				lecture = new LectureVO();
 				lecture.setLec_no(rs.getInt("lec_no"));
 				lecture.setTeacher_id(rs.getString("teacher_id"));
+				lecture.setTeacher_name(rs.getString("username"));
 				lecture.setLec_name(rs.getString("lec_name"));
 				lecture.setLec_password(rs.getString("lec_password"));
 				lecture.setEnroll_num(rs.getShort("enroll_num"));

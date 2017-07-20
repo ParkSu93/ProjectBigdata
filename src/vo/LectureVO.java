@@ -4,6 +4,7 @@ public class LectureVO {
 
 	public int lec_no;
 	public String teacher_id;
+	public String teacher_name;
 	public String lec_name;
 	public String lec_password;
 	public short enroll_num;
@@ -39,6 +40,14 @@ public class LectureVO {
 		this.teacher_id = teacher_id;
 	}
 
+	public String getTeacher_name() {
+		return teacher_name;
+	}
+
+	public void setTeacher_name(String teacher_name) {
+		this.teacher_name = teacher_name;
+	}
+
 	public String getLec_name() {
 		return lec_name;
 	}
@@ -71,7 +80,6 @@ public class LectureVO {
 		this.completion_rate = completion_rate;
 	}
 
-	
 	public short getLec_total_date() {
 		return lec_total_date;
 	}
@@ -79,7 +87,7 @@ public class LectureVO {
 	public void setLec_total_date(short lec_total_date) {
 		this.lec_total_date = lec_total_date;
 	}
-	
+
 	public String getLec_check() {
 		return lec_check;
 	}
@@ -87,14 +95,14 @@ public class LectureVO {
 	public String getTotal_lec_check() {
 		return total_lec_check;
 	}
-	
+
 	public String getMy_lec_check() {
 		return my_lec_check;
 	}
 
 	@Override
 	public String toString() {
-		return "LectureVO [lec_no=" + lec_no + ", teacher_id=" + teacher_id + ", lec_name=" + lec_name
+		return "LectureVO [lec_no=" + lec_no + ", teacher_id=" + teacher_id + ", teacher_name=" + teacher_name + ", lec_name=" + lec_name
 				+ ", lec_password=" + lec_password + ", enroll_num=" + enroll_num + ", completion_rate="
 				+ completion_rate + ", lec_total_date=" + lec_total_date + "]";
 	}
