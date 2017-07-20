@@ -56,44 +56,31 @@
 		});
 		$("#saveImage").click(function() { //모달창 상에서 수정
 			user={
-				modify_email : $("#modify_email").val(),
-				modify_addr : $("#modify_addr").val(),
-				modify_phonenum : $("#modify_phonenum").val(),
-				modify_introduce : $("#modify_introduce").val()
+				email : $("#modify_email").val(),
+				addr : $("#modify_addr").val(),
+				phonenum : $("#modify_phonenum").val(),
+				introduce : $("#modify_introduce").val()
 			}
 			console.log(user); //user에 새롭게 바뀐 객체 정보 들어가있음.
 			
 			// user 정보 수정 호출						
 			$(".modal").hide();
 
-			modify_goto("modifyProfile.do", user, false);
+			$.ajax({
+				url:'modifyProfile.do',
+				type:'post',
+				data:user,
+				success:function(data){
+				}
+			});
 		});
 
-	function modify_goto(url, parm,target) {
-			var f = document.createElement('form');
-			var objs, value;
-			for ( var key in parm) {
-				value = parm[key];
-				objs = document.createElement('input');
-				objs.attr('type', 'hidden');
-				objs.attr('name', key);
-				objs.attr('value', value);
-				f.appendChild(objs);
-			}
-			
-			if (target)
-			    f.attr('target', target);
-
-			f.attr('method', 'post');
-			f.attr('action', url);
-			document.body.appendChild(f);
-			f.submit();
-		}
 
 	});
 </script>
 </head>
 <body>
+<%@include file="navbar_student.jsp"%>
 	<div class="container" style="margin: auto">
 		<div class="row">
 			<h2>프로필을 수정하거나 확인하세용</h2>
