@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import service.LectureService;
+import vo.Attendance_bookVO;
 import vo.Attendance_detailVO;
 import vo.CourseVO;
 import vo.LectureVO;
@@ -171,4 +172,10 @@ public class LectureController {
 		
 		return "attendance_detailOutput";
 	}
+	@RequestMapping(value = "attendance_book.do", method = RequestMethod.GET)
+	public String attendance_book() {
+
+		return "attendance_bookInput";
+	}
+
 }
