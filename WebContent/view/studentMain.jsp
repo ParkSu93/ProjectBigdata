@@ -69,7 +69,7 @@ pageEncoding="utf-8"%>
 </head>
 <body>
 <%
-	ArrayList allList =(ArrayList)request.getAttribute("allList");
+	ArrayList allList =(ArrayList)request.getAttribute("allList"); //학생이 듣고있는거
 	String result = Converter.convertToJson(allList);
 %>
 <div id = "a" style = display:none>
