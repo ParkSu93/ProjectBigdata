@@ -54,8 +54,14 @@
 			lecture = "hi";
 			console.log(lecture);
 		});
-		$(".bts").click(function() { //모달창 상에서 stroe
-
+		$(".bts").click(function() { //모달창 상에서 수정
+			user={
+				modify_email : $("#modify_email").val(),
+				modify_addr : $("#modify_addr").val(),
+				modify_phonenum : $("#modify_phonenum").val(),
+				modify_introduce : $("#modify_introduce").val(),
+			}
+			console.log(user); //user에 새롭게 바뀐 객체 정보 들어가있음.
 			$(".modal").hide();
 		});
 	});
@@ -70,7 +76,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<div class="row">
-							<h4 style="display: inline-block;">User Profile</h4>
+							<h4 style="display: inline-block; padding-left: 10px">User Profile</h4>
 							<div class="pull-right text-center"
 								style="padding-right: 10px; padding-top: 5px">
 								<span class="panel-title btn-group">
@@ -110,7 +116,6 @@
 								</div>
 								<div class="clearfix"></div>
 								<hr style="margin: 5px 0 5px 0;">
-
 
 								<div class="col-sm-5 col-xs-6 tital " id="id" name="id">Id:</div>
 								<div class="col-sm-7 col-xs-6 ">${memberInfo.id}</div>
@@ -179,34 +184,22 @@
 					<form>
 						<div class="form-group">
 							<div class="form-group">
-								<label>강의이름</label> <input type="text" class="form-control mdf"
-									id="lec_name" name="lec_name" placeholder="강의 이름">
+								<label>이메일</label> <input type="text" class="form-control mdf"
+									id="modify_email" name="modify_email" placeholder="이메일">
 							</div>
 							<div class="form-group">
-								<label>강의용 비밀번호</label> <input type="password"
-									class="form-control mdf" id="lec_password" name="lec_password"
-									placeholder="강의용 비밀번호">
+								<label>핸드폰번호</label> <input type="text"
+									class="form-control mdf" id="modify_phonenum" name="modify_phonenum"
+									placeholder="핸드폰번호">
 							</div>
 							<div class="form-group">
-								<label>강의 전체 일수</label> <input type="text"
-									class="form-control mdf" id="lec_totall_date"
-									name="lec_totall_date" placeholder="dd일">
+								<label>주소</label> <input type="text"
+									class="form-control mdf" id="modify_addr"
+									name="modify_addr" placeholder="주소">
 							</div>
 							<div class="form-group">
-								<label>학생 인원</label> <input type="text" class="form-control mdf"
-									id="enroll_num" name="enroll_num" placeholder="dd명">
-							</div>
-							<div class="form-group">
-								<label>강의 소개</label> <input type="text" class="form-control mdf"
-									id="lec_outline" name="lec_outline" placeholder="강의 소개">
-							</div>
-							<div class="form-group">
-								<label>강의 목표</label> <input type="text" class="form-control mdf"
-									id="lec_goal" name="lec_goal" placeholder="강의 목표">
-							</div>
-							<div class="form-group">
-								<label>수업 시간</label> <input type="text" class="form-control mdf"
-									id="lec_time" name="lec_time" placeholder="수업 시간">
+								<label>자기소개</label> <input type="text" class="form-control mdf"
+									id="modify_introduce" name="modify_introduce" placeholder="자기소개">
 							</div>
 						</div>
 					</form>
@@ -222,14 +215,12 @@
 						<div class="btn-group" role="group">
 							<button type="button" id="saveImage"
 								class="btn btn-default btn-hover-green bts" data-action="save"
-								role="button">저장</button>
+								role="button">수정</button>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-
-
 </body>
 </html>
