@@ -1,3 +1,5 @@
+<%@page import="controller.Converter"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 pageEncoding="utf-8"%>
 <!DOCTYPE html>
@@ -51,6 +53,9 @@ pageEncoding="utf-8"%>
 	</script>
 </head>
 <body>
+
+
+
 	<%@include file="navbar_student.jsp" %> 
 
 	<div class="container">
@@ -195,6 +200,18 @@ role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
 </div>
 </div>
 
+   <script type="text/javascript">
+$(document).ready(function() {		
+				 lecture = $("#a").html();
+				lecture2 = JSON.parse(lecture)
+				console.log(lecture2);
+				 //jsrender를 이용한 테이블 추가.
+			    var tmpl = $.templates("#contact_template");
+			    var str = tmpl.render(lecture2);
+			    $(".tr_btn").append(str);
+		});
+</script>   
+
 <script type="text/javascript">
 		var my_lecture=[]; //내가 듣고 있는 lecture 목록. 받아오고
 		var total_lecture=[]; //전체 목록. 받아오고
@@ -253,5 +270,13 @@ role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
 			});
 		});
 	</script>
+<%
+	ArrayList allList =(ArrayList)request.getAttribute("allList");
+	String result = Converter.convertToJson(allList);
+%>
+<div id = "a" style = "display:none">
+<%= result %>
+</div>
+	
 </body>
 </html>

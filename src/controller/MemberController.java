@@ -72,6 +72,14 @@ public class MemberController {
 				
 				System.out.println(mem.toString());
 			}else{
+				ArrayList<E> allList = new ArrayList<>();
+				String id = mem.id;
+				
+				LectureService service = new LectureService();
+				alllist = service.Alllecturelist(id);
+				
+				mav.addObject("allList", alllist);
+				
 				MemberVO mem2 = (MemberVO)obj2;
 				mav.addObject("memberInfo", mem2);
 				mav.setViewName("studentMain");
