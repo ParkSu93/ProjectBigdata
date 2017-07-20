@@ -73,4 +73,5 @@ public class LectureService {
 	public void updateAttDetail(Attendance_detailVO vo) {
 		dao4.updateAttDetail(vo);
 	}
+
 }

@@ -95,6 +95,18 @@ pageEncoding="utf-8"%>
 
       	lecture.lec_check = '<button type="button" class="btn btn-success btn-circle moveAttandence"><i class="glyphicon glyphicon-link"></i></button>';
       	console.log(lecture);
+      	
+      	//첫번째로 LectureController를 만들고, RequestMapping 함수를 만든다.
+      	//아무거나 url을 만든다.
+      	
+      	$.ajax({
+				url:'modifyProfile.do', //이쪽 url로
+				type:'post', //포스트형식으로
+				data:lecture, //데이터 user를 보낸다. 근데 데이터는 무조건 {변수:변수값, 변수:변수값};
+				success:function(data){
+				}
+			});
+      	
       	$(".modal").hide();
 
          //jsrender를 이용한 테이블 추가.
