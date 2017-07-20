@@ -109,7 +109,6 @@ pageEncoding="utf-8"%>
 					</div>
 				</div>
 			</div>
-
 		</div>
 	</div>
 
@@ -190,7 +189,6 @@ pageEncoding="utf-8"%>
 		#r_lec_name{
 			width: 50px;
 		}
-
 	</style>
 </body>
 </html>
