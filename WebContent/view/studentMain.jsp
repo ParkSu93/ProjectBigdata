@@ -63,6 +63,7 @@ pageEncoding="utf-8"%>
 
 
 	<%@include file="navbar_student.jsp" %> 
+
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12">
@@ -97,7 +98,7 @@ pageEncoding="utf-8"%>
 								<th>강의 확인</th>
 							</tr>
 						</thead>
-						<tbody class="tb_btn" style="padding: 10px">
+						<tbody class="tr_btn" style="padding: 10px">
 							<tr id="tb_index">
 								<td id="my_lec_name" name="my_lec_name">c언어</td>
 								<td id="my_lec_teacher_name" name="my_lec_teacher_name">100</td>
@@ -135,7 +136,7 @@ pageEncoding="utf-8"%>
 							<th>강의 추가</th>
 						</tr>
 					</thead>
-					<tbody class="tr_btn" style="padding: 10px">
+					<tbody class="tb_btn" style="padding: 10px">
 						<tr id="tr_index">
 							<td id="total_lec_name" name="total_lec_name">c언어</td>
 							<td id="total_lec_teacher_name" name="total_lec_teacher_name">100</td>
@@ -311,7 +312,7 @@ $(document).ready(function() {
 				sub_tr.append('<th> x </th>');
 			}
 
-			for(var i=start_day;i<=total_day+start_day;i++){
+			for(var i=start_day;i<=total_day;i++){
 				sub_tr.append('<th>'+i+'일</th>');
 			}
 		};
@@ -319,7 +320,7 @@ $(document).ready(function() {
 		$(document).ready(function(){
 			show_my_lecture();
 			show_total_lecture();
-			$(".tb_btn").on("click", ".my_lecture", function() { //나의 강의 목록 출석 확인
+			$(".tr_btn").on("click", ".my_lecture", function() { //나의 강의 목록 출석 확인
 				var index_my_lecture = $(this).parent().parent().index(); //index 안에 해당하는 listindex들어가있음
 				console.log(index_my_lecture);
 				$(".my_mdl_lecture").show();
@@ -354,15 +355,14 @@ $(document).ready(function() {
 				 console.log(lecture);
 				 $(".modal").hide();
 
-<<<<<<< HEAD
 				 //jsrender를 이용한 테이블 추가.
 				 var tmpl = $.templates("#contact_template");
 				 var str = tmpl.render(lecture);
 				 $(".tr_btn").append(str);
-				 //jsrender를 이용한 테이블 추가.
-				 var tmpl = $.templates("#contact_template");
-				 var str = tmpl.render(lecture);
-				 $(".tb_btn").append(str);
+/* 				 //jsrender를 이용한 테이블 추가.
+				 var tmpl2 = $.templates("#contact_template");
+				 var str2 = tmpl.render(lecture1);
+				 $(".tb_btn").append(str); */
 			});
 		});
 	</script>
@@ -374,15 +374,5 @@ $(document).ready(function() {
       <td>{{:lec_check}}</td>
    </tr>
 </script>
-=======
-				// //jsrender를 이용한 테이블 추가.
-				// var tmpl = $.templates("#contact_template");ㅇㅇ
-				// var str = tmpl.render(lecture);
-				// $(".tr_btn").append(str);
-			});
-		});
-	</script>
-	<%@include file="footer.jsp"%>
->>>>>>> 71d3f11a38307b56ca316465d185c9106faec4e2
 </body>
 </html>
