@@ -3,14 +3,17 @@ package service;
 import java.util.ArrayList;
 
 import org.springframework.stereotype.Service;
+
 import dao.Attendance_detailDAO;
 import dao.CourseDAO;
 import dao.LectureDAO;
 import dao.SyllabusDAO;
+import vo.Attendance_bookVO;
 import vo.Attendance_detailVO;
 import vo.CourseVO;
 import vo.LectureVO;
 import vo.MyLectureVO;
+import vo.SearchAttBookVO;
 import vo.SyllabusVO;
 @Service
 public class LectureService {
@@ -85,8 +88,10 @@ public class LectureService {
 	public void updateAttDetail(Attendance_detailVO vo) {
 		attDao.updateAttDetail(vo);
 	}
+
 	public ArrayList<LectureVO> totallecturelist(){
 		ArrayList<LectureVO> totalLecuturelist = lecDao.totalLectureList();
 		return totalLecuturelist;
 	}
 }
+
