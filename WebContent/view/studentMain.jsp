@@ -127,15 +127,7 @@ pageEncoding="utf-8"%>
 						</thead>
 						<tbody class="tr_btn" style="padding: 10px">
 							<tr id="tb_index">
-								<td id="my_lec_name" name="my_lec_name">c언어</td>
-								<td id="my_lec_teacher_name" name="my_lec_teacher_name">100</td>
-								<td id="my_lec_time" name="my_lec_time">30명</td>
-								<td id="my_lec_check" name="my_lec_check">
-									<button type="button"
-									class="btn btn-success btn-circle my_lecture">
-									<i class="glyphicon glyphicon-heart"></i>
-								</button>
-							</td>
+							
 						</tr>
 					</tbody>
 				</table>
@@ -165,15 +157,7 @@ pageEncoding="utf-8"%>
 					</thead>
 					<tbody class="tb_btn" style="padding: 10px">
 						<tr id="tr_index">
-							<td id="total_lec_name" name="total_lec_name">c언어</td>
-							<td id="total_lec_teacher_name" name="total_lec_teacher_name">100</td>
-							<td id="total_lec_time" name="total_lec_time">30명</td>
-							<td id="total_lec_check" name="total_lec_check">
-								<button type="button"
-								class="btn btn-success btn-circle total_lecture">
-								<i class="glyphicon glyphicon-star"></i>
-							</button>
-						</td>
+							
 					</tr>
 				</tbody>
 			</table>
@@ -383,7 +367,7 @@ $(document).ready(function() {
 				var id = $("#c").html();
 				var course = { 
 					student_id : id,
-					lec_no : lecture3[index_add_lecture].lec_no
+					lec_no : lecture3[index_add_lecture-1].lec_no
 				};
 				console.log(course);
 				$.ajax({
@@ -392,7 +376,10 @@ $(document).ready(function() {
 				data: course , //데이터 user를 보낸다. 근데 데이터는 무조건 {변수:변수값, 변수:변수값};
 				success:function(data){
 				}
+				
+				
 			});
+				$(".add_lecture").hide();
 			});
 		});
 	</script>
