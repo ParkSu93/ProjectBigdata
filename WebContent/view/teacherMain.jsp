@@ -1,3 +1,5 @@
+<%@page import="controller.Converter"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 pageEncoding="utf-8"%>
 <!DOCTYPE html>
@@ -44,55 +46,68 @@ pageEncoding="utf-8"%>
 			border-radius: 15px;
 		}
 	</style>
+	
 	<script type="text/javascript">
-	var lecture; //모달강의 저장용
-	var lecture_list; //모달 강의 리스트용 처음 시작할 때, 서버로 부터 한번 아이디에 해당하는 모든 강의 받아오고, 뿌려준다. 그리고 추가하는 형식
-	$(document).ready(function() {
-		$("#addUser").click(function() { //강의추가
-			console.log("h");
-			$(".modal").show();
-			$(".modal").modal();
-		});
+		$(document).ready(function() {		
+			lecture = $("#a").html();
+			lecture2 = JSON.parse(lecture)
+			console.log(lecture2);
+				 //jsrender를 이용한 테이블 추가.
+				 var tmpl = $.templates("#contact_template");
+				 var str = tmpl.render(lecture2);
+				 $(".tr_btn").append(str);
+				});
+			</script>   
+			
+			<script type="text/javascript">
+   var lecture; //모달강의 저장용
+   var lecture_list; //모달 강의 리스트용 처음 시작할 때, 서버로 부터 한번 아이디에 해당하는 모든 강의 받아오고, 뿌려준다. 그리고 추가하는 형식
+   $(document).ready(function() {
+      $("#addUser").click(function() { //강의추가
+      	console.log("h");
+      	$(".modal").show();
+      	$(".modal").modal();
+      });
 
-		$(".tr_btn").on("click", ".moveAttandence", function() { //출석부 페이지로 고고싱
-			var index = $(this).parent().parent().index(); //index 안에 해당하는 listindex들어가있음
-			console.log(index);
-		});
-		$(".btc").click(function() { //모달창 상에서 close
-			lecture = "hi";
-			console.log(lecture);
-		});
-		$(".bts").click(function() { //모달창 상에서 stroe
-			lecture = {
-				lec_name : $("#lec_name").val(),
-				lec_password : $(
-					"#lec_password").val(),
-				lec_outline : $("#lec_outline")
-				.val(),
-				lec_goal : $("#lec_goal").val(),
-				lec_time : $("#lec_time").val(),
-				lec_totall_date : $(
-					"#lec_totall_date")
-				.val(),
-				enroll_num : $("#enroll_num")
-				.val()
-			};
+      $(".tr_btn").on("click", ".moveAttandence", function() { //출석부 페이지로 고고싱
+         var index = $(this).parent().parent().index(); //index 안에 해당하는 listindex들어가있음
+         console.log(index);
+     });
+      $(".btc").click(function() { //모달창 상에서 close
+      	lecture = "hi";
+      	console.log(lecture);
+      });
+      $(".bts").click(function() { //모달창 상에서 stroe
+      	lecture = {
+      		lec_name : $("#lec_name").val(),
+      		lec_password : $(
+      			"#lec_password").val(),
+      		lec_outline : $("#lec_outline")
+      		.val(),
+      		lec_goal : $("#lec_goal").val(),
+      		lec_time : $("#lec_time").val(),
+      		lec_total_date : $(
+      			"#lec_totall_date")
+      		.val(),
+      		enroll_num : $("#enroll_num")
+      		.val()
+      	};
 
-			lecture.lec_check = '<button type="button" class="btn btn-success btn-circle moveAttandence"><i class="glyphicon glyphicon-link"></i></button>';
-			console.log(lecture);
-			$(".modal").hide();
+      	lecture.lec_check = '<button type="button" class="btn btn-success btn-circle moveAttandence"><i class="glyphicon glyphicon-link"></i></button>';
+      	console.log(lecture);
+      	$(".modal").hide();
 
-			//jsrender를 이용한 테이블 추가.
-			var tmpl = $.templates("#contact_template");
-			var str = tmpl.render(lecture);
-			$(".tr_btn").append(str);
-		});
-	});
+         //jsrender를 이용한 테이블 추가.
+         var tmpl = $.templates("#contact_template");
+         var str = tmpl.render(lecture);
+         $(".tr_btn").append(str);
+     });
+  });
 </script>
 <script id="contact_template" type="text/x-jsrender">
 	<tr>
 		<td>{{:lec_name}}</td>
-		<td>{{:lec_totall_date}}</td>
+		<td>{{:lec_total_date}}</td>
 		<td>{{:enroll_num}}</td>
 		<td>{{:lec_time}}</td>
 		<td>{{:lec_check}}</td>
@@ -101,6 +116,15 @@ pageEncoding="utf-8"%>
 </head>
 
 <body>
+
+	<%
+	ArrayList list =(ArrayList)request.getAttribute("list");
+	String result = Converter.convertToJson(list);
+	%>
+	<div id = "a" style = "display:none">
+		<%= result %>
+	</div>
+
 	<%@include file="navbar_teacher.jsp"%>
 	<div class="container">
 		<div class="row">
@@ -148,7 +172,7 @@ pageEncoding="utf-8"%>
 					</thead>
 					<tbody class="tr_btn" style="padding: 10px">
 						<tr id="tr_index">
-							<td id="r_lec_name" name="r_lec_name">박영수</td>
+							<td id="r_lec_name" name="r_lec_name"></td>
 							<td id="r_lec_totall_date" name="r_lec_totall_date">100</td>
 							<td id="r_enroll_num" name="r_lec_name">30명</td>
 							<td id="r_lec_time" name="r_lec_name">2017-3-30</td>
@@ -235,6 +259,6 @@ role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
 </div>
 
 
-
+<%@include file="footer.jsp"%>
 </body>
 </html>

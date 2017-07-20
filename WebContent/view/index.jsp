@@ -6,7 +6,6 @@ pageEncoding="utf-8"%>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="css/bootstrap.css">
-	<link rel="stylesheet" href="css/index.css">
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 	<script src="js/bootstrap.js"></script>
 	<style type="text/css">
@@ -121,12 +120,18 @@ pageEncoding="utf-8"%>
 			background-color: #fff;
 		}
 		.btn-sm {
-		width: 45px;
-		height: 30px;
+			width: 45px;
+			height: 30px;
 		}
-#radioBtn input {
-display: none;
-}
+		#radioBtn input {
+			display: none;
+		}
+		.jumbotron {
+
+			text-shadow: black 0.2em 0.2em 0.2em;
+			color:white;
+		}
+
 	</style>
 	<script type="text/javascript">
 		$(document).ready(function(){
@@ -171,140 +176,110 @@ display: none;
 
 </head>
 <body>
-	<nav class="navbar navbar-default">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-				data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-				<span class="sr-only"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="#">출석부스터</a>
-		</div>
-		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			<ul class="nav navbar-nav">
-				<li class="active"><a href="#">안뇽<span class="sr-only"></span></a></li>
-				<li><a href="#">방가워</a></li>
-				<li class="dropdown">
-					<a href="#" class="dropdown-toogle" data-toggle="dropdown" role="button"
-					aria-haspopup="true" arie-expanded="false">영수야<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="#">3-1</a></li>
-						<li><a href="#">3-2</a></li>
-						<li><a href="#">3-3</a></li>
-					</ul>
-				</li>
-			</ul>
-			<form class="navbar-form navbar-left">
-				<div class="form-group">
-					<input type="text" class="form-control" placeholder="내용을 입력하세요.">
-				</div>
-				<button type="submit" class="btn btn-default">검색</button>
-			</form>
-			<ul class="nav navbar-nav navbar-right">
-				<li class="dropdown">
-					<a href="#" class="dropdown-toogle" data-toggle="dropdown" role="button"
-					aria-haspopup="true" arie-expanded="false">접속하기<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="index.html">로그인</a></li>
-						<li><a href="index.html">로그아웃</a></li>
-					</ul>
-				</li>
-			</ul>
+
+	<div class="container" style="padding-top: 50px;padding-bottom: 40px">
+		<div class="row">
+			<div class="col-md-4">
+				<h4>출석 체크의 특징</h4>
+				<p>출석 체크는 간단하게 출석을 확인할 수 있습니다.</p>
+			</div>
+			<div class="col-md-4">
+				<h4>출석 체크의 특징</h4>
+				<p>출석 체크는 간단하게 출석을 확인할 수 있습니다.</p>
+			</div>
+			<div class="col-md-4">
+				<h4>출석 체크의 특징</h4>
+				<p>출석 체크는 간단하게 출석을 확인할 수 있습니다.</p>
+			</div>
 		</div>
 	</div>
-</nav>
-
-
-
-<center>
-	<div class='row' style="width: 1000px">
-		<div id="login" > 
-			<div class="row"  display: inline-block>
-				<div class="col-md-6 col-md-offset-3">
-					<div class="panel panel-login">
-						<div class="panel-heading">
-							<div class="row">
-								<div class="col-xs-6">
-									<a href="#" class="active" id="login-form-link">로그인</a>
+	<center>
+		<div class='row' style="width: 1000px">
+			<div id="login" > 
+				<div class="row"  display: inline-block>
+					<div class="col-md-6 col-md-offset-3">
+						<div class="panel panel-login">
+							<div class="panel-heading">
+								<div class="row">
+									<div class="col-xs-6">
+										<a href="#" class="active" id="login-form-link">로그인</a>
+									</div>
+									<div class="col-xs-6">
+										<a href="#" id="register-form-link">회원 가입</a>
+									</div>
 								</div>
-								<div class="col-xs-6">
-									<a href="#" id="register-form-link">회원 가입</a>
-								</div>
+								<hr>
 							</div>
-							<hr>
-						</div>
-						<div class="panel-body">
-							<div class="row">
-								<div class="col-lg-12">
-									<form id="login-form" action="login.do" method="post" role="form" style="display: block;">
-										<div class="form-group">
-											<input type="text" name="id" id="username" tabindex="1" class="form-control" placeholder="id" value="">
-										</div>
-										<div class="form-group">
-											<input type="password" name="password" id="password" tabindex="1" class="form-control" placeholder="Password">
-										</div>
-										<div class="form-group">
-											<div class="row">
-												<div class="col-sm-6 col-sm-offset-3">
-													<input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Log In">
-												</div>
+							<div class="panel-body">
+								<div class="row">
+									<div class="col-lg-12">
+										<form id="login-form" action="login.do" method="post" role="form" style="display: block;">
+											<div class="form-group">
+												<input type="text" name="id" id="username" tabindex="1" class="form-control" placeholder="id" value="">
 											</div>
-										</div>
-									</form>
-									<form id="register-form" action="join.do" method="post" role="form" style="display: none;">
-										<div class="form-group">
-											<input type="text" name="id" id="id" tabindex="1" class="form-control" placeholder="Id" value="${mem.id}">
-										</div>
-										<div class="form-group">
-											<input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="${mem.email}">
-										</div>
-										<div class="form-group">
-											<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="${mem.username}">
-										</div>
-										<div class="form-group">
-											<input type="password" name="password" id="password" tabindex="1" class="form-control" placeholder="Password" value="${mem.password}">
-										</div>
-										<div class="form-group">
-											<input type="text" name="birthday" id="brithday" tabindex="1" class="form-control" placeholder="Brithday" value="${mem.birthday}">
-										</div>
-										<div class="form-group">
-											<input type="text" name="phonenum" id="phonenum" tabindex="1" class="form-control" placeholder="Phonenum" value="${mem.phonenum}">
-										</div>
-										<div class="form-group">
-											<input type="text" name="addr" id="addr" tabindex="1" class="form-control" placeholder="Addr" value="${mem.addr}">
-										</div>
-										<div class="form-group">
-											<input type="text" name="introduce" id="introduce" tabindex="1" class="form-control" placeholder="Introduce Your Self" value="${mem.introduce}">
-										</div>
-										<div class="form-group">
-											<input type="text" name="edu_background" id="edu_background" tabindex="1" class="form-control" placeholder="Edu_background" value="" style="display:none;">
-										</div>
-										<div class="form-group">
-											<input type="text" name="career" id="career" tabindex="1" class="form-control" placeholder="Career" value=""  style="display:none;">
-										</div>
-
-										<div class="form-group">
-											<div class="row">
-												<div class="col-sm-4">
-													<div class="input-group">
-														<div id="radioBtn" class="btn-group">
-															<label for='student_radio' id="student_flag"class="btn btn-primary btn-sm active" name="teacher_flag" data-toggle="happy"  value="학생">학생</label>
-															<label for='teacher_radio' id= teacher_flag" class="btn btn-primary btn-sm notActive" name="teacher_flag" data-toggle="happy" value="강사">강사</label>
-															<input TYPE='radio' id='student_radio' name='teacher_flag'  data-title="N"value="N"/>
-															<input TYPE='radio' id='teacher_radio' name='teacher_flag'  data-title="Y"  value="Y"/>
-														</div>
-														<input type="hidden" name="happy" id="happy">
+											<div class="form-group">
+												<input type="password" name="password" id="password" tabindex="1" class="form-control" placeholder="Password">
+											</div>
+											<div class="form-group">
+												<div class="row">
+													<div class="col-sm-6 col-sm-offset-3">
+														<input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Log In">
 													</div>
 												</div>
-												<div class="col-md-8" >
-													<input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Register Now">
+											</div>
+										</form>
+										<form id="register-form" action="join.do" method="post" role="form" style="display: none;">
+											<div class="form-group">
+												<input type="text" name="id" id="id" tabindex="1" class="form-control" placeholder="Id" value="${mem.id}">
+											</div>
+											<div class="form-group">
+												<input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="${mem.email}">
+											</div>
+											<div class="form-group">
+												<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="${mem.username}">
+											</div>
+											<div class="form-group">
+												<input type="password" name="password" id="password" tabindex="1" class="form-control" placeholder="Password" value="${mem.password}">
+											</div>
+											<div class="form-group">
+												<input type="text" name="birthday" id="brithday" tabindex="1" class="form-control" placeholder="Brithday" value="${mem.birthday}">
+											</div>
+											<div class="form-group">
+												<input type="text" name="phonenum" id="phonenum" tabindex="1" class="form-control" placeholder="Phonenum" value="${mem.phonenum}">
+											</div>
+											<div class="form-group">
+												<input type="text" name="addr" id="addr" tabindex="1" class="form-control" placeholder="Addr" value="${mem.addr}">
+											</div>
+											<div class="form-group">
+												<input type="text" name="introduce" id="introduce" tabindex="1" class="form-control" placeholder="Introduce Your Self" value="${mem.introduce}">
+											</div>
+											<div class="form-group">
+												<input type="text" name="edu_background" id="edu_background" tabindex="1" class="form-control" placeholder="Edu_background" value="" style="display:none;">
+											</div>
+											<div class="form-group">
+												<input type="text" name="career" id="career" tabindex="1" class="form-control" placeholder="Career" value=""  style="display:none;">
+											</div>
+
+											<div class="form-group">
+												<div class="row">
+													<div class="col-sm-4">
+														<div class="input-group">
+															<div id="radioBtn" class="btn-group">
+																<label for='student_radio' id="student_flag"class="btn btn-primary btn-sm active" name="teacher_flag" data-toggle="happy"  value="학생">학생</label>
+																<label for='teacher_radio' id= teacher_flag" class="btn btn-primary btn-sm notActive" name="teacher_flag" data-toggle="happy" value="강사">강사</label>
+																<input TYPE='radio' id='student_radio' name='teacher_flag'  data-title="N"value="N"/>
+																<input TYPE='radio' id='teacher_radio' name='teacher_flag'  data-title="Y"  value="Y"/>
+															</div>
+															<input type="hidden" name="happy" id="happy">
+														</div>
+													</div>
+													<div class="col-md-8" >
+														<input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Register Now">
+													</div>
 												</div>
 											</div>
-										</div>
-									</form>
+										</form>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -312,10 +287,11 @@ display: none;
 				</div>
 			</div>
 		</div>
-	</div>
-</center>
+	</center>
+	<br><br><br><br>
 
-<hr>
 
-</body>
-</html> 
+
+	<%@include file="footer.jsp"%>
+	</body>
+	</html> 

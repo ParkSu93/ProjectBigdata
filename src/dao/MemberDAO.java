@@ -4,7 +4,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
+import vo.CourseVO;
 import vo.MemberVO;
 
 public class MemberDAO {
@@ -136,6 +138,20 @@ public class MemberDAO {
 			pstmt = conn.prepareStatement("delete from member where id = ?");
 			pstmt.setString(1, id);
 			pstmt.executeUpdate();
+			ResultSet rs = null;
+			PreparedStatement stmt = null;
+			stmt = conn.prepareStatement("select * from course where student_id = ?");
+			stmt.setString(1, id);
+			rs = stmt.executeQuery();
+			while(rs.next()){
+				PreparedStatement stmt2 = conn.prepareStatement("update lecture enroll_num = calc_enroll_num(?) where lec_no = ?");
+				stmt2.setInt(1, rs.getInt("lec_no"));
+				stmt2.setInt(2, rs.getInt("lec_no"));
+				stmt2.executeUpdate();
+				stmt2.close();
+			}
+			if(stmt != null) stmt.close();
+			if(rs != null) rs.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

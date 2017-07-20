@@ -249,5 +249,6 @@ role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
 </div>
 </div>
 </div>
+<%@include file="footer.jsp"%>
 </body>
 </html>

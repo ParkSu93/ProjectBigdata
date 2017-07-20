@@ -31,6 +31,12 @@ public class CourseDAO {
 			pstmt.setInt(1, vo.getLec_no());
 			pstmt.setString(2, vo.getStudent_id());
 			pstmt.executeUpdate();
+			PreparedStatement stmt = null;
+			stmt = conn.prepareStatement("update lecture set enroll_num = calc_enroll_num(?) where lec_no = ?");
+			stmt.setInt(1, vo.getLec_no());
+			stmt.setInt(2, vo.getLec_no());
+			stmt.executeUpdate();
+			stmt.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -89,6 +95,12 @@ public class CourseDAO {
 			pstmt.setInt(1, lec_no);
 			pstmt.setString(2, student_id);
 			pstmt.executeUpdate();
+			PreparedStatement stmt = null;
+			stmt = conn.prepareStatement("update lecture set enroll_num = calc_enroll_num(?) where lec_no = ?");
+			stmt.setInt(1, lec_no);
+			stmt.setInt(2, lec_no);
+			stmt.executeUpdate();
+			stmt.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
