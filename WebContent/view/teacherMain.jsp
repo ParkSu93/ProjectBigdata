@@ -16,6 +16,15 @@ pageEncoding="utf-8"%>
    <script src="js/bootstrap.js"></script>
    <script src="https://www.jsviews.com/download/jsrender.js"></script>
    <style type="text/css">
+   body {
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	margin: 0;
+	padding: 0;
+	height: 100%;
+}
       .modal-header {
          padding-bottom: 5px;
       }
@@ -49,6 +58,11 @@ pageEncoding="utf-8"%>
       .container{
          margin-top: 100px;
       }
+      
+      #wrapper-main{
+      height: 100%;
+      }
+      
    </style>
    
    <script type="text/javascript">
@@ -136,7 +150,7 @@ pageEncoding="utf-8"%>
 </head>
 
 <body>
-
+   <%@include file="navbar_teacher.jsp"%>
    <%
    ArrayList list =(ArrayList)request.getAttribute("list");
    String result = Converter.convertToJson(list);
@@ -144,10 +158,7 @@ pageEncoding="utf-8"%>
    <div id = "a" style = "display:none">
       <%= result %>
    </div>
-
-
-   <%@include file="navbar_teacher.jsp"%>
-   
+   <div id="wrapper-main">
    <div class="container">
       <div class="row">
          <div class="col-xs-12">
@@ -189,7 +200,7 @@ pageEncoding="utf-8"%>
                      <th>강의 총 일수</th>
                      <th>현재 듣는 학생 수</th>
                      <th>수업 시간</th>
-                     <th>출석 체크</th>
+                     <th>강의실 입장</th>
                   </tr>
                </thead>
                <tbody class="tr_btn" style="padding: 10px">
@@ -204,7 +215,7 @@ pageEncoding="utf-8"%>
 </div>
 </div>
 
-
+</div>
 <!-- line modal -->
 <div class="modal fade" id="squarespaceModal" tabindex="-1"
 role="dialog" aria-labelledby="modalLabel" aria-hidden="true">

@@ -6,7 +6,7 @@ html, body {
 	height: 100%;
 }
 
-#wrapper {
+#wrapper-footer{
 	position: relative;
 	min-height: 100%;
 }
@@ -32,7 +32,7 @@ html, body {
 </style>
 
 <footer id="footer" style="background-color: #000000; color: #ffffff; height: 150px">
-	<div id="wrapper">
+	<div id="wrapper-footer">
 		<br>
 		<div class="row">
 			<div class="col-sm-4" style="text-align: center;">
