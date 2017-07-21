@@ -385,7 +385,7 @@ $(document).ready(function() {
 <script id="contact_template" type="text/x-jsrender">
    <tr>
       <td>{{:lec_name}}</td>
-      <td>{{:teacher_name}}</td>
+      <td>{{:username}}</td>
       <td>{{:lec_time}}</td>
       <td>{{:my_lec_check}}</td>
    </tr>
@@ -393,7 +393,7 @@ $(document).ready(function() {
 <script id="contact_template2" type="text/x-jsrender">
    <tr>
       <td>{{:lec_name}}</td>
-      <td>{{:teacher_name}}</td>
+      <td>{{:username}}</td>
       <td>{{:lec_time}}</td>
       <td>{{:total_lec_check}}</td>
    </tr>

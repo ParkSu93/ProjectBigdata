@@ -61,6 +61,7 @@ public class LectureService {
 	public void deleteLecture(String lec_name){
 		lecDao.deleteLecture(lec_name);
 	}
+	
 	public void updateLecture(LectureVO vo){
 		lecDao.updateLecture(vo);
 	}
