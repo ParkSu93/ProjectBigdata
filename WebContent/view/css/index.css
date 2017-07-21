@@ -20,6 +20,7 @@ a:hover {
   position: fixed;
   top: 0px;
   left: 0px;
+  		z-index: 3;
 }
 
 /* 내비게이션 제목 색상*/

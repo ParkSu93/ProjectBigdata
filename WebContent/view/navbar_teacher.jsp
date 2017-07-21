@@ -8,7 +8,7 @@
 			<span class="sr-only"></span> <span class="icon-bar"></span> <span
 			class="icon-bar"></span> <span class="icon-bar"></span>
 		</button>
-		<a class="navbar-brand" href="teacherMain.jsp">출석부스터</a>
+		<a class="navbar-brand" href="getMainPage.do">출석부스터</a>
 	</div>
 	<div class="collapse navbar-collapse"
 	id="bs-example-navbar-collapse-1">

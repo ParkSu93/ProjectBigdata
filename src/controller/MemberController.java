@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-
-
 import service.LectureService;
 import service.MemberService;
 import vo.LectureVO;
@@ -29,6 +27,7 @@ public class MemberController {
 
 	/**
 	 * 첫 로그인 페이지를 호출한다.
+	 * 
 	 * @return login.jsp(로그인 페이지)
 	 */
 	@RequestMapping(value = "view/login.do", method = RequestMethod.GET)
@@ -38,7 +37,9 @@ public class MemberController {
 
 	/**
 	 * 로그인 수행
-	 * @param mem  회원 id, password
+	 * 
+	 * @param mem
+	 *            회원 id, password
 	 * @return 회원 정보, 반환할 페이지를 담은 ModelAndView
 	 */
 	@RequestMapping(value = "view/login.do", method = RequestMethod.POST)
@@ -57,29 +58,30 @@ public class MemberController {
 			Object obj2 = service.getMemberInfo(vo.getId(), vo.getTeacher_flag());
 
 			String id = mem.getId();
-			if (flag.equals("Y")){				
+			if (flag.equals("Y")) {
 				ArrayList<MyLectureVO> lecturelist = new ArrayList<>();
 				lecturelist = lecService.lectureList(id);
-				
+
 				System.out.println(lecturelist);
-				
-				TeacherVO mem2 =  (TeacherVO)obj2;
-				mav.addObject("list", lecturelist);;
-				mav.addObject("memberInfo", mem2);			
+
+				TeacherVO mem2 = (TeacherVO) obj2;
+				mav.addObject("list", lecturelist);
+				;
+				mav.addObject("memberInfo", mem2);
 				mav.setViewName("teacherMain");
 				System.out.println(mem.toString());
-			}else{
+			} else {
 				ArrayList<LectureVO> allList = new ArrayList<>();
 				ArrayList<LectureVO> totallist = new ArrayList<>();
-				
+
 				System.out.println(id);
 				allList = lecService.Alllecturelist(id);
 				totallist = lecService.totallecturelist(id);
-				System.out.println("totallist"+totallist.toString());
-				System.out.println("alllist"+allList.toString());
+				System.out.println("totallist" + totallist.toString());
+				System.out.println("alllist" + allList.toString());
 				mav.addObject("totalList", totallist);
 				mav.addObject("allList", allList);
-				MemberVO mem2 = (MemberVO)obj2;
+				MemberVO mem2 = (MemberVO) obj2;
 				mav.addObject("memberInfo", mem2);
 				mav.setViewName("studentMain");
 			}
@@ -162,29 +164,120 @@ public class MemberController {
 	 * 
 	 * @return user 프로필 페이지
 	 */
+<<<<<<< HEAD
 	@RequestMapping(value = "view/modifyProfile.do", method = RequestMethod.POST)
+	public ModelAndView doModifyProfile(@ModelAttribute("user") MemberVO vo, HttpServletRequest req) {
+		ModelAndView mav = new ModelAndView();
+=======
+	@RequestMapping(value = "view/modifyStudentProfile.do", method = RequestMethod.POST)
 	public String doModifyProfile(@ModelAttribute("user")MemberVO vo,HttpServletRequest req) {
-		
+		System.out.println("studentvo==>"+vo);
+>>>>>>> 80a0beb9ca19c9eecbc68da79191e0e9c07e9601
 		HttpSession se = req.getSession();
-		MemberVO mem =null;
-		
+		String myId = ((MemberVO) se.getAttribute("mem")).getId();
+		MemberVO mem = null;
+
 		Object obj = se.getAttribute("mem");
-		if(obj instanceof TeacherVO){
-			TeacherVO tea = (TeacherVO)obj;
-			
+<<<<<<< HEAD
+		if (obj instanceof TeacherVO) {
+			TeacherVO tea = (TeacherVO) obj;
 			service.updateMemberInfo(tea);
-		}else{
-			mem = (MemberVO)obj;
+			TeacherVO tt = (TeacherVO) service.getMemberInfo(myId, "Y");
+			mav.addObject("memberInfo", tt);
+		} else {
+			mem = (MemberVO) obj;
 			mem.setEmail(vo.getEmail());
 			mem.setAddr(vo.getAddr());
 			mem.setPhonenum(vo.getPhonenum());
 			mem.setIntroduce(vo.getIntroduce());
-		
 			service.updateMemberInfo(mem);
+
+			MemberVO mm = (MemberVO) service.getMemberInfo(myId, "N");
+			mav.addObject("memberInfo", mm);
 		}
-		
-		System.out.println(mem);
+
+=======
 	
-		return "studentProfile";
+		mem = (MemberVO)obj;
+		mem.setEmail(vo.getEmail());
+		mem.setAddr(vo.getAddr());
+		mem.setPhonenum(vo.getPhonenum());
+		mem.setIntroduce(vo.getIntroduce());
+		
+		service.updateMemberInfo(mem);
+		
+>>>>>>> 80a0beb9ca19c9eecbc68da79191e0e9c07e9601
+		System.out.println(mem);
+		mav.setViewName("studentProfile");
+		return mav;
+	}
+
+	@RequestMapping(value = "view/getMainPage.do", method = RequestMethod.GET)
+	public ModelAndView getMainPage(HttpServletRequest req) {
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = null;
+		session = req.getSession();
+		Object obj = session.getAttribute("mem");
+		if (obj instanceof MemberVO) {
+			MemberVO mem = (MemberVO) obj;
+			String flag = mem.getTeacher_flag();
+
+			// 세션 추가
+
+			Object obj2 = service.getMemberInfo(mem.getId(), mem.getTeacher_flag());
+
+			String id = mem.getId();
+			if (flag.equals("Y")) {
+				ArrayList<MyLectureVO> lecturelist = new ArrayList<>();
+				lecturelist = lecService.lectureList(id);
+
+				System.out.println(lecturelist);
+
+//				TeacherVO mem2 = (TeacherVO) obj2;
+				mav.addObject("list", lecturelist);
+				mav.addObject("memberInfo", mem);
+				mav.setViewName("teacherMain");
+				System.out.println(mem.toString());
+			} else {
+				ArrayList<LectureVO> allList = new ArrayList<>();
+				ArrayList<LectureVO> totallist = new ArrayList<>();
+
+				System.out.println(id);
+				allList = lecService.Alllecturelist(id);
+				totallist = lecService.totallecturelist(id);
+				System.out.println("totallist" + totallist.toString());
+				System.out.println("alllist" + allList.toString());
+				mav.addObject("totalList", totallist);
+				mav.addObject("allList", allList);
+//				MemberVO mem2 = (MemberVO) obj2;
+				mav.addObject("memberInfo", mem);
+				mav.setViewName("studentMain");
+			}
+		} else {
+			String result = (String) obj;
+			mav.addObject("result", result);
+			mav.setViewName("index");
+		}
+		return mav;
+	}
+	@RequestMapping(value = "view/modifyTeacherProfile.do", method = RequestMethod.POST)
+	public String doModifyProfile(@ModelAttribute("user")TeacherVO tea,HttpServletRequest req) {
+		
+		System.out.println("teachervo==>"+tea);
+		
+		HttpSession se = req.getSession();
+		
+		MemberVO mem=(MemberVO)se.getAttribute("mem");
+	
+		tea.setId(mem.getId());
+		tea.setPassword(mem.getPassword());
+		tea.setUsername(mem.getUsername());
+		tea.setBirthday(mem.getBirthday());
+		
+		service.updateMemberInfo(tea);
+		
+		System.out.println("tea==>"+tea);
+	
+		return "teacherProfile";
 	}
 }

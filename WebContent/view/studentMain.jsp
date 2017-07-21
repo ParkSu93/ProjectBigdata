@@ -22,6 +22,7 @@ pageEncoding="utf-8"%>
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
+		overflow-y: scroll;
 }
 	
 	
@@ -57,9 +58,11 @@ pageEncoding="utf-8"%>
 
 #wrapper-main{
 	width: 100%;
-	height: 50%;
+	height: 100%;
 	position: relative;
 	margin-top: 80px;
+	margin-bottom: 80px;
+
 }
 </style>
 	<script type="text/javascript">
@@ -73,18 +76,14 @@ pageEncoding="utf-8"%>
 	ArrayList allList =(ArrayList)request.getAttribute("allList"); //학생이 듣고있는거
 	String result = Converter.convertToJson(allList);
 %>
-<div id = "a" style = display:none>
-<%= result %>
-</div>
+<div id = "a" style = display:none><%=result%></div>
 <%
 	ArrayList totalList =(ArrayList)request.getAttribute("totalList");
 	String result2 = Converter.convertToJson(totalList);
 	MemberVO mem = (MemberVO)session.getAttribute("mem");
 	String id=mem.getId();
 %>
-<div id = "b" style = display:none>
-<%= result2 %>
-</div>
+<div id = "b" style = display:none><%=result2%></div>
 <div id = "c" ><%=id%></div>
 
 	<%@include file="navbar_student.jsp" %> 
@@ -123,7 +122,7 @@ pageEncoding="utf-8"%>
 								<th>강의 확인</th>
 							</tr>
 						</thead>
-						<tbody class="tr_btn" style="padding: 10px">
+						<tbody id="table1"  class="tr_btn" style="padding: 10px">
 							<tr id="tb_index">
 							
 						</tr>
@@ -153,10 +152,8 @@ pageEncoding="utf-8"%>
 							<th>강의 추가</th>
 						</tr>
 					</thead>
-					<tbody class="tb_btn" style="padding: 10px">
-						<tr id="tr_index">
-							
-					</tr>
+					<tbody id="table2" class="tb_btn" style="padding: 10px">
+
 				</tbody>
 			</table>
 		</div>
@@ -214,11 +211,11 @@ pageEncoding="utf-8"%>
 					<button type="button" class="btn btn-default btc"
 					data-dismiss="modal" role="button">닫기</button>
 				</div>
-				<div class="btn-group" role="group">
-					<button type="button" id="saveImage"
+<!-- 				<div class="btn-group" role="group">
+					<button type="button" id="saveImage1"
 					class="btn btn-default btn-hover-green bts" data-action="save"
 					role="button">확인</button>
-				</div>
+				</div> -->
 			</div>
 		</div>
 	</div>
@@ -329,7 +326,7 @@ $(document).ready(function() {
 		};
 
 		$(document).ready(function(){
-			$(".sub_tr_btn").on("click", ".my_lecture", function() { //나의 강의 목록 출석 확인
+			$(".tr_btn").on("click", ".my_lecture", function() { //나의 강의 목록 출석 확인
 				index_my_lecture = $(this).parent().parent().index(); //index 안에 해당하는 listindex들어가있음
 				console.log(index_my_lecture);
 				$(".my_mdl_lecture").show();
@@ -341,19 +338,19 @@ $(document).ready(function() {
 				index_add_lecture = $(this).parent().parent().index(); //index 안에 해당하는 listindex들어가있음
 				console.log(index_add_lecture);
 				console.log(lecture3);
-				 $("#lecture_name").html(lecture3[index_add_lecture-1].lec_name);
-				 $("#teacher_name").html(lecture3[index_add_lecture-1].username);
+				 $("#lecture_name").html(lecture3[index_add_lecture].lec_name);
+				 $("#teacher_name").html(lecture3[index_add_lecture].username);
 				//모달창
 				$(".add_lecture").show();
 				$(".add_lecture").modal();
 			});
 
-			$(".bts").click(function() { //모달창 상에서 total_lecture 추가
+			$(".btn").click(function() { //모달창 상에서 total_lecture 추가
 				var id = $("#c").html();
 			console.log(id);
 				var course = { 
 					student_id : id,
-					lec_no : lecture3[index_add_lecture-1].lec_no
+					lec_no : lecture3[index_add_lecture].lec_no
 				};
 				console.log(course);
 				
@@ -362,19 +359,22 @@ $(document).ready(function() {
 				type:'post', //포스트형식으로
 				data: course , //데이터 user를 보낸다. 근데 데이터는 무조건 {변수:변수값, 변수:변수값};
 				success:function(data){
-					my_lecture = data.my_list;
-					total_lecture = data.total_list;
+					$("#table1").empty();
+					$("#table2").empty();
 					
-					console.log(my_lecture);
-					console.log(my_lecture);
-					
+					lecture = $("#a").html();
+					my_lecture = JSON.parse(lecture)
+					lecture = null;
+					lecture = $("#b").html();
+					total_lecture = JSON.parse(lecture)
+	
 				    var tmpl = $.templates("#contact_template");
 				    var str = tmpl.render(my_lecture);
-				    $(".tr_btn").html(str);
+				    $("#table1").html(str);
 				    
 				    var tmpl = $.templates("#contact_template2");
 				    var str = tmpl.render(total_lecture);
-				    $(".tb_btn").html(str);
+				    $("#table2").html(str);
 				}
 			});
 				$(".add_lecture").hide();

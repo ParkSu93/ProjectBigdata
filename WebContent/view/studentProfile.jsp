@@ -1,3 +1,5 @@
+<%@page import="vo.MemberVO"%>
+<%@page import="controller.Converter"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <html>
@@ -65,12 +67,15 @@
 			
 			// user 정보 수정 호출						
 			$(".modal").hide();
-
+			
 			$.ajax({
-				url:'modifyProfile.do', //이쪽 url로
+				url:'modifyStudentProfile.do', //이쪽 url로
 				type:'post', //포스트형식으로
 				data:user, //데이터 user를 보낸다. 근데 데이터는 무조건 {변수:변수값, 변수:변수값};
 				success:function(data){
+         			   var student = $("#a").html();
+         			   student2 = JSON.parse(student);
+         			    $("#profile-body").load(window.location.href+" #profile-body");
 				}
 			});
 		});
@@ -81,6 +86,15 @@
 </head>
 <body>
 <%@include file="navbar_student.jsp"%>
+   <%
+   MemberVO stu =(MemberVO)request.getAttribute("memberInfo");
+   String result = Converter.convertToJson(stu);
+   %>
+   <div id = "a" style = "display:none">
+      <%= result %>
+   </div>
+
+
 	<div class="container" style="margin: auto">
 		<div class="row">
 			<h2>프로필을 수정하거나 확인하세용</h2>
@@ -103,7 +117,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="panel-body">
+					<div class="panel-body" id ="profile-body">
 						<div class="box box-info">
 
 							<div class="box-body">
