@@ -356,19 +356,32 @@ $(document).ready(function() {
 					lec_no : lecture3[index_add_lecture-1].lec_no
 				};
 				console.log(course);
+				
 				$.ajax({
 				url:'addMyLecture.do', //이쪽 url로
 				type:'post', //포스트형식으로
 				data: course , //데이터 user를 보낸다. 근데 데이터는 무조건 {변수:변수값, 변수:변수값};
 				success:function(data){
+					my_lecture = data.my_list;
+					total_lecture = data.total_list;
+					
+					console.log(my_lecture);
+					console.log(my_lecture);
+					
+				    var tmpl = $.templates("#contact_template");
+				    var str = tmpl.render(my_lecture);
+				    $(".tr_btn").html(str);
+				    
+				    var tmpl = $.templates("#contact_template2");
+				    var str = tmpl.render(total_lecture);
+				    $(".tb_btn").html(str);
 				}
-				
-				
 			});
 				$(".add_lecture").hide();
 			});
 		});
 	</script>
+	
 <script id="contact_template" type="text/x-jsrender">
    <tr>
       <td>{{:lec_name}}</td>

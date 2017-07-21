@@ -150,7 +150,6 @@ public class LectureDAO {
 		}
 	}
 
-	/* �л��� �Ҽӵ� ��� ���� ����Ʈ ��ȯ */
 	public ArrayList<LectureVO> lectureAllList(String student_id) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
