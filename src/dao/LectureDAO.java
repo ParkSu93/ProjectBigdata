@@ -200,7 +200,7 @@ public class LectureDAO {
 		ResultSet rs = null;
 		try {
 			conn = getConnection();
-			pstmt = conn.prepareStatement("select l.lec_no, l.teacher_id, m.username, l.lec_name, l.lec_password, l.enroll_num, l.completion_rate, l.lec_total_date, s.lec_time from syllabus s, lecture l, member m, syllabus s where l.teacher_id = m.id and lec_no not in(select l.lec_no from lecture l, course c where l.lec_no = c.lec_no and c.student_id = ?)");
+			pstmt = conn.prepareStatement("select l.lec_no, l.teacher_id, m.username, l.lec_name, l.lec_password, l.enroll_num, l.completion_rate, l.lec_total_date, s.lec_time from syllabus s, lecture l, member m where s.lec_no = l.lec_no and l.teacher_id = m.id and l.lec_no not in(select l.lec_no from lecture l, course c where l.lec_no = c.lec_no and c.student_id = ?)");
 			pstmt.setString(1, student_id);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
@@ -216,6 +216,7 @@ public class LectureDAO {
 				lecture.setLec_time(rs.getString("lec_time"));
 				list.add(lecture);
 			}
+			System.out.println(list);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
