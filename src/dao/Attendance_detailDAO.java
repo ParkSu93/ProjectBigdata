@@ -217,7 +217,7 @@ public class Attendance_detailDAO {
 					ArrayList<String> list = new ArrayList<String>();
 					aInfo = new StudentListVO();
 					PreparedStatement pstmt = null;
-					pstmt = conn.prepareStatement("select m.id, m.username, m.birthday, m.email, m.phonenum, m.addr, m.introduce, m.profile, b.stu_start_date, b.stu_closing_date, b.attendance_rate, d.attendance_status from member m, attendance_book b, attendance_detail d, lecture l where m.id=b.student_id and b.student_id=d.student_id and l.lec_no = ? and m.id = ?");
+					pstmt = conn.prepareStatement("select m.id, m.username, m.birthday, m.email, m.phonenum, m.addr, m.introduce, m.profile, b.stu_start_date, b.stu_closing_date, b.attendance_rate, d.attendance_status from member m, attendance_book b, attendance_detail d, lecture l where m.id=b.student_id and b.student_id=d.student_id and b.lec_no = l.lec_no and l.lec_no = ? and m.id = ? order by d.day");
 					pstmt.setInt(1, lec_no);
 					pstmt.setString(2, rs2.getString("student_id"));
 					rs = pstmt.executeQuery();
