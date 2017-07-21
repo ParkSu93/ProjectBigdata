@@ -11,6 +11,7 @@ public class LectureVO {
 	public short enroll_num;
 	public byte completion_rate;
 	public short lec_total_date;
+	public String lec_time;
 	public String lec_check;
 	public String total_lec_check;
 	public String my_lec_check;
@@ -91,6 +92,14 @@ public class LectureVO {
 
 	public short getLec_total_date() {
 		return lec_total_date;
+	}
+
+	public String getLec_time() {
+		return lec_time;
+	}
+
+	public void setLec_time(String lec_time) {
+		this.lec_time = lec_time;
 	}
 
 	public void setLec_total_date(short lec_total_date) {

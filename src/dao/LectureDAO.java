@@ -100,13 +100,13 @@ public class LectureDAO {
 		return lInfo;
 	}
 
-	public void deleteLecture(int lec_no) {
+	public void deleteLecture(String lec_name) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
 			conn = getConnection();
-			pstmt = conn.prepareStatement("delete from lecture where lec_no = ?");
-			pstmt.setInt(1, lec_no);
+			pstmt = conn.prepareStatement("delete from lecture where lec_name = ?");
+			pstmt.setString(1, lec_name);
 			pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -159,7 +159,7 @@ public class LectureDAO {
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(
-					"select l.lec_no,m.username,l.lec_name,l.lec_password,l.enroll_num,l.completion_rate,l.lec_total_date from member m, lecture l,course c where m.id = l.teacher_id and c.lec_no = l.lec_no and c.student_id = ?");
+					"select l.lec_no,m.username,l.lec_name,l.lec_password,l.enroll_num,l.completion_rate,l.lec_total_date, s.lec_time from member m, lecture l,course c, syllabus s where m.id = l.teacher_id and c.lec_no = l.lec_no and l.lec_no=s.lec_no and c.student_id = ?");
 			pstmt.setString(1, student_id);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
@@ -171,6 +171,7 @@ public class LectureDAO {
 				lecture.setEnroll_num(rs.getShort("enroll_num"));
 				lecture.setCompletion_rate(rs.getByte("completion_rate"));
 				lecture.setLec_total_date(rs.getShort("lec_total_date"));
+				lecture.setLec_time("lec_time");
 				list.add(lecture);
 			}
 		} catch (Exception e) {
@@ -199,7 +200,7 @@ public class LectureDAO {
 		ResultSet rs = null;
 		try {
 			conn = getConnection();
-			pstmt = conn.prepareStatement("select l.lec_no, l.teacher_id, m.username, l.lec_name, l.lec_password, l.enroll_num, l.completion_rate, l.lec_total_date from lecture l, member m where l.teacher_id = m.id and lec_no not in(select l.lec_no from lecture l, course c where l.lec_no = c.lec_no and c.student_id = ?)");
+			pstmt = conn.prepareStatement("select l.lec_no, l.teacher_id, m.username, l.lec_name, l.lec_password, l.enroll_num, l.completion_rate, l.lec_total_date, s.lec_time from syllabus s, lecture l, member m, syllabus s where l.teacher_id = m.id and lec_no not in(select l.lec_no from lecture l, course c where l.lec_no = c.lec_no and c.student_id = ?)");
 			pstmt.setString(1, student_id);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
@@ -212,6 +213,7 @@ public class LectureDAO {
 				lecture.setEnroll_num(rs.getShort("enroll_num"));
 				lecture.setCompletion_rate(rs.getByte("completion_rate"));
 				lecture.setLec_total_date(rs.getShort("lec_total_date"));
+				lecture.setLec_time("lec_time");
 				list.add(lecture);
 			}
 		} catch (Exception e) {

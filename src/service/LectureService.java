@@ -58,10 +58,10 @@ public class LectureService {
 		LectureVO vo = lecDao.searchLecture(lec_no);
 		return vo;
 	}
-	public void deleteLecture(int lec_no){
-		lecDao.deleteLecture(lec_no);
-
+	public void deleteLecture(String lec_name){
+		lecDao.deleteLecture(lec_name);
 	}
+	
 	public void updateLecture(LectureVO vo){
 		lecDao.updateLecture(vo);
 	}

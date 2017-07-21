@@ -97,15 +97,17 @@ public class LectureController {
 		
 		return "lectureOutput";
 	}
+	
 	@RequestMapping(value = "lecPlus3.do", method = RequestMethod.POST)
 	public String deleteLecture(@ModelAttribute("lec3") LectureVO lec3, BindingResult result) {
 		System.out.println(lec3);
 
-		service.deleteLecture(lec3.getLec_no());
+		//service.deleteLecture(lec3.getLec_no());
 		
 		
 		return "lectureOutput";
 	}
+	
 	@RequestMapping(value = "lecPlus4.do", method = RequestMethod.POST)
 	public String lecPlus(@ModelAttribute("lec") LectureVO lec, BindingResult result) {
 		System.out.println(lec);
