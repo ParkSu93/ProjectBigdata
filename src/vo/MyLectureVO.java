@@ -1,20 +1,11 @@
 package vo;
 
 public class MyLectureVO extends LectureVO{
-	private String lec_time;
 	private String lec_outline;
 	private String lec_goal;
 	
 	public MyLectureVO() {
 		super();
-	}
-
-	public String getLec_time() {
-		return lec_time;
-	}
-
-	public void setLec_time(String lec_time) {
-		this.lec_time = lec_time;
 	}
 
 	public String getLec_outline() {

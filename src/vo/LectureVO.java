@@ -5,6 +5,7 @@ public class LectureVO {
 	public int lec_no;
 	public String teacher_id;
 	public String teacher_name;
+	public String username;
 	public String lec_name;
 	public String lec_password;
 	public short enroll_num;
@@ -23,6 +24,14 @@ public class LectureVO {
 		lec_check = "<button type=\"button\" class=\"btn btn-success btn-circle moveAttandence\"><i class=\"glyphicon glyphicon-link\"></i></button>";
 		total_lec_check = "<button type=\"button\" class=\"btn btn-success btn-circle total_lecture\"><i class=\"glyphicon glyphicon-star\"></i></button>";
 		my_lec_check = "<button type=\"button\" class=\"btn btn-success btn-circle my_lecture\"> <i class=\"glyphicon glyphicon-heart\"></i></button>";
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public int getLec_no() {
@@ -111,7 +120,7 @@ public class LectureVO {
 
 	@Override
 	public String toString() {
-		return "LectureVO [lec_no=" + lec_no + ", teacher_id=" + teacher_id + ", teacher_name=" + teacher_name
+		return "LectureVO [lec_no=" + lec_no + ", username=" + username +", lec_time=" + lec_time +", teacher_id=" + teacher_id + ", teacher_name=" + teacher_name
 				+ ", lec_name=" + lec_name + ", lec_password=" + lec_password + ", enroll_num=" + enroll_num
 				+ ", completion_rate=" + completion_rate + ", lec_total_date=" + lec_total_date + "]";
 	}

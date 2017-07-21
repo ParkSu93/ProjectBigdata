@@ -195,7 +195,7 @@ pageEncoding="utf-8"%>
 												<th class="tr_name" >학생 이름</th>
 											</tr>
 										</thead>
-										<tbody class="tr_btn" style="padding: 10px">
+										<tbody class="sub_tr_btn" style="padding: 10px">
 											<tr id="sub_tr">
 												<td id="r_lec_name" name="r_lec_name">박영수</td>
 											</tr>
@@ -329,7 +329,7 @@ $(document).ready(function() {
 		};
 
 		$(document).ready(function(){
-			$(".tr_btn").on("click", ".my_lecture", function() { //나의 강의 목록 출석 확인
+			$(".sub_tr_btn").on("click", ".my_lecture", function() { //나의 강의 목록 출석 확인
 				index_my_lecture = $(this).parent().parent().index(); //index 안에 해당하는 listindex들어가있음
 				console.log(index_my_lecture);
 				$(".my_mdl_lecture").show();
@@ -385,7 +385,7 @@ $(document).ready(function() {
 <script id="contact_template" type="text/x-jsrender">
    <tr>
       <td>{{:lec_name}}</td>
-      <td>{{:teacher_name}}</td>
+      <td>{{:username}}</td>
       <td>{{:lec_time}}</td>
       <td>{{:my_lec_check}}</td>
    </tr>
@@ -393,7 +393,7 @@ $(document).ready(function() {
 <script id="contact_template2" type="text/x-jsrender">
    <tr>
       <td>{{:lec_name}}</td>
-      <td>{{:teacher_name}}</td>
+      <td>{{:username}}</td>
       <td>{{:lec_time}}</td>
       <td>{{:total_lec_check}}</td>
    </tr>
