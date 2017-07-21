@@ -18,7 +18,7 @@ public class CouseController {
 	@RequestMapping(value = "view/addMyLecture.do",method = RequestMethod.POST)
 	public String addMyLecture(CourseVO vo,HttpServletRequest req){ //학생 id, 강의 번호.
 		
-		System.out.println(vo);
+		System.out.println("course컨트롤러:  " + vo);
 		service.insertCourse(vo);
 		return "studentMain";
 	}

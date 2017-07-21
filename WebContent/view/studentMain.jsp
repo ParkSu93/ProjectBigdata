@@ -85,9 +85,7 @@ pageEncoding="utf-8"%>
 <div id = "b" style = display:none>
 <%= result2 %>
 </div>
-<div id = "c" >
-<%= id %>
-</div>
+<div id = "c" ><%=id%></div>
 
 	<%@include file="navbar_student.jsp" %> 
 	<div id="wrapper-main">
@@ -305,17 +303,6 @@ $(document).ready(function() {
 		var index_add_lecture=null;//추가할 강의 인덱스
 		var index_my_lecture=null;//내가 보고싶은 강의 인덱스
 
-		var show_my_lecture = function(){
-			for(var i=1;i<=my_lecture.length;i++){ //요기가 my_lecture 받아오는 부분.
-				var str = '<tr id="tr_index"><td id="my_lec_name" name="my_lec_name">'+'c언어'+'</td><td id="my_lec_teacher_name" name="my_lec_total_date">'+'100'+'</td><td id="my_lec_time" name="my_lec_name">'+'30명'+'</td><td id="my_lec_check" name="my_lec_check"><button type="button" class="btn btn-success btn-circle my_lecture"><i class="glyphicon glyphicon-link"></i></button></td></tr>'
-			}
-		};
-		var show_total_lecture = function(){
-			for(var i=1;i<=total_lecture.length;i++){ //요기가 전체 받아오는 부분.
-				var str = '<tr id="tr_index"><td id="total_lec_name" name="total_lec_name">'+'c언어'+'</td><td id="total_lec_teacher_name" name="total_lec_total_date">'+'100'+'</td><td id="total_lec_time" name="r_lec_name">'+'30명'+'</td><td id="total_lec_check" name="total_lec_check"><button type="button" class="btn btn-success btn-circle total_lecture"><i class="glyphicon glyphicon-link"></i></button></td></tr>'
-			}
-		};
-
 		var show_my_mdl_lecture = function(){ //출석 표출용 mdl 함수 출석,결석,지각
 			var total_day = 90;
 			var start_day = 10;
@@ -342,8 +329,6 @@ $(document).ready(function() {
 		};
 
 		$(document).ready(function(){
-			show_my_lecture();
-			show_total_lecture();
 			$(".tr_btn").on("click", ".my_lecture", function() { //나의 강의 목록 출석 확인
 				index_my_lecture = $(this).parent().parent().index(); //index 안에 해당하는 listindex들어가있음
 				console.log(index_my_lecture);
@@ -356,8 +341,8 @@ $(document).ready(function() {
 				index_add_lecture = $(this).parent().parent().index(); //index 안에 해당하는 listindex들어가있음
 				console.log(index_add_lecture);
 				console.log(lecture3);
-				 $("#lecture_name").html(lecture3[index_add_lecture].lec_name);
-				 $("#teacher_name").html(lecture3[index_add_lecture].username);
+				 $("#lecture_name").html(lecture3[index_add_lecture-1].lec_name);
+				 $("#teacher_name").html(lecture3[index_add_lecture-1].teacher_name);
 				//모달창
 				$(".add_lecture").show();
 				$(".add_lecture").modal();
@@ -365,6 +350,7 @@ $(document).ready(function() {
 
 			$(".bts").click(function() { //모달창 상에서 total_lecture 추가
 				var id = $("#c").html();
+			console.log(id);
 				var course = { 
 					student_id : id,
 					lec_no : lecture3[index_add_lecture-1].lec_no
@@ -386,7 +372,7 @@ $(document).ready(function() {
 <script id="contact_template" type="text/x-jsrender">
    <tr>
       <td>{{:lec_name}}</td>
-      <td>{{:teacher_id}}</td>
+      <td>{{:teacher_name}}</td>
       <td>{{:lec_time}}</td>
       <td>{{:my_lec_check}}</td>
    </tr>
@@ -394,7 +380,7 @@ $(document).ready(function() {
 <script id="contact_template2" type="text/x-jsrender">
    <tr>
       <td>{{:lec_name}}</td>
-      <td>{{:teacher_id}}</td>
+      <td>{{:teacher_name}}</td>
       <td>{{:lec_time}}</td>
       <td>{{:total_lec_check}}</td>
    </tr>
