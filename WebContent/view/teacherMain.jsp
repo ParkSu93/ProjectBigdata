@@ -5,7 +5,6 @@ pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<<<<<<< HEAD
    <title>빅데이터</title>
    <meta charset="utf-8">
    <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,22 +28,6 @@ pageEncoding="utf-8"%>
       .modal-header {
          padding-bottom: 5px;
       }
-=======
-	<title>빅데이터</title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="css/bootstrap.css">
-	<link rel="stylesheet" href="css/index.css">
-	<script src="https://code.jquery.com/jquery-3.2.1.min.js"
-	integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-	crossorigin="anonymous"></script>
-	<script src="js/bootstrap.js"></script>
-	<script src="https://www.jsviews.com/download/jsrender.js"></script>
-	<style type="text/css">
-		.modal-header {
-			padding-bottom: 5px;
-		}
->>>>>>> 86f3831c74f6e19876dd0007a01074a8ecb711ac
 
 		.modal-footer {
 			padding: 0;
@@ -61,8 +44,6 @@ pageEncoding="utf-8"%>
 		.modal-footer .btn-group:last-child>button {
 			border-right: 0;
 		}
-
-<<<<<<< HEAD
       .btn-circle {
          width: 30px;
          height: 30px;

@@ -171,13 +171,12 @@ public class MemberController {
 			
 			service.updateMemberInfo(tea);
 		}else{
-
 			mem = (MemberVO)obj;
 			mem.setEmail(vo.getEmail());
 			mem.setAddr(vo.getAddr());
 			mem.setPhonenum(vo.getPhonenum());
 			mem.setIntroduce(vo.getIntroduce());
-			
+		
 			service.updateMemberInfo(mem);
 		}
 		
