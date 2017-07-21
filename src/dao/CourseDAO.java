@@ -38,7 +38,7 @@ public class CourseDAO {
 			Attendance_bookDAO attbDAO = new Attendance_bookDAO();
 			attbDAO.insertAttBook(attb);
 			PreparedStatement stmt = null;
-			stmt = conn.prepareStatement("update lecture set enroll_num = calc_enroll_num(?) where lec_no = ?");
+	        stmt = conn.prepareStatement("update lecture set enroll_num = (select count(*) from course c, lecture l where c.lec_no = l.lec_no and c.lec_no = ?) where lec_no = ?");
 			stmt.setInt(1, vo.getLec_no());
 			stmt.setInt(2, vo.getLec_no());
 			stmt.executeUpdate();

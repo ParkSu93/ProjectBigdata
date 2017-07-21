@@ -32,6 +32,7 @@ public class LectureController {
 		lec.setTeacher_id(teacher_id);
 		
 		service.insertLecture(lec);
+		
 		return "teacherMain";
 	}
 
