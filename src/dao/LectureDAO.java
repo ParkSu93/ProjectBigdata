@@ -216,6 +216,7 @@ public class LectureDAO {
 				lecture.setLec_time(rs.getString("lec_time"));
 				list.add(lecture);
 			}
+			System.out.println(list);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
