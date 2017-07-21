@@ -165,13 +165,13 @@ public class LectureDAO {
 			while (rs.next()) {
 				lecture = new LectureVO();
 				lecture.setLec_no(rs.getInt("lec_no"));
-				lecture.setTeacher_id(rs.getString("username"));
+				lecture.setUsername(rs.getString("username"));
 				lecture.setLec_name(rs.getString("lec_name"));
 				lecture.setLec_password(rs.getString("lec_password"));
 				lecture.setEnroll_num(rs.getShort("enroll_num"));
 				lecture.setCompletion_rate(rs.getByte("completion_rate"));
 				lecture.setLec_total_date(rs.getShort("lec_total_date"));
-				lecture.setLec_time("lec_time");
+				lecture.setLec_time(rs.getString("lec_time"));
 				list.add(lecture);
 			}
 		} catch (Exception e) {
@@ -207,13 +207,13 @@ public class LectureDAO {
 				lecture = new LectureVO();
 				lecture.setLec_no(rs.getInt("lec_no"));
 				lecture.setTeacher_id(rs.getString("teacher_id"));
-				lecture.setTeacher_name(rs.getString("username")); //선생님이름 변수명 teacher_name
+				lecture.setUsername(rs.getString("username")); //선생님이름 변수명 teacher_name
 				lecture.setLec_name(rs.getString("lec_name"));
 				lecture.setLec_password(rs.getString("lec_password"));
 				lecture.setEnroll_num(rs.getShort("enroll_num"));
 				lecture.setCompletion_rate(rs.getByte("completion_rate"));
 				lecture.setLec_total_date(rs.getShort("lec_total_date"));
-				lecture.setLec_time("lec_time");
+				lecture.setLec_time(rs.getString("lec_time"));
 				list.add(lecture);
 			}
 		} catch (Exception e) {

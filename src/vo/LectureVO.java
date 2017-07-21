@@ -120,7 +120,7 @@ public class LectureVO {
 
 	@Override
 	public String toString() {
-		return "LectureVO [lec_no=" + lec_no + ", teacher_id=" + teacher_id + ", teacher_name=" + teacher_name
+		return "LectureVO [lec_no=" + lec_no + ", username=" + username +", lec_time=" + lec_time +", teacher_id=" + teacher_id + ", teacher_name=" + teacher_name
 				+ ", lec_name=" + lec_name + ", lec_password=" + lec_password + ", enroll_num=" + enroll_num
 				+ ", completion_rate=" + completion_rate + ", lec_total_date=" + lec_total_date + "]";
 	}
