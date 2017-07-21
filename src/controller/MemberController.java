@@ -164,53 +164,27 @@ public class MemberController {
 	 * 
 	 * @return user 프로필 페이지
 	 */
-<<<<<<< HEAD
-	@RequestMapping(value = "view/modifyProfile.do", method = RequestMethod.POST)
-	public ModelAndView doModifyProfile(@ModelAttribute("user") MemberVO vo, HttpServletRequest req) {
-		ModelAndView mav = new ModelAndView();
-=======
-	@RequestMapping(value = "view/modifyStudentProfile.do", method = RequestMethod.POST)
-	public String doModifyProfile(@ModelAttribute("user")MemberVO vo,HttpServletRequest req) {
-		System.out.println("studentvo==>"+vo);
->>>>>>> 80a0beb9ca19c9eecbc68da79191e0e9c07e9601
-		HttpSession se = req.getSession();
-		String myId = ((MemberVO) se.getAttribute("mem")).getId();
-		MemberVO mem = null;
 
-		Object obj = se.getAttribute("mem");
-<<<<<<< HEAD
-		if (obj instanceof TeacherVO) {
-			TeacherVO tea = (TeacherVO) obj;
-			service.updateMemberInfo(tea);
-			TeacherVO tt = (TeacherVO) service.getMemberInfo(myId, "Y");
-			mav.addObject("memberInfo", tt);
-		} else {
-			mem = (MemberVO) obj;
-			mem.setEmail(vo.getEmail());
-			mem.setAddr(vo.getAddr());
-			mem.setPhonenum(vo.getPhonenum());
-			mem.setIntroduce(vo.getIntroduce());
-			service.updateMemberInfo(mem);
-
-			MemberVO mm = (MemberVO) service.getMemberInfo(myId, "N");
-			mav.addObject("memberInfo", mm);
-		}
-
-=======
-	
-		mem = (MemberVO)obj;
-		mem.setEmail(vo.getEmail());
-		mem.setAddr(vo.getAddr());
-		mem.setPhonenum(vo.getPhonenum());
-		mem.setIntroduce(vo.getIntroduce());
-		
-		service.updateMemberInfo(mem);
-		
->>>>>>> 80a0beb9ca19c9eecbc68da79191e0e9c07e9601
-		System.out.println(mem);
-		mav.setViewName("studentProfile");
-		return mav;
-	}
+	   @RequestMapping(value = "view/modifyStudentProfile.do", method = RequestMethod.POST)
+	   public String doModifyProfile(@ModelAttribute("user")MemberVO vo,HttpServletRequest req) {
+	      System.out.println("studentvo==>"+vo);
+	      HttpSession se = req.getSession();
+	      MemberVO mem =null;
+	      
+	      Object obj = se.getAttribute("mem");
+	   
+	      mem = (MemberVO)obj;
+	      mem.setEmail(vo.getEmail());
+	      mem.setAddr(vo.getAddr());
+	      mem.setPhonenum(vo.getPhonenum());
+	      mem.setIntroduce(vo.getIntroduce());
+	      
+	      service.updateMemberInfo(mem);
+	      
+	      System.out.println(mem);
+	   
+	      return "studentProfile";
+	   }
 
 	@RequestMapping(value = "view/getMainPage.do", method = RequestMethod.GET)
 	public ModelAndView getMainPage(HttpServletRequest req) {
