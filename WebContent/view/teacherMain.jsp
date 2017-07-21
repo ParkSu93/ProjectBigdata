@@ -175,9 +175,7 @@ pageEncoding="utf-8"%>
    ArrayList list =(ArrayList)request.getAttribute("list");
    String result = Converter.convertToJson(list);
    %>
-   <div id = "a" style = "display:none">
-      <%= result %>
-   </div>
+   <div id = "a" style = "display:none"><%=result %></div>
    <div id="wrapper-main">
    <div class="container">
       <div class="row">
