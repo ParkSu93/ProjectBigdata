@@ -105,16 +105,19 @@ pageEncoding="utf-8"%>
 
       $(".tr_btn").on("click", ".moveAttandence", function() { //출석부 페이지로 고고싱
          var index = $(this).parent().parent().index(); //index 안에 해당하는 listindex들어가있음
-         console.log(index);
+         console.log(index-1);
+         console.log(lecture2[index-1]);
          
-         $.ajax({
+         window.location = 'myAttendance.do';
+         
+        /*  $.ajax({
             url:'myAttendance.do', //이쪽 url로
             type:'post', //포스트형식으로
             data: lecture2[index-1] , //데이터 user를 보낸다. 근데 데이터는 무조건 {변수:변수값, 변수:변수값};
             success:function(data){
             	
             }
-         });
+         }); */
      });
       
       $(".btc").click(function() { //모달창 상에서 close

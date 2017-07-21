@@ -14,10 +14,11 @@ public class StudentListVO {
 	private short stu_start_date;
 	private short stu_closing_date;
 	private byte attendance_rate;
-	private ArrayList<String> attendance_status;
+	public ArrayList<String> attendance_status;
 
 	public StudentListVO() {
 		super();
+		attendance_status = new ArrayList<String>();
 	}
 
 	public String getId() {

@@ -9,7 +9,7 @@ public class Attendance_detailVO {
 
 	public Attendance_detailVO() {
 		super();
-		attendance_status = "�Ἦ";
+		attendance_status = "결석";
 		report = null;
 	}
 
