@@ -45,7 +45,14 @@ pageEncoding="utf-8"%>
          line-height: 1.428571429;
          border-radius: 15px;
       }
+#wrapper-main{
+	width: 100%;
+	height: 100%;
+	position: relative;
+	margin-top: 80px;
+	margin-bottom: 80px;
 
+}
       .container{
          margin-top: 100px;
       }
@@ -179,7 +186,7 @@ pageEncoding="utf-8"%>
 
 
    <%@include file="navbar_teacher.jsp"%>
-
+	<div id="wrapper-main">
    <div class="container">
       <div class="row">
          <div class="col-xs-12">
@@ -244,7 +251,7 @@ pageEncoding="utf-8"%>
 
 </div>
 </div>
-
+</div>
 
 <!-- line modal -->
 <div class="modal fade modal_add" id="squarespaceModal" tabindex="-1"
