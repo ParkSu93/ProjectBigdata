@@ -123,7 +123,7 @@ pageEncoding="utf-8"%>
 								<th>강의 확인</th>
 							</tr>
 						</thead>
-						<tbody class="tr_btn" style="padding: 10px">
+						<tbody id="table1"  class="tr_btn" style="padding: 10px">
 							<tr id="tb_index">
 							
 						</tr>
@@ -153,7 +153,7 @@ pageEncoding="utf-8"%>
 							<th>강의 추가</th>
 						</tr>
 					</thead>
-					<tbody class="tb_btn" style="padding: 10px">
+					<tbody id="table2" class="tb_btn" style="padding: 10px">
 						<tr id="tr_index">
 							
 					</tr>
@@ -329,7 +329,7 @@ $(document).ready(function() {
 		};
 
 		$(document).ready(function(){
-			$(".sub_tr_btn").on("click", ".my_lecture", function() { //나의 강의 목록 출석 확인
+			$(".tr_btn").on("click", ".my_lecture", function() { //나의 강의 목록 출석 확인
 				index_my_lecture = $(this).parent().parent().index(); //index 안에 해당하는 listindex들어가있음
 				console.log(index_my_lecture);
 				$(".my_mdl_lecture").show();
