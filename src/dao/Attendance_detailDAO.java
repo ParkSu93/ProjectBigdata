@@ -23,6 +23,42 @@ public class Attendance_detailDAO {
 
 		return conn;
 	}
+	
+	/*출석체크 이 메소드로만 ㄱㄱ*/
+	public void attChk(Attendance_detailVO vo){
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement("select count(*) from attendance_detail where lec_no = ? and student_id = ? and day = ?");
+			pstmt.setInt(1, vo.getLec_no());
+			pstmt.setString(2, vo.getStudent_id());
+			pstmt.setShort(3, vo.getDay());
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				if(rs.getInt(1) == 0){
+					insertAttDetail(vo);
+				}else{
+					updateAttDetail(vo);
+				}
+			}
+			if(rs != null) rs.close();
+			if(pstmt != null) pstmt.close();
+			if(conn != null) conn.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
 
 	public void insertAttDetail(Attendance_detailVO vo) {
 		Connection conn = null;
@@ -181,7 +217,7 @@ public class Attendance_detailDAO {
 					ArrayList<String> list = new ArrayList<String>();
 					aInfo = new StudentListVO();
 					PreparedStatement pstmt = null;
-					pstmt = conn.prepareStatement("select m.id, m.username, m.birthday, m.email, m.phonenum, m.addr, m.introduce, m.profile, b.stu_start_date, b.stu_closing_date, b.attendance_rate, d.attendance_status from member m, attendance_book b, attendance_detail d, lecture l where m.id=b.student_id and b.student_id=d.student_id and l.lec_no = ? and m.id = ?");
+					pstmt = conn.prepareStatement("select m.id, m.username, m.birthday, m.email, m.phonenum, m.addr, m.introduce, m.profile, b.stu_start_date, b.stu_closing_date, b.attendance_rate, d.attendance_status from member m, attendance_book b, attendance_detail d, lecture l where m.id=b.student_id and b.student_id=d.student_id and b.lec_no = l.lec_no and l.lec_no = ? and m.id = ? order by d.day");
 					pstmt.setInt(1, lec_no);
 					pstmt.setString(2, rs2.getString("student_id"));
 					rs = pstmt.executeQuery();
