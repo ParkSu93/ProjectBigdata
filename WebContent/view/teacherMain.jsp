@@ -84,24 +84,6 @@ pageEncoding="utf-8"%>
    </style>
    
    <script type="text/javascript">
-=======
-		.btn-circle {
-			width: 30px;
-			height: 30px;
-			text-align: center;
-			padding: 6px 0;
-			font-size: 12px;
-			line-height: 1.428571429;
-			border-radius: 15px;
-		}
-
-		.container{
-			margin-top: 100px;
-		}
-	</style>
-
-	<script type="text/javascript">
->>>>>>> 86f3831c74f6e19876dd0007a01074a8ecb711ac
    var lecture = null; //모달강의 저장용
    var lecture_list; //모달 강의 리스트용 처음 시작할 때, 서버로 부터 한번 아이디에 해당하는 모든 강의 받아오고, 뿌려준다. 그리고 추가하는 형식
    
@@ -207,7 +189,6 @@ pageEncoding="utf-8"%>
 </head>
 
 <body>
-<<<<<<< HEAD
    <%@include file="navbar_teacher.jsp"%>
    <%
    ArrayList list =(ArrayList)request.getAttribute("list");
@@ -263,76 +244,6 @@ pageEncoding="utf-8"%>
                </thead>
                <tbody class="tr_btn" style="padding: 10px">
                   <tr id="tr_index">
-=======
-
-	<%
-	ArrayList list =(ArrayList)request.getAttribute("list");
-	String result = Converter.convertToJson(list);
-	%>
-	<div id = "a" style = "display:none">
-		<%= result %>
-	</div>
-
-
-	<%@include file="navbar_teacher.jsp"%>
-
-	<div class="container">
-		<div class="row">
-			<div class="col-xs-12">
-				<div class="panel panel-primary">
-					<div class="panel-heading">
-						<h3 class="panel-title">
-							<span class="glyphicon glyphicon-tags"></span> <span
-							class="panel-span panel-left">강의목록</span>
-							<div class="pull-right text-center">
-								<span class="panel-title btn-group">
-								<button id="deleteUser" ng-disabled="underCreation" type="button"
-									class="btn btn-default btn-sm" ng-click="deleteUser()">
-									<span class="glyphicon glyphicon-plus text-primary"></span> <span
-									class="text-primary"><strong>강의제거</strong></span>
-								</button>
-							</span>
-						</div>
-						<div class="pull-right text-center">
-							<span class="panel-title btn-group">
-								<button id="addUser" ng-disabled="underCreation" type="button"
-								class="btn btn-default btn-sm" ng-click="addUser()">
-								<span class="glyphicon glyphicon-plus text-primary"></span> <span
-								class="text-primary"><strong>강의추가</strong></span>
-							</button>
-						</span>
-					</div>
-				</h3>
-			</div>
-			<div class="panel-body">
-				<div class="media">
-					<div class="media-left">
-						<a href="#"> <img class="media-object"
-							src="images/temp1.jpg">
-						</a>
-					</div>
-					<div class="media-body">
-						<h4 class="media-heading">${memberInfo.username}</h4>
-						<br>
-						<h5 class="media-heading">${memberInfo.introduce}</h5>
-						<br> <br>
-					</div>
-				</div>
-			</div>
-			<table class="table">
-				<thead>
-					<tr>
-						<th>강의 이름</th>
-						<th>강의 총 일수</th>
-						<th>현재 듣는 학생 수</th>
-						<th>수업 시간</th>
-						<th>출석 체크</th>
-					</tr>
-				</thead>
-				<tbody class="tr_btn" style="padding: 10px">
-					<tr id="tr_index">
->>>>>>> 86f3831c74f6e19876dd0007a01074a8ecb711ac
-
 					</tr>
 				</tbody>
 			</table>
