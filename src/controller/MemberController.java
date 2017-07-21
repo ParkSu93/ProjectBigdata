@@ -163,28 +163,32 @@ public class MemberController {
 	 * @return user 프로필 페이지
 	 */
 	@RequestMapping(value = "view/modifyProfile.do", method = RequestMethod.POST)
-	public String doModifyProfile(@ModelAttribute("user")MemberVO vo,HttpServletRequest req) {
-		
+	public ModelAndView doModifyProfile(@ModelAttribute("user")MemberVO vo,HttpServletRequest req) {
+		ModelAndView mav = new ModelAndView();
 		HttpSession se = req.getSession();
+		String myId =((MemberVO)se.getAttribute("mem")).getId();
 		MemberVO mem =null;
 		
 		Object obj = se.getAttribute("mem");
 		if(obj instanceof TeacherVO){
 			TeacherVO tea = (TeacherVO)obj;
-			
 			service.updateMemberInfo(tea);
+			TeacherVO tt = (TeacherVO)service.getMemberInfo(myId, "Y");
+			mav.addObject("memberInfo",tt);
 		}else{
 			mem = (MemberVO)obj;
 			mem.setEmail(vo.getEmail());
 			mem.setAddr(vo.getAddr());
 			mem.setPhonenum(vo.getPhonenum());
 			mem.setIntroduce(vo.getIntroduce());
-		
 			service.updateMemberInfo(mem);
+			
+			MemberVO mm = (MemberVO)service.getMemberInfo(myId, "N");
+			mav.addObject("memberInfo",mm);
 		}
 		
 		System.out.println(mem);
-	
-		return "studentProfile";
+		mav.setViewName("studentProfile");
+		return mav;
 	}
 }

@@ -1,3 +1,5 @@
+<%@page import="vo.TeacherVO"%>
+<%@page import="controller.Converter"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 pageEncoding="utf-8"%>
 <!DOCTYPE html>
@@ -75,6 +77,15 @@ pageEncoding="utf-8"%>
 </head>
 <body>
 	<%@include file="navbar_teacher.jsp"%>
+
+	<%
+		TeacherVO tt = (TeacherVO) request.getAttribute("memberInfo");
+		String result = Converter.convertToJson(tt);
+	%>
+	<div id = "a" style = "display:none">
+      <%= result %>
+   </div>
+	
 	<div class="container" style="margin: auto">
 		<div class="row">
 			<h2>프로필을 수정하거나 확인하세용</h2>
