@@ -64,6 +64,8 @@ public class MemberController {
 				ArrayList<MyLectureVO> lecturelist = new ArrayList<>();
 				lecturelist = lecService.lectureList(id);
 				
+				System.out.println(lecturelist);
+				
 				TeacherVO mem2 =  (TeacherVO)obj2;
 				mav.addObject("list", lecturelist);;
 				mav.addObject("memberInfo", mem2);			
