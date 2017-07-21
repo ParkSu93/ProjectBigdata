@@ -13,7 +13,7 @@ public class Converter {
 	static {
 		gson = new Gson();
 	}
-	
+
 	public static String convertToJson(Object obj) {
 		return gson.toJson(obj); // 자바Object를 JSON형태로 바꿔준다. { "name" : value } 이런식으로
 	}

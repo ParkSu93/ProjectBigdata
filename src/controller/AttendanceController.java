@@ -33,5 +33,4 @@ public class AttendanceController {
 		mav.setViewName("attendenceList");
 		return mav;
 	}
-
 }

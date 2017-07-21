@@ -153,15 +153,13 @@ body {
 	padding-bottom: 100px;
 }
 
-#wrapper {
+#wrapper-index {
 display:inline-block;
 	width: 100%;
 	height: 80%;
 	position: absolute;
 	overflow-y: scroll;
 }
-
-
 </style>
 	<script type="text/javascript">
 		$(document).ready(function(){
@@ -218,7 +216,7 @@ display:inline-block;
 </head>
 <body>
 
-<div id="wrapper">
+<div id="wrapper-index">
 	<div class="container" style="padding-top: 50px;padding-bottom: 40px">
 		<div class="row">
 			<div class="col-md-4">
@@ -335,5 +333,5 @@ display:inline-block;
 
 
 	<%@include file="footer.jsp"%>
-	</body>
-	</html> 
+</body>
+</html> 
