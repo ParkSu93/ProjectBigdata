@@ -60,15 +60,23 @@ pageEncoding="utf-8"%>
 		});
 		$(".bts").click(function() { //모달창 상에서 수정
 			user={
-				modify_email : $("#modify_email").val(),
-				modify_addr : $("#modify_addr").val(),
-				modify_phonenum : $("#modify_phonenum").val(),
-				modify_introduce : $("#modify_introduce").val(),
-				modify_career : $("#modify_career").val(),
-				modify_edu_background : $("#modify_edu_background").val()
+				email : $("#modify_email").val(),
+				addr : $("#modify_addr").val(),
+				phonenum : $("#modify_phonenum").val(),
+				introduce : $("#modify_introduce").val(),
+				career : $("#modify_career").val(),
+				edu_background : $("#modify_edu_background").val()
 			};
 			console.log(user); //user에 새롭게 바뀐 객체 정보 들어가있음.
 			$(".modal").hide();
+			$.ajax({
+				url:'modifyTeacherProfile.do', //이쪽 url로
+				type:'post', //포스트형식으로
+				data:user, //데이터 user를 보낸다. 근데 데이터는 무조건 {변수:변수값, 변수:변수값};
+				success:function(data){
+					
+				}
+			});
 		});
 	});
 </script>
@@ -205,29 +213,29 @@ role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
 				<div class="form-group">
 					<div class="form-group">
 						<label>이메일</label> <input type="text" class="form-control mdf"
-						id="modify_email" name="modify_email" placeholder="이메일">
+						id="modify_email" name="modify_email" placeholder="이메일" value = "${memberInfo.email}">
 					</div>
 					<div class="form-group">
 						<label>핸드폰번호</label> <input type="text"
 						class="form-control mdf" id="modify_phonenum" name="modify_phonenum"
-						placeholder="핸드폰번호">
+						placeholder="핸드폰번호" value = "${memberInfo.phonenum}">
 					</div>
 					<div class="form-group">
 						<label>주소</label> <input type="text"
 						class="form-control mdf" id="modify_addr"
-						name="modify_addr" placeholder="주소">
+						name="modify_addr" placeholder="주소" value = "${memberInfo.addr}">
 					</div>
 					<div class="form-group">
 						<label>자기소개</label> <input type="text" class="form-control mdf"
-						id="modify_introduce" name="modify_introduce" placeholder="자기소개">
+						id="modify_introduce" name="modify_introduce" placeholder="자기소개" value = "${memberInfo.introduce}">
 					</div>
 					<div class="form-group">
 						<label>학력</label> <input type="text" class="form-control mdf"
-						id="modify_edu_background" name="modify_edu_background" placeholder="학력">
+						id="modify_edu_background" name="modify_edu_background" placeholder="학력" value = "${memberInfo.edu_background}">
 					</div>
 					<div class="form-group">
 						<label>경력</label> <input type="text" class="form-control mdf"
-						id="modify_career" name="modify_career" placeholder="경력">
+						id="modify_career" name="modify_career" placeholder="경력" value = "${memberInfo.career}">
 					</div>
 				</div>
 			</form>

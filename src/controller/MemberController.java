@@ -162,29 +162,44 @@ public class MemberController {
 	 * 
 	 * @return user 프로필 페이지
 	 */
-	@RequestMapping(value = "view/modifyProfile.do", method = RequestMethod.POST)
+	@RequestMapping(value = "view/modifyStudentProfile.do", method = RequestMethod.POST)
 	public String doModifyProfile(@ModelAttribute("user")MemberVO vo,HttpServletRequest req) {
-		
+		System.out.println("studentvo==>"+vo);
 		HttpSession se = req.getSession();
 		MemberVO mem =null;
 		
 		Object obj = se.getAttribute("mem");
-		if(obj instanceof TeacherVO){
-			TeacherVO tea = (TeacherVO)obj;
-			
-			service.updateMemberInfo(tea);
-		}else{
-			mem = (MemberVO)obj;
-			mem.setEmail(vo.getEmail());
-			mem.setAddr(vo.getAddr());
-			mem.setPhonenum(vo.getPhonenum());
-			mem.setIntroduce(vo.getIntroduce());
+	
+		mem = (MemberVO)obj;
+		mem.setEmail(vo.getEmail());
+		mem.setAddr(vo.getAddr());
+		mem.setPhonenum(vo.getPhonenum());
+		mem.setIntroduce(vo.getIntroduce());
 		
-			service.updateMemberInfo(mem);
-		}
+		service.updateMemberInfo(mem);
 		
 		System.out.println(mem);
 	
 		return "studentProfile";
+	}
+	@RequestMapping(value = "view/modifyTeacherProfile.do", method = RequestMethod.POST)
+	public String doModifyProfile(@ModelAttribute("user")TeacherVO tea,HttpServletRequest req) {
+		
+		System.out.println("teachervo==>"+tea);
+		
+		HttpSession se = req.getSession();
+		
+		MemberVO mem=(MemberVO)se.getAttribute("mem");
+	
+		tea.setId(mem.getId());
+		tea.setPassword(mem.getPassword());
+		tea.setUsername(mem.getUsername());
+		tea.setBirthday(mem.getBirthday());
+		
+		service.updateMemberInfo(tea);
+		
+		System.out.println("tea==>"+tea);
+	
+		return "teacherProfile";
 	}
 }
