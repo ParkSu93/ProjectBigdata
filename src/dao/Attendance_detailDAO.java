@@ -23,6 +23,42 @@ public class Attendance_detailDAO {
 
 		return conn;
 	}
+	
+	/*출석체크 이 메소드로만 ㄱㄱ*/
+	public void attChk(Attendance_detailVO vo){
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement("select count(*) from attendance_detail where lec_no = ? and student_id = ? and day = ?");
+			pstmt.setInt(1, vo.getLec_no());
+			pstmt.setString(2, vo.getStudent_id());
+			pstmt.setShort(3, vo.getDay());
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				if(rs.getInt(1) == 0){
+					insertAttDetail(vo);
+				}else{
+					updateAttDetail(vo);
+				}
+			}
+			if(rs != null) rs.close();
+			if(pstmt != null) pstmt.close();
+			if(conn != null) conn.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
 
 	public void insertAttDetail(Attendance_detailVO vo) {
 		Connection conn = null;
