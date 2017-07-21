@@ -29,7 +29,6 @@ public class MemberController {
 
 	/**
 	 * 첫 로그인 페이지를 호출한다.
-	 * 
 	 * @return login.jsp(로그인 페이지)
 	 */
 	@RequestMapping(value = "view/login.do", method = RequestMethod.GET)
@@ -39,9 +38,7 @@ public class MemberController {
 
 	/**
 	 * 로그인 수행
-	 * 
-	 * @param mem
-	 *            회원 id, password
+	 * @param mem  회원 id, password
 	 * @return 회원 정보, 반환할 페이지를 담은 ModelAndView
 	 */
 	@RequestMapping(value = "view/login.do", method = RequestMethod.POST)

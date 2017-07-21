@@ -36,8 +36,6 @@ public class LectureController {
 		return "teacherMain";
 	}
 
-
-
 	@RequestMapping(value = "syllabus.do", method = RequestMethod.GET)
 	public String syllabus() {
 

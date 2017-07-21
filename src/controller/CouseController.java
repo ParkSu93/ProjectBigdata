@@ -31,7 +31,6 @@ public class CouseController {
 		
 		ArrayList<LectureVO> my_list = l_service.Alllecturelist((String)se.getAttribute("id"));
 		ArrayList<LectureVO> total_list = l_service.totallecturelist((String)se.getAttribute("id"));
-		
 		mav.addObject("my_list", my_list);
 		mav.addObject("total_list",total_list);
 		mav.setViewName("studentMain");
