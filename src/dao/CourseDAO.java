@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import vo.Attendance_bookVO;
 import vo.CourseVO;
 
 public class CourseDAO {
@@ -29,6 +30,11 @@ public class CourseDAO {
 			pstmt.setInt(1, vo.getLec_no());
 			pstmt.setString(2, vo.getStudent_id());
 			pstmt.executeUpdate();
+			Attendance_bookVO attb = new Attendance_bookVO();
+			attb.setLec_no(vo.getLec_no());
+			attb.setStudent_id(vo.getStudent_id());
+			Attendance_bookDAO attbDAO = new Attendance_bookDAO();
+			attbDAO.insertAttBook(attb);
 			PreparedStatement stmt = null;
 			stmt = conn.prepareStatement("update lecture set enroll_num = calc_enroll_num(?) where lec_no = ?");
 			stmt.setInt(1, vo.getLec_no());

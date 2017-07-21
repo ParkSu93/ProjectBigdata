@@ -8,12 +8,10 @@ import dao.Attendance_detailDAO;
 import dao.CourseDAO;
 import dao.LectureDAO;
 import dao.SyllabusDAO;
-import vo.Attendance_bookVO;
 import vo.Attendance_detailVO;
 import vo.CourseVO;
 import vo.LectureVO;
 import vo.MyLectureVO;
-import vo.SearchAttBookVO;
 import vo.SyllabusVO;
 @Service
 public class LectureService {
