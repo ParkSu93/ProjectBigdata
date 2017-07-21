@@ -1,5 +1,6 @@
 <%@page import="controller.Converter"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="vo.MyLectureVO" %>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 pageEncoding="utf-8"%>
 <!DOCTYPE html>
@@ -172,7 +173,7 @@ pageEncoding="utf-8"%>
 <body>
    <%@include file="navbar_teacher.jsp"%>
    <%
-   ArrayList list =(ArrayList)request.getAttribute("list");
+   ArrayList<MyLectureVO> list =(ArrayList<MyLectureVO>)request.getAttribute("list");
    String result = Converter.convertToJson(list);
    %>
    <div id = "a" style = "display:none"><%=result %></div>
