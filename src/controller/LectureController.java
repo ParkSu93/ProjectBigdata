@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -8,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import service.LectureService;
 import vo.Attendance_bookVO;
@@ -38,9 +41,19 @@ public class LectureController {
 	
 	// 령현 - 강사가 강의 삭제
 	@RequestMapping(value = "view/deleteLecture.do", method = RequestMethod.POST)
-	public String deleteLecture(@ModelAttribute("lec") LectureVO lec, BindingResult result) {
-		System.out.println(lec);
+	public ModelAndView deleteLecture(@ModelAttribute("lec") LectureVO lec, HttpServletRequest req) {
+		System.out.println("이름 넘어오니: "+lec);
 		service.deleteLecture(lec.getLec_name());
-		return "teacherMain";
+		
+		ModelAndView mav = new ModelAndView();
+		HttpSession se = req.getSession();
+		
+		ArrayList<MyLectureVO> lecturelist = new ArrayList<>();
+		lecturelist = service.lectureList((String)se.getAttribute("id"));
+		
+		mav.addObject("list", lecturelist);;
+		mav.setViewName("teacherMain");
+		
+		return mav;
 	}
 }

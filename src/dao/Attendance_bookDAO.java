@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import vo.Attendance_bookVO;
+import vo.Attendance_detailVO;
 import vo.SearchAttBookVO;
 
 public class Attendance_bookDAO {
@@ -31,6 +32,12 @@ public class Attendance_bookDAO {
 			pstmt.setInt(1, vo.getLec_no());
 			pstmt.setString(2, vo.getStudent_id());
 			pstmt.executeUpdate();
+			Attendance_detailVO attd = new Attendance_detailVO();
+			attd.setLec_no(vo.getLec_no());
+			attd.setStudent_id(vo.getStudent_id());
+			attd.setDay((short)1);
+			Attendance_detailDAO attdDAO = new Attendance_detailDAO();
+			attdDAO.insertAttDetail(attd);
 			if (vo.getStu_start_date() != 1) {
 				PreparedStatement stmt = null;
 				stmt = conn.prepareStatement(

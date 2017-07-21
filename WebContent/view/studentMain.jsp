@@ -342,7 +342,7 @@ $(document).ready(function() {
 				console.log(index_add_lecture);
 				console.log(lecture3);
 				 $("#lecture_name").html(lecture3[index_add_lecture-1].lec_name);
-				 $("#teacher_name").html(lecture3[index_add_lecture-1].teacher_name);
+				 $("#teacher_name").html(lecture3[index_add_lecture-1].username);
 				//모달창
 				$(".add_lecture").show();
 				$(".add_lecture").modal();
