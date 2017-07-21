@@ -26,7 +26,7 @@ public class AttendanceController {
 	public ModelAndView getAttendStudentList(@ModelAttribute("lec")LectureVO lec ,HttpServletRequest req){
 		ModelAndView mav = new ModelAndView();
 		HttpSession se = req.getSession();
-		System.out.println(lec);
+		System.out.println(lec.getLec_no());
 		 ArrayList<StudentListVO> list = service.getAttendStudentList(lec.getLec_no());
 		System.out.println("컨트롤러: "+list);
 		mav.addObject("list",list);
