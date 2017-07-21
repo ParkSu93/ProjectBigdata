@@ -16,6 +16,13 @@ pageEncoding="utf-8"%>
    <script src="js/bootstrap.js"></script>
    <script src="https://www.jsviews.com/download/jsrender.js"></script>
    <style type="text/css">
+   	body {
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+		overflow-y: scroll;
+}
       .modal-header {
          padding-bottom: 5px;
       }

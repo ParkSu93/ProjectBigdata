@@ -165,26 +165,26 @@ public class MemberController {
 	 * @return user 프로필 페이지
 	 */
 
-	   @RequestMapping(value = "view/modifyStudentProfile.do", method = RequestMethod.POST)
-	   public String doModifyProfile(@ModelAttribute("user")MemberVO vo,HttpServletRequest req) {
-	      System.out.println("studentvo==>"+vo);
-	      HttpSession se = req.getSession();
-	      MemberVO mem =null;
-	      
-	      Object obj = se.getAttribute("mem");
-	   
-	      mem = (MemberVO)obj;
-	      mem.setEmail(vo.getEmail());
-	      mem.setAddr(vo.getAddr());
-	      mem.setPhonenum(vo.getPhonenum());
-	      mem.setIntroduce(vo.getIntroduce());
-	      
-	      service.updateMemberInfo(mem);
-	      
-	      System.out.println(mem);
-	   
-	      return "studentProfile";
-	   }
+	@RequestMapping(value = "view/modifyStudentProfile.do", method = RequestMethod.POST)
+	public String doModifyProfile(@ModelAttribute("user") MemberVO vo, HttpServletRequest req) {
+		System.out.println("studentvo==>" + vo);
+		HttpSession se = req.getSession();
+		MemberVO mem = null;
+
+		Object obj = se.getAttribute("mem");
+
+		mem = (MemberVO) obj;
+		mem.setEmail(vo.getEmail());
+		mem.setAddr(vo.getAddr());
+		mem.setPhonenum(vo.getPhonenum());
+		mem.setIntroduce(vo.getIntroduce());
+
+		service.updateMemberInfo(mem);
+
+		System.out.println(mem);
+
+		return "studentProfile";
+	}
 
 	@RequestMapping(value = "view/getMainPage.do", method = RequestMethod.GET)
 	public ModelAndView getMainPage(HttpServletRequest req) {
@@ -207,7 +207,7 @@ public class MemberController {
 
 				System.out.println(lecturelist);
 
-//				TeacherVO mem2 = (TeacherVO) obj2;
+				// TeacherVO mem2 = (TeacherVO) obj2;
 				mav.addObject("list", lecturelist);
 				mav.addObject("memberInfo", mem);
 				mav.setViewName("teacherMain");
@@ -223,7 +223,7 @@ public class MemberController {
 				System.out.println("alllist" + allList.toString());
 				mav.addObject("totalList", totallist);
 				mav.addObject("allList", allList);
-//				MemberVO mem2 = (MemberVO) obj2;
+				// MemberVO mem2 = (MemberVO) obj2;
 				mav.addObject("memberInfo", mem);
 				mav.setViewName("studentMain");
 			}
@@ -234,24 +234,25 @@ public class MemberController {
 		}
 		return mav;
 	}
+
 	@RequestMapping(value = "view/modifyTeacherProfile.do", method = RequestMethod.POST)
-	public String doModifyProfile(@ModelAttribute("user")TeacherVO tea,HttpServletRequest req) {
-		
-		System.out.println("teachervo==>"+tea);
-		
+	public String doModifyProfile(@ModelAttribute("user") TeacherVO tea, HttpServletRequest req) {
+
+		System.out.println("teachervo==>" + tea);
+
 		HttpSession se = req.getSession();
-		
-		MemberVO mem=(MemberVO)se.getAttribute("mem");
-	
+
+		MemberVO mem = (MemberVO) se.getAttribute("mem");
+
 		tea.setId(mem.getId());
 		tea.setPassword(mem.getPassword());
 		tea.setUsername(mem.getUsername());
 		tea.setBirthday(mem.getBirthday());
-		
+
 		service.updateMemberInfo(tea);
-		
-		System.out.println("tea==>"+tea);
-	
+
+		System.out.println("tea==>" + tea);
+
 		return "teacherProfile";
 	}
 }
