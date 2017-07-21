@@ -8,7 +8,6 @@ public class MyLectureVO extends LectureVO{
 		super();
 	}
 
-
 	public String getLec_outline() {
 		return lec_outline;
 	}
